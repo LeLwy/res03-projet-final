@@ -15,13 +15,55 @@
 
 ### Controllers:
 
-- PageController -> Call to PageManager
-- UserController -> Call to UserManager
-- CatController -> Call to CatManager
-- PostController -> Call to PostManager
-- EventController -> Call to EventManager
-- FamilyController -> Call to FamilyManager
-- DiseaseController -> Call to DiseaseManager
+<!-- #### PageController: 
+
+- Call to PostManager
+- Call to FamilyManager
+- Call to CatManager
+- Call to EventManager -->
+
+#### UserController: 
+
+- Call to UserManager
+- Call to PostManager
+- Call to MediaManager
+- Call to FamilyManager
+
+#### CatController: 
+
+- Call to CatManager
+- Call to FamilyManager
+- Call to MediaManager
+- Call to DiseasesManager
+
+#### PostController:
+
+- Call to PostManager
+- Call to UserManager
+- Call to MediaManager
+
+#### EventController 
+
+- Call to EventManager
+- Call to MediaManager
+
+#### FamilyController:
+
+- Call to FamilyManager
+- Call to UserManager
+- Call to MediaManager
+- Call to CatManager
+
+#### DiseaseController:
+
+- Call to DiseaseManager
+- Call to CatManager
+
+### Managers:
+
+#### UserManager:
+
+- 
 
 ### Database:
 
