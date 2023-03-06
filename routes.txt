@@ -1,0 +1,38 @@
+/ PageController:home
+/about PageController:about
+/to-adoption CatController:index
+/to-adoption/* CatController:show
+/donation PageController:donation
+/join-us JoinUsController:index
+/events EventController:index
+/events/* EventController:show
+/blog PostController:index
+/blog/* PostController:show
+/families FamilyController:index
+/families/* FamilyController:show
+
+/user/*
+/user/*/posts/create PostController:new
+
+/admin
+/admin/users UserController:index
+/admin/users/create UserController:new
+/admin/users/* UserController:show
+/admin/users/*/edit UserController:edit
+/admin/cats CatController:index
+/admin/cats/create CatController:new
+/admin/cats/* CatController:show
+/admin/cats/*/edit CatController:edit
+/admin/posts PostController:index
+/admin/posts/create PostController:new
+/admin/posts/* PostController:show
+/admin/posts/*/edit PostController:edit
+/admin/families FamilyController:index
+/admin/families/create FamilyController:new
+/admin/families/* FamilyController:show
+/admin/families/*/edit FamilyController:edit
+/admin/events EventController:index
+/admin/events/create EventController:new
+/admin/events/* EventController:show
+/admin/events/*/edit EventController:edit
+
