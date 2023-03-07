@@ -13,6 +13,7 @@
 
 /user/*
 /user/*/posts/create PostController:new
+/user/*/posts/*/edit PostController:edit
 
 /admin
 /admin/users UserController:index
