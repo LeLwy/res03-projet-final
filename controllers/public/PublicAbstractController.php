@@ -20,5 +20,6 @@ abstract class PublicAbstractController
             $data = $values;
             
             require 'templates/public/layout.phtml';
+            var_dump($data);
         }
 }

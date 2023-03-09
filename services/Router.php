@@ -1,20 +1,9 @@
 <?php
 
-require "./../controllers/AboutController.php";
-require "./../controllers/BlogController.php";
-require "./../controllers/CatController.php";
-require "./../controllers/DiseaseController.php";
-require "./../controllers/DonationController.php";
-require "./../controllers/EventController.php";
-require "./../controllers/FamilyController.php";
-require "./../controllers/HomeController.php";
-require "./../controllers/LoginController.php";
-require "./../controllers/RegisterController.php";
-require "./../controllers/UserController.php";
-
 class Router{
     
     private AboutController $aboutController;
+    private AdoptionController $adoptionController;
     private BlogController $blogController;
     private CatController $catController;
     private DiseaseController $diseaseController;
@@ -32,6 +21,7 @@ class Router{
    {
 
         $this->aboutController = new AboutController();
+        $this->adoptionController = new AdoptionController();
         $this->blogController = new BlogController();
         $this->catController = new CatController();
         $this->diseaseController = new DiseaseController();
@@ -47,15 +37,14 @@ class Router{
 
    public function checkRoute(){
 
-
        if(isset($_GET["path"])){
 
            $route = explode("/",$_GET["path"]);
-
+           
            /* / */
            if($route[0]=== ""){
-
-            $this->homeController->index();
+               
+               $this->homeController->index();
 
             /* /a-l-adoption */
             /* /a-l-adoption/id */ 
@@ -63,13 +52,13 @@ class Router{
 
             if(!isset($route[1])){
 
-                $this->catController->index();
+                $this->adoptionController->index();
 
             }else if(isset($route[1]) && count($route) === 2){
 
                 $id = intval($route[1]);
 
-                $this->catController->show($id);
+                $this->adoptionController->show($id);
             }
             
             /* /a-propos */
@@ -108,6 +97,19 @@ class Router{
            }else if($route[0]=== "dons"){
 
             $this->donationController->index();
+            
+           }else if($route[0]=== "blog"){
+
+            if(!isset($route[1])){
+
+                $this->blogController->index();
+
+            }else if(isset($route[1]) && count($route) === 2){
+
+                $id = intval($route[1]);
+
+                $this->blogController->show($id);
+            }
             
            }else if($route[0]=== "se-connecter"){
 
