@@ -6,8 +6,6 @@
 
     // call to models
 
-    require "models/AbstractUser.php";
-    require "models/Admin.php";
     require "models/Cat.php";
     require "models/Disease.php";
     require "models/Event.php";
@@ -22,6 +20,7 @@
 
     require "controllers/public/PublicAbstractController.php";
     require "controllers/public/AboutController.php";
+    require "controllers/public/AdoptionController.php";
     require "controllers/public/BlogController.php";
     require "controllers/public/ContactController.php";
     require "controllers/public/DonationController.php";

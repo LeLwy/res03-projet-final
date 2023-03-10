@@ -26,6 +26,7 @@ class CatManager extends AbstractManager{
         $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['is_sterilized']);
         
         $newCat->setId($cat['id']);
+        $newCat->setFamily($cat['family']);
         
         return $newCat;
     }
