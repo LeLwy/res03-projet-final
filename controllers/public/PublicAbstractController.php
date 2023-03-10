@@ -13,10 +13,11 @@ abstract class PublicAbstractController
     // {  
     //     echo json_encode($values);
     // }
-    public function render(string $view, array $values) : void
+    public function render(string $view, string $page, array $values) : void
         {
             
             $template = $view;
+            $crudFunction = $page;
             $data = $values;
             
             require 'templates/public/layout.phtml';

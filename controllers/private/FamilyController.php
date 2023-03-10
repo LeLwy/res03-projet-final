@@ -10,6 +10,6 @@ class FamilyController extends PrivateAbstractController
 
     public function index(){
 
-        $this->render('family_index', []);
+        $this->render('family', 'index', []);
     }
 }
