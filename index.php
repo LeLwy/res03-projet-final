@@ -2,7 +2,7 @@
 
     session_start();
 
-    require "autoload.php";
+    require "config/autoload.php";
 
     $router = new Router;
 

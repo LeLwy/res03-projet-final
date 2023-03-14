@@ -1,37 +1,43 @@
-/ PageController:home
-/about PageController:about
-/to-adoption CatController:index
-/to-adoption/* CatController:show
-/donation PageController:donation
-/join-us JoinUsController:index
-/events EventController:index
-/events/* EventController:show
-/blog PostController:index
-/blog/* PostController:show
-/families FamilyController:index
-/families/* FamilyController:show
-/user/*
-/user/*/posts/create PostController:new
-/user/*/posts/*/edit PostController:edit
+/
+/a-propos
+/a-l-adoption
+/a-l-adoption/:chat-id
+/donations
+/nous-rejoindre
+/evenements
+/evenements/:evenement-id
+/blog
+/blog/:article-id
+/familles
+/familles/:famille-id
+/utilisateur/:utilisateur-id
+/utilisateur/:utilisateur-id/article/creer
+/utilisateur/:utilisateur-id/article/:article-id/editer
+/utilisateur/:utilisateur-id/article/:article-id/supprimer
 /admin
-/admin/users UserController:index
-/admin/users/create UserController:new
-/admin/users/* UserController:show
-/admin/users/*/edit UserController:edit
-/admin/cats CatController:index
-/admin/cats/create CatController:new
-/admin/cats/* CatController:show
-/admin/cats/*/edit CatController:edit
-/admin/posts PostController:index
-/admin/posts/create PostController:new
-/admin/posts/* PostController:show
-/admin/posts/*/edit PostController:edit
-/admin/families FamilyController:index
-/admin/families/create FamilyController:new
-/admin/families/* FamilyController:show
-/admin/families/*/edit FamilyController:edit
-/admin/events EventController:index
-/admin/events/create EventController:new
-/admin/events/* EventController:show
-/admin/events/*/edit EventController:edit
+/admin/utilisateurs
+/admin/utilisateur/creer
+/admin/utilisateur/:utilisateur-id
+/admin/utilisateur/:utilisateur-id/editer
+/admin/utilisateur/:utilisateur-id/supprimer
+/admin/chats
+/admin/chats/creer
+/admin/chats/:chat-id
+/admin/chats/:chat-id/editer
+/admin/chats/:chat-id/supprimer
+/admin/articles
+/admin/article/creer
+/admin/article/:article-id
+/admin/article/:article-id/editer
+/admin/article/:article-id/supprimer
+/admin/familles
+/admin/familles/creer
+/admin/familles/:famille-id
+/admin/familles/:famille-id/editer
+/admin/familles/:famille-id/supprimer
+/admin/evenements
+/admin/evenements/creer
+/admin/evenements/:evenement-id
+/admin/evenements/:evenement-id/editer
+/admin/evenements/:evenement-id/supprimer
 
