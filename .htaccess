@@ -2,5 +2,5 @@
 RewriteEngine on
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ http://localhost/res03-projet-final/index.php?path=$1 [NC,L,QSA]
+RewriteRule ^(.*)$ res03-projet-final/index.php?path=$1 [NC,L,QSA]
 </IfModule>

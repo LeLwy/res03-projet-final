@@ -55,7 +55,7 @@ class Router{
             {    
                 $routeAndParams["route"] = "about";   
             }  
-            else if($tab[0] === 'a-l-adoption') // route vers la page a-l-adoption  
+            else if($tab[0] === 'a-l-adoption' && $tab[1] === null) // route vers la page a-l-adoption  
             {    
                 $routeAndParams["route"] = "a-l-adoption";  
             }  
@@ -72,7 +72,7 @@ class Router{
             {    
                 $routeAndParams["route"] = "nous-rejoindre";  
             }  
-            else if($tab[0] === 'evenements') // route vers la page évènements  
+            else if($tab[0] === 'evenements' && $tab[1] === null) // route vers la page évènements  
             {    
                 $routeAndParams["route"] = "evenements";  
             }  
@@ -81,7 +81,7 @@ class Router{
                 $routeAndParams["route"] = "evenements";  
                 $routeAndParams["evenement-id"] = $tab[1];
             }  
-            else if($tab[0] === 'blog') // route vers la page blog  
+            else if($tab[0] === 'blog' && $tab[1] === null) // route vers la page blog  
             {    
                 $routeAndParams["route"] = "blog";  
             }  
@@ -90,7 +90,7 @@ class Router{
                 $routeAndParams["route"] = "blog";  
                 $routeAndParams["article-id"] = $tab[1];
             }  
-            else if($tab[0] === 'familles') // route vers la page familles  
+            else if($tab[0] === 'familles' && $tab[1] === null) // route vers la page familles  
             {    
                 $routeAndParams["route"] = "familles";  
             }  
@@ -99,7 +99,7 @@ class Router{
                 $routeAndParams["route"] = "familles";  
                 $routeAndParams["famille-id"] = $tab[1];
             }  
-            else if($tab[0] === 'utilisateurs' && $tab[1] !== null) // route vers la page de profil d'un utilisateur 
+            else if($tab[0] === 'utilisateurs' && $tab[1] !== null && $tab[2] === null) // route vers la page de profil d'un utilisateur 
             {    
                 $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
@@ -127,11 +127,11 @@ class Router{
                 $routeAndParams["article-id"] = $tab[3];
                 $routeAndParams["methode"] = $tab[4];
             }  
-            else if($tab[0] === 'admin') // route vers la page principale du profil administrateur  
+            else if($tab[0] === 'admin' && $tab[1] === null) // route vers la page principale du profil administrateur  
             {    
                 $routeAndParams["route"] = "admin";  
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null) // route vers l'index d'un type de modèle pour l'administrateur 
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] === null) // route vers l'index d'un type de modèle pour l'administrateur 
             {    
                 $routeAndParams["route"] = "admin";  
                 $routeAndParams["sub-route"] = $tab[1];
@@ -227,34 +227,42 @@ class Router{
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
+            $this->homeController->index();
             // appel de la méthode du controlleur pour afficher la page d'accueil  
         }  
         else if($routeTab["route"] === "a-propos") // condition(s) pour envoyer vers la page à propos 
         {  
+            $this->aboutController->index();
             // appel de la méthode du controlleur pour afficher la page à propos  
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] === null) // condition(s) pour envoyer vers la liste des chats à l'adoption  
         {  
+            $this->adoptionController->index();
             // appel de la méthode du controlleur pour afficher la page à l'adoption (index des chats)
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] !== null) // condition(s) pour envoyer vers le profil d'un chat à l'adoption  
         {  
+            $this->adoptionController->show(intval($routeTab["chat-id"]));
             // appel de la méthode du controlleur pour afficher le profil d'un chat  
         }  
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] === null) // condition(s) pour envoyer vers la liste des articles du blog  
         {  
+            $this->blogController->index();
             // appel de la méthode du controlleur pour afficher le blog (index des articles)
         }    
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] !== null) // condition(s) pour envoyer vers le détail d'un article du blog  
         {  
+            $this->blogController->show(intval($routeTab["article-id"]));
             // appel de la méthode du controlleur pour afficher le détail d'un article  
         }  
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] === null) // condition(s) pour envoyer vers la liste des famille 
         {  
+            $this->familyController->index();
             // appel de la méthode du controlleur pour afficher la page familles (index des familles) 
         }    
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] !== null) // condition(s) pour envoyer vers le profil d'une famille  
         {  
+            $this->familyController->show(intval($routeTab["famille-id"]));
             // appel de la méthode du controlleur pour afficher le profil d'un famille  
         }    
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
