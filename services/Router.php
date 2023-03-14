@@ -44,8 +44,8 @@ class Router{
         $routeAndParams["article-id"] = null;  
         $routeAndParams["famille-id"] = null;  
         $routeAndParams["evenement-id"] = null;  
-        $routeAndParams["model"] = null;  
-        $routeAndParams["method"] = null;    
+        $routeAndParams["sub-route"] = null;  
+        $routeAndParams["methode"] = null;    
     
         if(strlen($route) > 0) // si la chaine de la route n'est pas vide (donc si ça n'est pas la home)  
         {  
@@ -99,25 +99,33 @@ class Router{
                 $routeAndParams["route"] = "familles";  
                 $routeAndParams["famille-id"] = $tab[1];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null) // route vers la page de profil d'un utilisateur 
+            else if($tab[0] === 'utilisateurs' && $tab[1] !== null) // route vers la page de profil d'un utilisateur 
             {    
-                $routeAndParams["route"] = "utilisateur";  
+                $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page de création d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateurs' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "creer") // route vers la page de création d'un article pour l'utilisateur
             {    
-                $routeAndParams["route"] = "utilisateur";  
+                $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
-                $routeAndParams["model"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["sub-route"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null && $tab[4] !== null) // route vers la page d'édition d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null && $tab[4] === "editer") // route vers la page d'édition d'un article pour l'utilisateur
             {    
-                $routeAndParams["route"] = "utilisateur";  
+                $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
-                $routeAndParams["model"] = $tab[2];
+                $routeAndParams["sub-route"] = $tab[2];
                 $routeAndParams["article-id"] = $tab[3];
-                $routeAndParams["method"] = $tab[4];
+                $routeAndParams["methode"] = $tab[4];
+            }  
+            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null && $tab[4] === "supprimer") // route vers la page de suppression d'un article pour l'utilisateur
+            {    
+                $routeAndParams["route"] = "utilisateurs";  
+                $routeAndParams["utilisateur-id"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[2];
+                $routeAndParams["article-id"] = $tab[3];
+                $routeAndParams["methode"] = $tab[4];
             }  
             else if($tab[0] === 'admin') // route vers la page principale du profil administrateur  
             {    
@@ -126,48 +134,83 @@ class Router{
             else if($tab[0] === 'admin' && $tab[1] !== null) // route vers l'index d'un type de modèle pour l'administrateur 
             {    
                 $routeAndParams["route"] = "admin";  
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null) // route vers la page de création d'un type de modèle pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] === "creer") // route vers la page de création d'un type de modèle pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
-                $routeAndParams["method"] = $tab[2];
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["methode"] = $tab[2];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page d'édition d'un utilisateur pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "editer") // route vers la page d'édition d'un utilisateur pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["utilisateur-id"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page d'édition d'un chat pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "supprimer") // route vers la page de suppression d'un utilisateur pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["utilisateur-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "editer") // route vers la page d'édition d'un chat pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["chat-id"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page d'édition d'un article pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "supprimer") // route vers la page de suppression d'un chat pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["chat-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "editer") // route vers la page d'édition d'un article pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["article-id"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page d'édition d'un évènement pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "supprimer") // route vers la page de suppression d'un article pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["article-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "editer") // route vers la page d'édition d'un évènement pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["evenement-id"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null) // route vers la page d'édition d'une famille pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "supprimer") // route vers la page de suppression d'un évènement pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
-                $routeAndParams["model"] = $tab[1];
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["evenement-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "editer") // route vers la page d'édition d'une famille pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["famille-id"] = $tab[2];
-                $routeAndParams["method"] = $tab[3];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] !== null && $tab[3] === "supprimer") // route vers la page de suppression d'une famille pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["famille-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
             } 
         }  
         else  
@@ -184,35 +227,147 @@ class Router{
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
-            // appeler la méthode du controlleur pour afficher la home  
+            // appel de la méthode du controlleur pour afficher la page d'accueil  
         }  
         else if($routeTab["route"] === "a-propos") // condition(s) pour envoyer vers la page à propos 
         {  
-            // appeler la méthode du controlleur pour afficher les produits  
+            // appel de la méthode du controlleur pour afficher la page à propos  
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] === null) // condition(s) pour envoyer vers la liste des chats à l'adoption  
         {  
-            // appeler la méthode du controlleur pour afficher les produits d'une catégorie  
+            // appel de la méthode du controlleur pour afficher la page à l'adoption (index des chats)
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] !== null) // condition(s) pour envoyer vers le profil d'un chat à l'adoption  
         {  
-            // appeler la méthode du controlleur pour afficher les produits d'une catégorie  
+            // appel de la méthode du controlleur pour afficher le profil d'un chat  
         }  
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] === null) // condition(s) pour envoyer vers la liste des articles du blog  
         {  
-            // appeler la méthode du controlleur pour afficher le détail d'un produit  
+            // appel de la méthode du controlleur pour afficher le blog (index des articles)
         }    
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] !== null) // condition(s) pour envoyer vers le détail d'un article du blog  
         {  
-            // appeler la méthode du controlleur pour afficher les produits d'une catégorie  
+            // appel de la méthode du controlleur pour afficher le détail d'un article  
         }  
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] === null) // condition(s) pour envoyer vers la liste des famille 
         {  
-            // appeler la méthode du controlleur pour afficher le détail d'un produit  
+            // appel de la méthode du controlleur pour afficher la page familles (index des familles) 
         }    
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] !== null) // condition(s) pour envoyer vers le profil d'une famille  
         {  
-            // appeler la méthode du controlleur pour afficher les produits d'une catégorie  
+            // appel de la méthode du controlleur pour afficher le profil d'un famille  
+        }    
+        else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
+        {  
+            // appel de la méthode du controlleur pour afficher le profil d'un utilisateur  
+        }
+        else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab["methode"] === 'creer') // condition(s) pour envoyer vers le formulaire de création d'un article pour l'utilisateur  
+        {  
+            // appel de la méthode du controlleur pour afficher le formulaire de création d'un article 
+        }
+        else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab['article-id'] !== null && $routeTab["methode"] === "editer") // condition(s) pour envoyer vers le formulaire d'édition d'un article pour l'utilisateur  
+        {  
+            // appel de la méthode du controlleur pour afficher le formulaire d'édition d'un article   
+        }  
+        else if($routeTab["route"] === "admin") // condition(s) pour envoyer vers la page d'accueil de l'admin 
+        {  
+            // appel de la méthode du controlleur pour afficher la page d'accueil de l'admin 
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null) // condition(s) pour envoyer vers l'index de l'un des modèles 
+        {  
+            if($routeTab['sub-route'] === "utilisateurs"){
+
+                // appel de la méthode du controlleur pour afficher les utilisateurs  
+            }else if($routeTab['sub-route'] === "chats"){
+
+                // appel de la méthode du controlleur pour afficher les chats  
+            }else if($routeTab['sub-route'] === "articles"){
+
+                // appel de la méthode du controlleur pour afficher les articles  
+            }else if($routeTab['sub-route'] === "familles"){
+
+                // appel de la méthode du controlleur pour afficher les familles  
+            }else if($routeTab['sub-route'] === "evenements"){
+
+                // appel de la méthode du controlleur pour afficher les evenements  
+            }
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "utilisateurs" && $routeTab['utilisateur-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le profil d'un utilisateur
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "chats" && $routeTab['chat-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le profil d'un chat
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "articles" && $routeTab['article-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le détail d'un aticle
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "familles" && $routeTab['famille-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le profil d'une famille
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "evenements" && $routeTab['evenement-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le détail d'un evenement
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "creer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
+        {  
+            if($routeTab['sub-route'] === "utilisateurs"){
+
+                // appel de la méthode du controlleur pour creer un utilisateur  
+            }else if($routeTab['sub-route'] === "chats"){
+
+                // appel de la méthode du controlleur pour creer un chat  
+            }else if($routeTab['sub-route'] === "articles"){
+
+                // appel de la méthode du controlleur pour creer un article  
+            }else if($routeTab['sub-route'] === "familles"){
+
+                // appel de la méthode du controlleur pour creer un famille  
+            }else if($routeTab['sub-route'] === "evenements"){
+
+                // appel de la méthode du controlleur pour creer un evenement  
+            }
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
+        {  
+            if($routeTab['sub-route'] === "utilisateurs"){
+
+                // appel de la méthode du controlleur pour editer un utilisateur  
+            }else if($routeTab['sub-route'] === "chats"){
+
+                // appel de la méthode du controlleur pour editer un chat  
+            }else if($routeTab['sub-route'] === "articles"){
+
+                // appel de la méthode du controlleur pour editer un article  
+            }else if($routeTab['sub-route'] === "familles"){
+
+                // appel de la méthode du controlleur pour editer un famille  
+            }else if($routeTab['sub-route'] === "evenements"){
+
+                // appel de la méthode du controlleur pour editer un evenement  
+            }
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
+        {  
+            if($routeTab['sub-route'] === "utilisateurs"){
+
+                // appel de la méthode du controlleur pour supprimer un utilisateur  
+            }else if($routeTab['sub-route'] === "chats"){
+
+                // appel de la méthode du controlleur pour supprimer un chat  
+            }else if($routeTab['sub-route'] === "articles"){
+
+                // appel de la méthode du controlleur pour supprimer un article  
+            }else if($routeTab['sub-route'] === "familles"){
+
+                // appel de la méthode du controlleur pour supprimer un famille  
+            }else if($routeTab['sub-route'] === "evenements"){
+
+                // appel de la méthode du controlleur pour supprimer un evenement  
+            }
         }
     }
 }
