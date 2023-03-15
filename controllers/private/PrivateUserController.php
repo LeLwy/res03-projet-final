@@ -1,6 +1,6 @@
 <?php 
 
-class UserController extends PrivateAbstractController
+class PrivateUserController extends PrivateAbstractController
 {
     
     public function index(){

@@ -5,6 +5,6 @@ class AboutController extends PublicAbstractController
 
     public function index()
     {
-        $this->render('about', []);
+        $this->render('about', 'index', []);
     }
 }

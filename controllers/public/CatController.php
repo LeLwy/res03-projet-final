@@ -1,6 +1,6 @@
 <?php 
 
-class CatController extends PrivateAbstractController
+class PrivateCatController extends PrivateAbstractController
 {
     
     private CatManager $catManager;
@@ -20,16 +20,5 @@ class CatController extends PrivateAbstractController
     {
         $cat = $this->catManager->getCatById($id);
         $this->render('cat', 'single', ['cat' =>$cat]);
-    }
-
-    public function create()
-    {
-        $this->render('cat', 'create', []);
-    }
-
-    public function update($cat)
-    {
-        $cat = $this->catManager->updateCat($cat);
-        $this->render('cat', 'edit', ['cat' =>$cat]);
     }
 }
