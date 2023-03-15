@@ -37,7 +37,7 @@
     // private
 
     require "controllers/private/PrivateAbstractController.php";
-    require "controllers/private/AdminController.php";
+    require "controllers/private/PrivateAdminController.php";
     require "controllers/private/PrivateCatController.php";
     require "controllers/private/PrivateDiseaseController.php";
     require "controllers/private/PrivateEventController.php";

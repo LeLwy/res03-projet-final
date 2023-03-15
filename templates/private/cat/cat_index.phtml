@@ -1,1 +1,32 @@
-<h1>This is the cat index</h1>
+<h1>Les chats à l'adoption</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nom</th>
+      <th scope="col">Âge</th>
+      <th scope="col">Sexe</th>
+      <th scope="col">Couleur</th>
+      <th scope="col">Sterilisé</th>
+      <th scope="col">Famille</th>
+      <th scope="col">Modifier</th>
+    </tr>
+  </thead>
+  <tbody>
+    <?php foreach($data[0] as $cat) ?>
+    <tr>
+      <th scope="row"><?= strval($cat['id']); ?></th>
+      <td><?= $cat['name']; ?></td>
+      <td><?= $cat['age']; ?></td>
+      <td><?= $cat['sex']; ?></td>
+      <td><?= $cat['color']; ?></td>
+      <td><?= $cat['is_sterilized']; ?></td>
+      <td><?= $cat['families_id']; ?></td>
+      <td>
+        <a class="btn btn-success" href="#" role="button">Détails</a>
+        <a class="btn btn-primary" href="#" role="button">Éditer</a>
+        <a class="btn btn-danger" href="#" role="button">Supprimer</a>
+      </td>
+    </tr>
+  </tbody>
+</table>

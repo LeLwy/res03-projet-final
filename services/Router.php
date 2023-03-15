@@ -19,6 +19,7 @@ class Router{
 
     // private controllers
 
+    private PrivateAdminController $privateAdminController;
     private PrivateCatController $privateCatController;
     private PrivateDiseaseController $privateDiseaseController;
     private PrivateEventController $privateEventController;
@@ -45,6 +46,7 @@ class Router{
 
         //private
 
+        $this->privateAdminController = new PrivateAdminController();
         $this->privateCatController = new PrivateCatController();
         $this->privateDiseaseController = new PrivateDiseaseController();
         $this->privateEventController = new PrivateEventController();
@@ -299,26 +301,34 @@ class Router{
         }  
         else if($routeTab["route"] === "admin" && $routeTab["sub-route"] === null) // condition(s) pour envoyer vers la page d'accueil de l'admin 
         {  
-            $this->userController->index();
+            $this->privateAdminController->index();
             // appel de la méthode du controlleur pour afficher la page d'accueil de l'admin 
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === null) // condition(s) pour envoyer vers l'index de l'un des modèles 
         {  
-            echo 'on est ici';
-            if($routeTab['sub-route'] === "utilisateurs"){
+            if($routeTab['sub-route'] === "les-utilisateurs"){
 
+                $this->privateUserController->index();
                 // appel de la méthode du controlleur pour afficher les utilisateurs  
-            }else if($routeTab['sub-route'] === "chats"){
+            }else if($routeTab['sub-route'] === "les-chats-a-l-adoption"){
 
+                $this->privateCatController->index();
                 // appel de la méthode du controlleur pour afficher les chats  
-            }else if($routeTab['sub-route'] === "articles"){
+            }else if($routeTab['sub-route'] === "les-articles"){
 
+                $this->privatePostController->index();
                 // appel de la méthode du controlleur pour afficher les articles  
-            }else if($routeTab['sub-route'] === "familles"){
+            }else if($routeTab['sub-route'] === "les-familles"){
 
+                $this->privateFamilyController->index();
                 // appel de la méthode du controlleur pour afficher les familles  
-            }else if($routeTab['sub-route'] === "evenements"){
+            }else if($routeTab['sub-route'] === "les-evenements"){
 
+                $this->privateEventController->index();
+                // appel de la méthode du controlleur pour afficher les evenements  
+            }else if($routeTab['sub-route'] === "les-maladies"){
+
+                $this->privateDiseaseController->index();
                 // appel de la méthode du controlleur pour afficher les evenements  
             }
         }  
