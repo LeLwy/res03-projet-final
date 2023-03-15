@@ -22,20 +22,27 @@
     require "controllers/public/AboutController.php";
     require "controllers/public/AdoptionController.php";
     require "controllers/public/BlogController.php";
+    require "controllers/public/CatController.php";
     require "controllers/public/ContactController.php";
+    require "controllers/public/DiseaseController.php";
     require "controllers/public/DonationController.php";
+    require "controllers/public/EventController.php";
+    require "controllers/public/FamilyController.php";
     require "controllers/public/HomeController.php";
     require "controllers/public/LoginController.php";
+    require "controllers/public/PostController.php";
     require "controllers/public/RegisterController.php";
+    require "controllers/public/UserController.php";
 
     // private
 
     require "controllers/private/PrivateAbstractController.php";
-    require "controllers/private/CatController.php";
-    require "controllers/private/DiseaseController.php";
-    require "controllers/private/EventController.php";
-    require "controllers/private/FamilyController.php";
-    require "controllers/private/UserController.php";
+    require "controllers/private/AdminController.php";
+    require "controllers/private/PrivateCatController.php";
+    require "controllers/private/PrivateDiseaseController.php";
+    require "controllers/private/PrivateEventController.php";
+    require "controllers/private/PrivateFamilyController.php";
+    require "controllers/private/PrivateUserController.php";
     
     // call to managers
 
