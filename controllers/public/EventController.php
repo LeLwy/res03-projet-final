@@ -1,6 +1,6 @@
 <?php
 
-class PrivateEventController extends PrivateAbstractController
+class EventController extends PublicAbstractController
 {
     
     public function index(){

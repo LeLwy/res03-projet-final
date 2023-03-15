@@ -1,6 +1,8 @@
 <?php
 
 class Router{
+
+    // public controllers
     
     private AboutController $aboutController;
     private AdoptionController $adoptionController;
@@ -15,10 +17,18 @@ class Router{
     private RegisterController $registerController;
     private UserController $userController;
 
+    // private controllers
 
-    // public constructor
+    private PrivateCatController $privateCatController;
+    private PrivateDiseaseController $privateDiseaseController;
+    private PrivateEventController $privateEventController;
+    private PrivateFamilyController $privateFamilyController;
+    private PrivatePostController $privatePostController;
+    private PrivateUserController $privateUserController;
+
     public function __construct()
     {
+        //public
 
         $this->aboutController = new AboutController();
         $this->adoptionController = new AdoptionController();
@@ -32,6 +42,15 @@ class Router{
         $this->loginController = new LoginController();
         $this->registerController = new RegisterController();
         $this->userController = new UserController();
+
+        //private
+
+        $this->privateCatController = new PrivateCatController();
+        $this->privateDiseaseController = new PrivateDiseaseController();
+        $this->privateEventController = new PrivateEventController();
+        $this->privateFamilyController = new PrivateFamilyController();
+        $this->privatePostController = new PrivatePostController();
+        $this->privateUserController = new PrivateUserController();
 
     }
 
@@ -215,7 +234,7 @@ class Router{
         }  
         else  
         {  
-            $routeAndParams["route"] = "404"; // redirection vers la page d'erreur 404
+            $routeAndParams["route"] = ""; // redirection vers la page d'erreur 404
         }  
     
         return $routeAndParams;  
@@ -223,7 +242,8 @@ class Router{
 
     public function checkRoute(string $route) : void  
     {  
-        $routeTab = $this->splitRouteAndParameters($route);  
+        $routeTab = $this->splitRouteAndParameters($route);
+        var_dump($routeTab);  
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
@@ -277,12 +297,14 @@ class Router{
         {  
             // appel de la méthode du controlleur pour afficher le formulaire d'édition d'un article   
         }  
-        else if($routeTab["route"] === "admin") // condition(s) pour envoyer vers la page d'accueil de l'admin 
+        else if($routeTab["route"] === "admin" && $routeTab["sub-route"] === null) // condition(s) pour envoyer vers la page d'accueil de l'admin 
         {  
+            $this->userController->index();
             // appel de la méthode du controlleur pour afficher la page d'accueil de l'admin 
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null) // condition(s) pour envoyer vers l'index de l'un des modèles 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === null) // condition(s) pour envoyer vers l'index de l'un des modèles 
         {  
+            echo 'on est ici';
             if($routeTab['sub-route'] === "utilisateurs"){
 
                 // appel de la méthode du controlleur pour afficher les utilisateurs  
@@ -324,10 +346,11 @@ class Router{
         {  
             if($routeTab['sub-route'] === "utilisateurs"){
 
-                // appel de la méthode du controlleur pour creer un utilisateur  
+                echo 'appel de la méthode du controlleur pour creer un utilisateur';  
             }else if($routeTab['sub-route'] === "chats"){
-
-                // appel de la méthode du controlleur pour creer un chat  
+                
+                echo 'appel de la méthode du controlleur pour creer un chat';  
+                $this->privateCatController->create();
             }else if($routeTab['sub-route'] === "articles"){
 
                 // appel de la méthode du controlleur pour creer un article  

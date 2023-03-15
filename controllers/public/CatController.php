@@ -1,6 +1,6 @@
 <?php 
 
-class PrivateCatController extends PrivateAbstractController
+class CatController extends PublicAbstractController
 {
     
     private CatManager $catManager;

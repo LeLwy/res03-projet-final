@@ -1,6 +1,6 @@
 <?php 
 
-class PrivateDiseaseController extends PrivateAbstractController 
+class DiseaseController extends PublicAbstractController 
 {
     
     public function index(){

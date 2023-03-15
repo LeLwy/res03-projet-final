@@ -42,6 +42,7 @@
     require "controllers/private/PrivateDiseaseController.php";
     require "controllers/private/PrivateEventController.php";
     require "controllers/private/PrivateFamilyController.php";
+    require "controllers/private/PrivatePostController.php";
     require "controllers/private/PrivateUserController.php";
     
     // call to managers

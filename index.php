@@ -1,4 +1,6 @@
 <?php  
+
+session_start();
   
 require "config/autoload.php";  
   
@@ -10,5 +12,5 @@ if(isset($_GET["path"]))
 }  
 else  
 {  
-    $router->checkRoute("");  
+    $router->checkRoute("");
 }
