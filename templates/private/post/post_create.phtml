@@ -1,1 +1,26 @@
-<h1>This is the post create form</h1>
+<section class="row">
+  <h1>Ajouter un nouvel article au blog</h1>
+  <form method="post" class="col">
+    <div class="mb-3">
+      <label for="post-title" class="form-label">Titre:</label>
+      <input type="text" class="form-control" id="post-title" name="post-title">
+    </div>
+    <div class="mb-3">
+      <label for="post-content" class="form-label">Contenu:</label>
+      <textarea type="text" class="form-control" id="post-content" name="post-content"></textarea>
+    </div>
+    <div class="mb-3">
+      <label for="post-date" class="form-label">Date:</label>
+      <input type="text" class="form-control" id="post-date" name="post-date">
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="/res03-projet-final/admin/index-des-articles" type="submit" class="btn btn-primary">Retour</a>
+  </form>
+  <div class="col">
+    <figure>
+      <img src="/res03-projet-final/assets/medias/images/blog.jpg" alt="Un ordinateur sur un bureau en bois entouré de plantes" class="img-fluid">
+      <figcaption class="d-none">Photo by Andrea Davis on pexels.com</figcaption>
+    </figure>
+  </div>
+</section>
+

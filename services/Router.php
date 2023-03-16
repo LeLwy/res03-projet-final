@@ -314,6 +314,10 @@ class Router{
 
                 $this->privateCatController->index();
                 // appel de la méthode du controlleur pour afficher les chats  
+            }else if($routeTab['sub-route'] === "index-des-utilisateurs"){
+
+                $this->privateUserController->index();
+                // appel de la méthode du controlleur pour afficher les chats  
             }else if($routeTab['sub-route'] === "index-des-articles"){
 
                 $this->privatePostController->index();
@@ -359,8 +363,13 @@ class Router{
                 echo 'appel de la méthode du controlleur pour creer un utilisateur';  
             }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
                 
-                // 'appel de la méthode du controlleur pour creer un chat'  
-                $this->privateCatController->create();
+                // 'appel de la méthode du controlleur pour creer un chat'
+                $post = $_POST;  
+                $this->privateCatController->create($post);
+            }else if($routeTab['sub-route'] === "index-des-utilisateurs"){
+
+                $this->privateUserController->create();
+                // appel de la méthode du controlleur pour afficher les chats  
             }else if($routeTab['sub-route'] === "index-des-articles"){
 
                 // appel de la méthode du controlleur pour creer un article  

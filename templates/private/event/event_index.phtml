@@ -1,1 +1,27 @@
-<h1>This is the events index</h1>
+<section>
+  <h1>Index des évènement</h1>
+  <a href="/res03-projet-final/admin/index-des-evenements/creer" type="button" class="btn btn-success">Ajouter un évènement à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Localisation</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if(!empty($data)){ ?>
+        <?php foreach($data[0] as $event){ ?>
+      <tr>
+        <th scope="row"><?= strval($event['id']); ?></th>
+        <td><?= $event['name']; ?></td>
+        <td><?= $event['description']; ?></td>
+        <td><?= $event['location']; ?></td>
+        <td><?= $event['date']; ?></td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

@@ -3,9 +3,15 @@
 class PrivatePostController extends PrivateAbstractController
 {
     private PostManager $postManager;
+
+    public function __construct(){
+
+        $this->postManager = new PostManager();
+    }
     
     public function index(){
 
+        $posts = $this->postManager->findAll();
         $this->render('post', 'index', []);
     }
 

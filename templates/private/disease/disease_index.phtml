@@ -11,13 +11,14 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach($data[0] as $disease); ?>
+      <?php if(!empty($data)){ foreach($data[0] as $disease){ ?>
       <tr>
         <th scope="row"><?= strval($disease['id']); ?></th>
         <td><?= $disease['name']; ?></td>
         <td><?= $disease['description']; ?></td>
         <td><?= $disease['treatment']; ?></td>
       </tr>
+      <?php }} ?>
     </tbody>
   </table>
 </section>

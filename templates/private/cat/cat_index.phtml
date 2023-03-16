@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <?php foreach($data[0] as $cat) ?>
+    <?php if(!empty($data)){ foreach($data[0] as $cat){ ?>
       <tr>
         <th scope="row"><?= strval($cat['id']); ?></th>
         <td><?= $cat['name']; ?></td>
@@ -30,6 +30,7 @@
           <a class="btn btn-danger" href="#" role="button">Supprimer</a>
         </td>
       </tr>
+      <?php }} ?>
     </tbody>
   </table>
 </section>

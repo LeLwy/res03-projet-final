@@ -3,10 +3,16 @@
 class PrivateEventController extends PrivateAbstractController
 {
     private EventManager $eventManager;
+
+    public function __construct(){
+
+        $this->eventManager = new EventManager();
+    }
     
     public function index(){
 
-        $this->render('event', 'index', []);
+        $events = $this->eventManager->findAll();
+        $this->render('event', 'index', [$events]);
     }
 
     public function show(int $id)

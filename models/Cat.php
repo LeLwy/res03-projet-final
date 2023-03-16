@@ -7,16 +7,18 @@ class Cat{
     private string $age;
     private string $sex;
     private string $color;
+    private string $description;
     private string $isSterilized;
     private ?Family $family;
     
-    public function __construct(string $name, string $age, string $sex, string $color, string $isSterilized){
+    public function __construct(string $name, string $age, string $sex, string $color, string $description, string $isSterilized){
         
         $this->id = null;
         $this->name = $name;
         $this->age = $age;
         $this->sex = $sex;
         $this->color = $color;
+        $this->description = $description;
         $this->isSterilized = $isSterilized;
         $this->family = null;
     }
@@ -69,6 +71,16 @@ class Cat{
     public function setColor(int $color) : void
     {
         $this->color = $color;
+    }
+    
+    public function getDescription() : string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(int $description) : void
+    {
+        $this->description = $description;
     }
     
     public function getIsSterilized() : string

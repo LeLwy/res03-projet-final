@@ -1,1 +1,22 @@
-<h1>This is the families index</h1>
+<section>
+  <h1>Index des familles</h1>
+  <a href="/res03-projet-final/admin/index-des-familles/creer" type="button" class="btn btn-success">Ajouter une famille à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php if(!empty($data)){ foreach($data[0] as $family){ ?>
+      <tr>
+        <th scope="row"><?= strval($family['id']); ?></th>
+        <td><?= $family['name']; ?></td>
+        <td><?= $family['description']; ?></td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

@@ -3,24 +3,24 @@
 class User{
 
     private ?int $id;
-    private string $username;
     private string $firstName;
     private string $lastName;
     private string $email;
     private string $address;
     private string $role;
+    private string $status;
     private string $password;
     private Family $family;
 
-    public function __construc(string $username, string $firstName, string $lastName, string $email, string $address, string $role, string $password){
+    public function __construc(string $firstName, string $lastName, string $email, string $address, string $role, string $status, string $password){
 
         $this->id = null;
-        $this->username = $username;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
         $this->address = $address;
         $this->role = $role;
+        $this->status = $status;
         $this->password = $password;
         $this->family = null;
     }
@@ -33,16 +33,6 @@ class User{
     public function setId(int $id) : void
     {
         $this->id = $id;
-    }
-    
-    public function getUsername() : string
-    {
-        return $this->username;
-    }
-
-    public function setUsername(string $username) : void
-    {
-        $this->username = $username;
     }
 
     public function getFirstName() : string
@@ -93,6 +83,16 @@ class User{
     public function setRole(string $role) : void
     {
         $this->role = $role;
+    }
+
+    public function getStatus() : string
+    {
+        return $this->status;
+    }
+
+    public function setStatus(string $status) : void
+    {
+        $this->status = $status;
     }
 
     public function getPassword() : string

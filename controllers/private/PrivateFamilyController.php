@@ -3,10 +3,16 @@
 class PrivateFamilyController extends PrivateAbstractController
 {
     private FamilyManager $familyManager;
+
+    public function __construct(){
+
+        $this->familyManager = new FamilyManager();
+    }
     
     public function index(){
 
-        $this->render('family', 'index', []);
+        $families = $this->familyManager->findAll();
+        $this->render('family', 'index', [$families]);
     }
 
     public function show(int $id)
