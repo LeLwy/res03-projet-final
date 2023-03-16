@@ -1,35 +1,48 @@
-<h1>This is the cat create form</h1>
-<form method="post">
-  <div class="mb-3">
-    <label for="cat-name" class="form-label">Nom:</label>
-    <input type="text" class="form-control" id="cat-name">
+<section class="row">
+  <h1>Ajouter un nouveau chat à l'index</h1>
+  <form method="post" class="col">
+    <div class="mb-3">
+      <label for="cat-name" class="form-label">Nom:</label>
+      <input type="text" class="form-control" id="cat-name" name="cat-name">
+    </div>
+    <div class="mb-3">
+      <label for="cat-age" class="form-label">Âge</label>
+      <input type="text" class="form-control" id="cat-age" name="cat-age">
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="cat-sex" name="cat-sex">
+          <option selected>Sexe</option>
+          <option value="1">Mâle</option>
+          <option value="2">Femelle</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="cat-color" class="form-label">Couleur:</label>
+      <input type="text" class="form-control" id="cat-color" name="cat-color">
+    </div>
+    <div class="mb-3">
+      <label for="cat-description" class="form-label">Détails:</label>
+      <textarea type="text" class="form-control" id="cat-description" name="cat-description"></textarea>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="cat-is-sterilized" name="cat-is-sterilized">
+      <label class="form-check-label" for="cat-is-sterilized">Stérilisé</label>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="cat-family" name="cat-family">
+          <option selected>Famille d'accueil</option>
+          <option value="1">One</option>
+          <option value="2">Two</option>
+          <option value="3">Three</option>
+      </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
+  </form>
+  <div class="col">
+    <figure>
+      <img src="/res03-projet-final/assets/images/cat-flowers.jpg" alt="Des mains tenant un chaton blanc avec un collier de fleurs" class="img-fluid">
+      <figcaption class="d-none">Photo by Peng Louis on pexels.com</figcaption>
+    </figure>
   </div>
-  <div class="mb-3">
-    <label for="cat-age" class="form-label">Âge</label>
-    <input type="text" class="form-control" id="cat-age">
-  </div>
-  <div class="mb-3">
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Sexe</option>
-        <option value="1">Mâle</option>
-        <option value="2">Femelle</option>
-    </select>
-  </div>
-  <div class="mb-3">
-    <label for="cat-color" class="form-label">Couleur:</label>
-    <input type="text" class="form-control" id="cat-color">
-  </div>
-  <div class="mb-3 form-check">
-    <input type="checkbox" class="form-check-input" id="is-sterilized">
-    <label class="form-check-label" for="is-sterilized">Stérilisé</label>
-  </div>
-  <div class="mb-3">
-    <select class="form-select" aria-label="Default select example">
-        <option selected>Famille d'accueil</option>
-        <option value="1">One</option>
-        <option value="2">Two</option>
-        <option value="3">Three</option>
-    </select>
-  </div>
-  <button type="submit" class="btn btn-primary">Submit</button>
-</form>
+</section>

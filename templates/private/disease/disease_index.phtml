@@ -1,1 +1,23 @@
-<h1>This is the disease index</h1>
+<section>
+  <h1>Index des maladies</h1>
+  <a href="/res03-projet-final/admin/index-des-maladies/creer" type="button" class="btn btn-success">Ajouter une maladie à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Traitement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php foreach($data[0] as $disease); ?>
+      <tr>
+        <th scope="row"><?= strval($disease['id']); ?></th>
+        <td><?= $disease['name']; ?></td>
+        <td><?= $disease['description']; ?></td>
+        <td><?= $disease['treatment']; ?></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

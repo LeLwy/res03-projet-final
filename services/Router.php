@@ -148,11 +148,12 @@ class Router{
                 $routeAndParams["article-id"] = $tab[3];
                 $routeAndParams["methode"] = $tab[4];
             }  
-            else if($tab[0] === 'admin' && $tab[1] === null) // route vers la page principale du profil administrateur  
+            else if($tab[0] === 'admin' && !isset($tab[1])) // route vers la page principale du profil administrateur  
             {    
+                var_dump($tab);
                 $routeAndParams["route"] = "admin";  
             }  
-            else if($tab[0] === 'admin' && $tab[1] !== null && $tab[2] === null) // route vers l'index d'un type de modèle pour l'administrateur 
+            else if($tab[0] === 'admin' && $tab[1] !== null && !isset($tab[2])) // route vers l'index d'un type de modèle pour l'administrateur 
             {    
                 $routeAndParams["route"] = "admin";  
                 $routeAndParams["sub-route"] = $tab[1];
@@ -245,7 +246,6 @@ class Router{
     public function checkRoute(string $route) : void  
     {  
         $routeTab = $this->splitRouteAndParameters($route);
-        var_dump($routeTab);  
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
@@ -310,23 +310,23 @@ class Router{
 
                 $this->privateUserController->index();
                 // appel de la méthode du controlleur pour afficher les utilisateurs  
-            }else if($routeTab['sub-route'] === "les-chats-a-l-adoption"){
+            }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
 
                 $this->privateCatController->index();
                 // appel de la méthode du controlleur pour afficher les chats  
-            }else if($routeTab['sub-route'] === "les-articles"){
+            }else if($routeTab['sub-route'] === "index-des-articles"){
 
                 $this->privatePostController->index();
                 // appel de la méthode du controlleur pour afficher les articles  
-            }else if($routeTab['sub-route'] === "les-familles"){
+            }else if($routeTab['sub-route'] === "index-des-familles"){
 
                 $this->privateFamilyController->index();
                 // appel de la méthode du controlleur pour afficher les familles  
-            }else if($routeTab['sub-route'] === "les-evenements"){
+            }else if($routeTab['sub-route'] === "index-des-evenements"){
 
                 $this->privateEventController->index();
                 // appel de la méthode du controlleur pour afficher les evenements  
-            }else if($routeTab['sub-route'] === "les-maladies"){
+            }else if($routeTab['sub-route'] === "index-des-maladies"){
 
                 $this->privateDiseaseController->index();
                 // appel de la méthode du controlleur pour afficher les evenements  
@@ -357,19 +357,26 @@ class Router{
             if($routeTab['sub-route'] === "utilisateurs"){
 
                 echo 'appel de la méthode du controlleur pour creer un utilisateur';  
-            }else if($routeTab['sub-route'] === "chats"){
+            }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
                 
-                echo 'appel de la méthode du controlleur pour creer un chat';  
+                // 'appel de la méthode du controlleur pour creer un chat'  
                 $this->privateCatController->create();
-            }else if($routeTab['sub-route'] === "articles"){
+            }else if($routeTab['sub-route'] === "index-des-articles"){
 
                 // appel de la méthode du controlleur pour creer un article  
-            }else if($routeTab['sub-route'] === "familles"){
+                $this->privatePostController->create();  
+            }else if($routeTab['sub-route'] === "index-des-familles"){
 
                 // appel de la méthode du controlleur pour creer un famille  
-            }else if($routeTab['sub-route'] === "evenements"){
+                $this->privateFamilyController->create();    
+            }else if($routeTab['sub-route'] === "index-des-evenements"){
 
                 // appel de la méthode du controlleur pour creer un evenement  
+                $this->privateEventController->create();  
+            }else if($routeTab['sub-route'] === "index-des-maladies"){
+
+                // appel de la méthode du controlleur pour creer un evenement  
+                $this->privateDiseaseController->create();  
             }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
