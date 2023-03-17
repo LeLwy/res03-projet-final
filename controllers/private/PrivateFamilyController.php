@@ -31,4 +31,19 @@ class PrivateFamilyController extends PrivateAbstractController
         $family = $this->familyManager->updatefamily($family);
         $this->render('family', 'edit', ['family' =>$family]);
     }
+
+    public function toObjectArray($families) : array
+    {
+        $objectArray = [];
+
+        foreach($families as $family){
+
+            $objectFamily = new Family($family['name'], $family['description']);
+            $objectFamily->setId($family['id']);
+
+            $objectArray[] = $objectFamily;
+        }
+
+        return $objectArray;
+    }
 }

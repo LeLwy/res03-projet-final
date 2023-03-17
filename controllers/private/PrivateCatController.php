@@ -4,10 +4,14 @@ class PrivateCatController extends PrivateAbstractController
 {
     
     private CatManager $catManager;
+    private FamilyManager $familyManager;
+    private PrivateFamilyController $familyController;
 
     public function __construct()
     {
         $this->catManager = new CatManager();
+        $this->familyManager = new FamilyManager();
+        $this->familyController = new PrivateFamilyController();
     }
 
     public function index()
@@ -24,7 +28,7 @@ class PrivateCatController extends PrivateAbstractController
 
     public function create($post)
     {
-        var_dump($post);
+        $families = $this->familyController->toObjectArray($this->familyManager->findAll());
 
         $error = "";
 
@@ -32,13 +36,14 @@ class PrivateCatController extends PrivateAbstractController
 
             foreach($post as $field){
 
-                if(!empty($field)){
+                if(empty($field)){
     
                     $error = "Veuillez renseigner ce champ";
+                    echo $error;
                 }
             }
 
-            if($error !== ""){
+            if($error === ""){
 
                 $sterilizedStatus = "";
 
@@ -50,7 +55,18 @@ class PrivateCatController extends PrivateAbstractController
                     $sterilizedStatus = "non";
                 }
 
+                $catFamily = null;
+
+                foreach($families as $family){
+
+                    if($post['cat-family'] === $family->getName()){
+
+                        $catFamily = $family;
+                    }
+                }
+
                 $cat = new Cat($post['cat-name'], $post['cat-age'], $post['cat-sex'], $post['cat-color'], $post['cat-description'], $sterilizedStatus);
+                $cat->setFamily($catFamily);
                 $this->catManager->insertCat($cat);
 
                 header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
@@ -58,7 +74,7 @@ class PrivateCatController extends PrivateAbstractController
             
         }else{
 
-            $this->render('cat', 'create', []);
+            $this->render('cat', 'create', $families);
         }
     }
 
@@ -66,5 +82,13 @@ class PrivateCatController extends PrivateAbstractController
     {
         $cat = $this->catManager->updateCat($cat);
         $this->render('cat', 'edit', ['cat' =>$cat]);
+    }
+
+    public function delete($id)
+    {
+        $cat = $this->catManager->getCatById($id);
+        $this->catManager->deleteCat($cat);
+
+        header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
     }
 }

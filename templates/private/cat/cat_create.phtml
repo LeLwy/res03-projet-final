@@ -12,8 +12,8 @@
     <div class="mb-3">
       <select class="form-select" aria-label="Default select example" id="cat-sex" name="cat-sex">
           <option selected>Sexe</option>
-          <option value="1">Mâle</option>
-          <option value="2">Femelle</option>
+          <option value="mâle">Mâle</option>
+          <option value="femelle">Femelle</option>
       </select>
     </div>
     <div class="mb-3">
@@ -31,9 +31,9 @@
     <div class="mb-3">
       <select class="form-select" aria-label="Default select example" id="cat-family" name="cat-family">
           <option selected>Famille d'accueil</option>
-          <option value="1">One</option>
-          <option value="2">Two</option>
-          <option value="3">Three</option>
+          <?php foreach($data as $family){ ?>
+            <option value="<?= $family->getName() ?>"><?= $family->getName() ?></option>
+          <?php } ?>
       </select>
     </div>
     <button type="submit" class="btn btn-primary">Enregistrer</button>

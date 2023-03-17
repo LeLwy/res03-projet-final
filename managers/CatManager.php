@@ -11,6 +11,25 @@ class CatManager extends AbstractManager{
         return $cats;
     }
 
+    private function getFamilyById(int $id){
+
+        $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
+
+        $parameters = [
+            'id' => $id
+            ];
+
+        $query->execute($parameters);
+
+        $family = $query->fetch(PDO::FETCH_ASSOC);
+
+        $newFamily = new Family($family['name'], $family['description']);
+
+        $newFamily->setId($family['id']);
+
+        return $newFamily;
+    }
+
     public function getCatById(int $id) : Cat
     {
         $query = $this->db->prepare('SELECT * FROM cats WHERE id = :id');
@@ -23,17 +42,17 @@ class CatManager extends AbstractManager{
         
         $cat = $query->fetch(PDO::FETCH_ASSOC);
         
-        $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['is_sterilized']);
+        $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
         
         $newCat->setId($cat['id']);
-        $newCat->setFamily($cat['family']);
+        $newCat->setFamily($this->getFamilyById($cat['families_id']));
         
         return $newCat;
     }
     
     public function insertCat(Cat $cat) : Cat
     {
-        $query = $this->db->prepare('INSERT INTO users VALUES(:id, :name, :age, :sex, :color, :isSterilized, :family)');
+        $query = $this->db->prepare('INSERT INTO cats VALUES(:id, :name, :age, :sex, :color, :description, :isSterilized, :family)');
         
         $parameters = [
         'id' => null,
@@ -41,8 +60,9 @@ class CatManager extends AbstractManager{
         'age' => $cat->getAge(),
         'sex' => $cat->getSex(),
         'color' => $cat->getColor(),
+        'description' => $cat->getDescription(),
         'isSterilized' => $cat->getIsSterilized(),
-        'family' => $cat->getFamily()
+        'family' => $cat->getFamilyId()
         ];
         
         $query->execute($parameters);
@@ -74,5 +94,19 @@ class CatManager extends AbstractManager{
         $newCat = $query->fetch(PDO::FETCH_ASSOC);
         return $newCat;
         
+    }
+
+    public function deleteCat(Cat $cat) : array
+    {
+        $query = $this->db->prepare('DELETE from cats WHERE id = :id AND families_id = :family_id');
+        
+        $parameters = [
+        'id' => $cat->getId(),
+        'family_id' => $cat->getFamilyId()
+        ];
+        
+        $query->execute($parameters);
+
+        return $this->findAll();
     }
 }

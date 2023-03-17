@@ -102,4 +102,14 @@ class Cat{
     {
         $this->family = $family;
     }
+    
+    public function getFamilyName() : string
+    {
+        return $this->family->getName();
+    }
+    
+    public function getFamilyId() : int
+    {
+        return $this->family->getId();
+    }
 }
