@@ -75,9 +75,9 @@ class CatManager extends AbstractManager{
         
     }
     
-    public function updateCat(Cat $cat) : Cat
+    public function updateCat(Cat $cat) : void
     {
-        $query = $this->db->prepare('UPDATE users SET name = :newName, age = :newAge, sex = :newSex, color = :newColor, isSterilized = :newIsSterilized, family = newFamily WHERE id = :id');
+        $query = $this->db->prepare('UPDATE cats SET name = :newName, age = :newAge, sex = :newSex, color = :newColor, description = :newDescription, is_sterilized = :newIsSterilized, families_id = :newFamily WHERE id = :id');
         
         $parameters = [
         'id' => $cat->getId(),
@@ -85,15 +85,12 @@ class CatManager extends AbstractManager{
         'newAge' => $cat->getAge(),
         'newSex' => $cat->getSex(),
         'newColor' => $cat->getColor(),
+        'newDescription' => $cat->getDescription(),
         'newIsSterilized' => $cat->getIsSterilized(),
-        'newFamily' => $cat->getFamily()
+        'newFamily' => $cat->getFamilyId()
         ];
         
         $query->execute($parameters);
-
-        $newCat = $query->fetch(PDO::FETCH_ASSOC);
-        return $newCat;
-        
     }
 
     public function deleteCat(Cat $cat) : array

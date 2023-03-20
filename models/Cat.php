@@ -10,6 +10,7 @@ class Cat{
     private string $description;
     private string $isSterilized;
     private ?Family $family;
+    private array $medias;
     
     public function __construct(string $name, string $age, string $sex, string $color, string $description, string $isSterilized){
         
@@ -21,6 +22,7 @@ class Cat{
         $this->description = $description;
         $this->isSterilized = $isSterilized;
         $this->family = null;
+        $this->medias = [];
     }
     
     public function getId() : int
@@ -111,5 +113,15 @@ class Cat{
     public function getFamilyId() : int
     {
         return $this->family->getId();
+    }
+
+    public function getMedias() : array
+    {
+        return $this->medias;
+    }
+
+    public function addMedias($media) : void
+    {
+        $this->medias[] = $media;
     }
 }

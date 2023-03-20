@@ -1,8 +1,10 @@
 <?php
 
-    // call to the router
+    // call to the services
 
     require "services/Router.php";
+    require "services/RandomStringGenerator.php";
+    require "services/Uploader.php";
 
     // call to models
 

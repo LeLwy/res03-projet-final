@@ -133,7 +133,7 @@ class Router{
                 $routeAndParams["sub-route"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null && $tab[4] === "editer" && !isset($tab[5])) // route vers la page d'édition d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "editer" && !isset($tab[5])) // route vers la page d'édition d'un article pour l'utilisateur
             {    
                 $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
@@ -141,7 +141,7 @@ class Router{
                 $routeAndParams["article-id"] = $tab[3];
                 $routeAndParams["methode"] = $tab[4];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] !== null && $tab[3] !== null && $tab[4] === "supprimer" && !isset($tab[5])) // route vers la page de suppression d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "supprimer" && !isset($tab[5])) // route vers la page de suppression d'un article pour l'utilisateur
             {    
                 $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
@@ -389,16 +389,16 @@ class Router{
                 $this->privateDiseaseController->create($post);  
             }
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un modèle 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['chat-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un modèle 
         {  
             if($routeTab['sub-route'] === "utilisateurs"){
 
                 // appel de la méthode du controlleur pour editer un utilisateur 
                 $this->privateUserController->update($post); 
-            }else if($routeTab['sub-route'] === "chats"){
+            }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
 
                 // appel de la méthode du controlleur pour editer un chat 
-                $this->privateCatController->update($post);  
+                $this->privateCatController->update($post, intval($routeTab['chat-id']));  
             }else if($routeTab['sub-route'] === "articles"){
 
                 // appel de la méthode du controlleur pour editer un article 

@@ -4,19 +4,17 @@ class Media{
 
     private int $id;
     private string $type;
-    private string $format;
+    private string $name;
     private string $description;
     private string $url;
-    private string $source;
 
-    public function __construct(string $type, string $format, string $description, string $url, string $source){
+    public function __construct(string $type, string $name, string $description, string $url){
 
         $this->id = null;
         $this->type = $type;
-        $this->format = $format;
+        $this->name = $name;
         $this->description = $description;
         $this->url = $url;
-        $this->source = $source;
     }
 
     public function getId() : int
@@ -39,14 +37,14 @@ class Media{
         $this->type = $type;
     }
 
-    public function getFormat() : string
+    public function getName() : string
     {
-        return $this->format;        
+        return $this->name;        
     }
 
-    public function setFormat(string $format) : void
+    public function setName(string $name) : void
     {
-        $this->format = $format;
+        $this->name = $name;
     }
 
     public function getDescription() : string
@@ -67,15 +65,5 @@ class Media{
     public function setUrl(string $url) : void
     {
         $this->url = $url;
-    }
-
-    public function getSource() : string
-    {
-        return $this->source;
-    }
-
-    public function setSource(string $source) : void
-    {
-        $this->source = $source;
     }
 }

@@ -31,6 +31,7 @@ class PrivateCatController extends PrivateAbstractController
         $families = $this->familyController->toObjectArray($this->familyManager->findAll());
 
         $error = "";
+        $catMedias = [];
 
         if(isset($post) && !empty($post)){
 
@@ -38,12 +39,16 @@ class PrivateCatController extends PrivateAbstractController
 
                 if(empty($field)){
     
-                    $error = "Veuillez renseigner ce champ";
-                    echo $error;
+                    $error = "Tous les champs ne sont pas remplis";
                 }
             }
+            if($error !== ""){
+                
+                echo $error;
+                // $info = exif_imagetype($_FILES['cat-medias']['name']);
+                var_dump($_FILES);
 
-            if($error === ""){
+            }else{
 
                 $sterilizedStatus = "";
 
@@ -78,10 +83,61 @@ class PrivateCatController extends PrivateAbstractController
         }
     }
 
-    public function update($cat)
+    public function update($post, $catId)
     {
-        $cat = $this->catManager->updateCat($cat);
-        $this->render('cat', 'edit', ['cat' =>$cat]);
+        $families = $this->familyController->toObjectArray($this->familyManager->findAll());
+        $catToUpdate = $this->catManager->getCatById($catId);
+
+        $error = "";
+
+        if(isset($post) && !empty($post)){
+
+
+            foreach($post as $field){
+
+                if(empty($field)){
+    
+                    $error = "Tous les champs ne sont pas remplis";
+                }
+            }
+            if($error !== ""){
+
+                echo $error;
+
+            }else{
+
+                $sterilizedStatus = "";
+
+                if($post['cat-is-sterilized'] === "on"){
+
+                    $sterilizedStatus = "oui";
+                }else{
+
+                    $sterilizedStatus = "non";
+                }
+
+                $catFamily = null;
+
+                foreach($families as $family){
+
+                    if($post['cat-family'] === $family->getName()){
+
+                        $catFamily = $family;
+                    }
+                }
+
+                $catToUpdate = new Cat($post['cat-name'], $post['cat-age'], $post['cat-sex'], $post['cat-color'], $post['cat-description'], $sterilizedStatus);
+                $catToUpdate->setFamily($catFamily);
+                $catToUpdate->setId($catId);
+                $catToUpdate = $this->catManager->updateCat($catToUpdate);
+
+                header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
+            }
+            
+        }else{
+
+            $this->render('cat', 'edit', [['cat' =>$catToUpdate], $families]);
+        }
     }
 
     public function delete($id)

@@ -1,6 +1,6 @@
 <section class="row">
   <h1>Ajouter un nouveau chat à l'index</h1>
-  <form method="post" class="col">
+  <form method="post" class="col" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="cat-name" class="form-label">Nom:</label>
       <input type="text" class="form-control" id="cat-name" name="cat-name">
@@ -36,7 +36,11 @@
           <?php } ?>
       </select>
     </div>
-    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <div class="mb-3">
+      <label for="cat-medias" class="form-label">Sélectionnez une ou plusieurs photos</label>
+      <input class="form-control" type="file" id="cat-medias" name="cat-medias" multiple>
+    </div>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
     <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
   </form>
   <div class="col">
