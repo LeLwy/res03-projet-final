@@ -164,6 +164,13 @@ class Router{
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["methode"] = $tab[2];
             }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-utilisateurs" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un utilisateur pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["utilisateur-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-utilisateurs" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'un utilisateur pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
@@ -176,6 +183,14 @@ class Router{
                 $routeAndParams["route"] = "admin";
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["utilisateur-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un chat pour l'administrateur
+            {    
+                var_dump($tab);
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["chat-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'un chat pour l'administrateur
@@ -193,6 +208,13 @@ class Router{
                 $routeAndParams["chat-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-articles" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un article pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["article-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-articles" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'un article pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
@@ -207,6 +229,13 @@ class Router{
                 $routeAndParams["article-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-evenements" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un évènement pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["evenement-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-evenements" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'un évènement pour l'administrateur
             {    
                 $routeAndParams["route"] = "admin";
@@ -219,6 +248,13 @@ class Router{
                 $routeAndParams["route"] = "admin";
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["evenement-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-familles" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'une famille pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["famille-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-familles" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'une famille pour l'administrateur
@@ -335,26 +371,31 @@ class Router{
             }else if($routeTab['sub-route'] === "index-des-maladies"){
 
                 $this->privateDiseaseController->index();
-                // appel de la méthode du controlleur pour afficher les evenements  
+                // appel de la méthode du controlleur pour afficher les maladies  
             }
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "utilisateurs" && $routeTab['utilisateur-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controlleur pour afficher le profil d'un utilisateur
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "chats" && $routeTab['chat-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
+            $this->privateCatController->show(intval($routeTab['chat-id']));
             // appel de la méthode du controlleur pour afficher le profil d'un chat
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "articles" && $routeTab['article-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controlleur pour afficher le détail d'un aticle
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "familles" && $routeTab['famille-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controlleur pour afficher le profil d'une famille
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "evenements" && $routeTab['evenement-id'] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        {  
+            // appel de la méthode du controlleur pour afficher le détail d'un evenement
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controlleur pour afficher le détail d'un evenement
         }  

@@ -2,18 +2,16 @@
 
 class Media{
 
-    private int $id;
+    private ?int $id;
     private string $type;
     private string $name;
-    private string $description;
     private string $url;
 
-    public function __construct(string $type, string $name, string $description, string $url){
+    public function __construct(string $type, string $name, string $url){
 
         $this->id = null;
         $this->type = $type;
         $this->name = $name;
-        $this->description = $description;
         $this->url = $url;
     }
 
@@ -45,16 +43,6 @@ class Media{
     public function setName(string $name) : void
     {
         $this->name = $name;
-    }
-
-    public function getDescription() : string
-    {
-        return $this->description;
-    }
-
-    public function setDescription(string $description) : void
-    {
-        $this->description = $description;
     }
 
     public function getUrl() : string

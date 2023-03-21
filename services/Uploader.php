@@ -20,7 +20,7 @@ class Uploader {
      * @param string $uploadField the name of of the type="file" input
      *
      */
-    public function upload(array $files, string $uploadField, string $description) : ?Media
+    public function upload(array $files, string $uploadField) : ?Media
     {
         if(isset($files[$uploadField])){
             try {
@@ -40,7 +40,7 @@ class Uploader {
                 {
                     $url = $this->uploadFolder."/".$newFileName.".".$file_ext;
                     move_uploaded_file($file_tmp, $url);
-                    return new Media($file_type, $file_name, $url, $description);
+                    return new Media($file_type, $file_name, $url);
                 }
             }
             catch(Exception $e)

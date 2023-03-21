@@ -23,7 +23,7 @@ class MediaManager extends AbstractManager{
         
         $media = $query->fetch(PDO::FETCH_ASSOC);
         
-        $newMedia= new Media($media['type'], $media['format'], $media['description'], $media['url'], $media['source']);
+        $newMedia= new Media($media['type'], $media['name'], $media['url']);
         
         $newMedia->setId($media['id']);
         
@@ -32,15 +32,13 @@ class MediaManager extends AbstractManager{
     
     public function insertMedia(Media $media) : Media
     {
-        $query = $this->db->prepare('INSERT INTO medias VALUES(:id, :type, :format, :description, :url, :source)');
+        $query = $this->db->prepare('INSERT INTO medias VALUES(:id, :type, :name, :url)');
         
         $parameters = [
         'id' => null,
         'type' => $media->getType(),
-        'format' => $media->getFormat(),
-        'description' => $media->getDescription(),
-        'url' => $media->getUrl(),
-        'source' => $media->getSource()
+        'name' => $media->getName(),
+        'url' => $media->getUrl()
         ];
         
         $query->execute($parameters);
@@ -55,15 +53,13 @@ class MediaManager extends AbstractManager{
     
     public function updateMedia(Media $media) : Media
     {
-        $query = $this->db->prepare('UPDATE medias SET type = :newType, format = :newFormat, description = :newDescription, url = :newUrl, source = :newSource WHERE id = :id');
+        $query = $this->db->prepare('UPDATE medias SET type = :newType, name = :newName, url = :newUrl WHERE id = :id');
         
         $parameters = [
         'id' => $media->getId(),
         'newType' => $media->getType(),
-        'newFormat' => $media->getFormat(),
-        'newDescription' => $media->getDescription(),
-        'newUrl' => $media->getUrl(),
-        'newSource' => $media->getSource()
+        'newFormat' => $media->getName(),
+        'newUrl' => $media->getUrl()
         ];
         
         $query->execute($parameters);

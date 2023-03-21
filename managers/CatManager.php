@@ -53,7 +53,13 @@ class CatManager extends AbstractManager{
     public function insertCat(Cat $cat) : Cat
     {
         $query = $this->db->prepare('INSERT INTO cats VALUES(:id, :name, :age, :sex, :color, :description, :isSterilized, :family)');
-        
+        // insérer un chat
+        // récupérer son id
+        // insérer un media
+        // récupérer son id
+        // insérer un cats_medias avec les deux id précédents
+        $secondQuery = $this->db->prepare('');
+
         $parameters = [
         'id' => null,
         'name' => $cat->getName(),
@@ -63,6 +69,10 @@ class CatManager extends AbstractManager{
         'description' => $cat->getDescription(),
         'isSterilized' => $cat->getIsSterilized(),
         'family' => $cat->getFamilyId()
+        ];
+
+        $secondParameters = [
+
         ];
         
         $query->execute($parameters);
@@ -95,11 +105,16 @@ class CatManager extends AbstractManager{
 
     public function deleteCat(Cat $cat) : array
     {
-        $query = $this->db->prepare('DELETE from cats WHERE id = :id AND families_id = :family_id');
+        $query = $this->db->prepare('DELETE FROM cats WHERE id = :id AND families_id = :family_id');
+        $secondQuery = $this->db->prepare('');
         
         $parameters = [
         'id' => $cat->getId(),
         'family_id' => $cat->getFamilyId()
+        ];
+
+        $secondParameters = [
+
         ];
         
         $query->execute($parameters);

@@ -6,12 +6,16 @@ class PrivateCatController extends PrivateAbstractController
     private CatManager $catManager;
     private FamilyManager $familyManager;
     private PrivateFamilyController $familyController;
+    private Uploader $uploader;
+    private MediaManager $mediaManager;
 
     public function __construct()
     {
         $this->catManager = new CatManager();
         $this->familyManager = new FamilyManager();
         $this->familyController = new PrivateFamilyController();
+        $this->uploader = new Uploader();
+        $this->mediaManager = new MediaManager();
     }
 
     public function index()
@@ -31,7 +35,6 @@ class PrivateCatController extends PrivateAbstractController
         $families = $this->familyController->toObjectArray($this->familyManager->findAll());
 
         $error = "";
-        $catMedias = [];
 
         if(isset($post) && !empty($post)){
 
@@ -45,14 +48,12 @@ class PrivateCatController extends PrivateAbstractController
             if($error !== ""){
                 
                 echo $error;
-                // $info = exif_imagetype($_FILES['cat-medias']['name']);
-                var_dump($_FILES);
 
             }else{
 
                 $sterilizedStatus = "";
 
-                if($post['cat-is-sterilized'] === "on"){
+                if(isset($post['cat-is-sterilized'])){
 
                     $sterilizedStatus = "oui";
                 }else{
@@ -69,10 +70,15 @@ class PrivateCatController extends PrivateAbstractController
                         $catFamily = $family;
                     }
                 }
+                
+                var_dump($_FILES);
+
+                $catMedia = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'cat-medias'));
 
                 $cat = new Cat($post['cat-name'], $post['cat-age'], $post['cat-sex'], $post['cat-color'], $post['cat-description'], $sterilizedStatus);
                 $cat->setFamily($catFamily);
                 $this->catManager->insertCat($cat);
+                $cat->addMedias($catMedia);
 
                 header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
             }
