@@ -58,7 +58,6 @@ class CatManager extends AbstractManager{
         // insérer un media
         // récupérer son id
         // insérer un cats_medias avec les deux id précédents
-        $secondQuery = $this->db->prepare('');
 
         $parameters = [
         'id' => null,
@@ -70,10 +69,6 @@ class CatManager extends AbstractManager{
         'isSterilized' => $cat->getIsSterilized(),
         'family' => $cat->getFamilyId()
         ];
-
-        $secondParameters = [
-
-        ];
         
         $query->execute($parameters);
         
@@ -83,6 +78,18 @@ class CatManager extends AbstractManager{
         $newCat = $query->fetch(PDO::FETCH_ASSOC);
         return $this->getCatById($id);
         
+    }
+
+    public function addMediaOnCat(int $catId, int $mediaId) : void
+    {
+        $query = $this->db->prepare('INSERT INTO cats_medias VALUES(:cats_id, :medias_id)');
+
+        $parameters = [
+            'cats_id' => $catId,
+            'medias_id' => $mediaId
+        ];
+
+        $query->execute($parameters);
     }
     
     public function updateCat(Cat $cat) : void
@@ -105,20 +112,27 @@ class CatManager extends AbstractManager{
 
     public function deleteCat(Cat $cat) : array
     {
-        $query = $this->db->prepare('DELETE FROM cats WHERE id = :id AND families_id = :family_id');
-        $secondQuery = $this->db->prepare('');
+        $query = $this->db->prepare('DELETE cats, medias FROM cats WHERE id = :id AND families_id = :family_id');
         
         $parameters = [
         'id' => $cat->getId(),
         'family_id' => $cat->getFamilyId()
         ];
-
-        $secondParameters = [
-
-        ];
         
         $query->execute($parameters);
 
         return $this->findAll();
+    }
+
+    public function deleteMedias_cats(Cat $cat) : void
+    {
+        $query = $this->db->prepare('DELETE FROM cats_medias WHERE cats_id = :cats_id');
+
+        $parameters = [
+
+            'cats_id' => $cat->getId()
+        ];
+
+        $query->execute($parameters);
     }
 }

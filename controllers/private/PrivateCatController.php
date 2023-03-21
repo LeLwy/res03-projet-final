@@ -73,12 +73,14 @@ class PrivateCatController extends PrivateAbstractController
                 
                 var_dump($_FILES);
 
-                $catMedia = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'cat-medias'));
+                $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'cat-medias'));
 
                 $cat = new Cat($post['cat-name'], $post['cat-age'], $post['cat-sex'], $post['cat-color'], $post['cat-description'], $sterilizedStatus);
                 $cat->setFamily($catFamily);
                 $this->catManager->insertCat($cat);
-                $cat->addMedias($catMedia);
+                $cat->addMedias($media);
+
+                $this->catManager->addMediaOnCat($cat->getId(), $media->getId());
 
                 header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
             }

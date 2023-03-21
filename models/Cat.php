@@ -120,7 +120,7 @@ class Cat{
         return $this->medias;
     }
 
-    public function addMedias($media) : void
+    public function addMedias(Media $media) : void
     {
         $this->medias[] = $media;
     }
