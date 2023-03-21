@@ -70,17 +70,14 @@ class PrivateCatController extends PrivateAbstractController
                         $catFamily = $family;
                     }
                 }
-                
-                var_dump($_FILES);
 
                 $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'cat-medias'));
 
                 $cat = new Cat($post['cat-name'], $post['cat-age'], $post['cat-sex'], $post['cat-color'], $post['cat-description'], $sterilizedStatus);
                 $cat->setFamily($catFamily);
-                $this->catManager->insertCat($cat);
-                $cat->addMedias($media);
-
-                $this->catManager->addMediaOnCat($cat->getId(), $media->getId());
+                $newCat = $this->catManager->insertCat($cat);
+                $newCatMedia = $this->catManager->addMediaOnCat($cat->getId(), $media->getId());
+                $newCat->addMedias($media);
 
                 header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
             }
@@ -151,6 +148,7 @@ class PrivateCatController extends PrivateAbstractController
     public function delete($id)
     {
         $cat = $this->catManager->getCatById($id);
+        $this->catManager->deleteMediasOnCat($cat);
         $this->catManager->deleteCat($cat);
 
         header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');

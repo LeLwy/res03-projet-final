@@ -112,7 +112,7 @@ class CatManager extends AbstractManager{
 
     public function deleteCat(Cat $cat) : array
     {
-        $query = $this->db->prepare('DELETE cats, medias FROM cats WHERE id = :id AND families_id = :family_id');
+        $query = $this->db->prepare('DELETE FROM cats WHERE id = :id AND families_id = :family_id');
         
         $parameters = [
         'id' => $cat->getId(),
@@ -124,7 +124,7 @@ class CatManager extends AbstractManager{
         return $this->findAll();
     }
 
-    public function deleteMedias_cats(Cat $cat) : void
+    public function deleteMediasOnCat(Cat $cat) : void
     {
         $query = $this->db->prepare('DELETE FROM cats_medias WHERE cats_id = :cats_id');
 

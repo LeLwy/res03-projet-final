@@ -68,4 +68,16 @@ class MediaManager extends AbstractManager{
         return $newMedia;
         
     }
+
+    public function deleteMedia(Media $media) : void
+    {
+        $query = $this->db->prepare('DELETE FROM medias WHERE id = :media_id');
+
+        $parameters = [
+
+            'media_id' => $media->getId()
+        ];
+
+        $query->execute($parameters);
+    }
 }
