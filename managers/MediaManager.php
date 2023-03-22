@@ -23,7 +23,7 @@ class MediaManager extends AbstractManager{
         
         $media = $query->fetch(PDO::FETCH_ASSOC);
         
-        $newMedia= new Media($media['type'], $media['name'], $media['url']);
+        $newMedia= new Media($media['type'], $media['filename'], $media['url']);
         
         $newMedia->setId($media['id']);
         
@@ -32,12 +32,12 @@ class MediaManager extends AbstractManager{
     
     public function insertMedia(Media $media) : Media
     {
-        $query = $this->db->prepare('INSERT INTO medias VALUES(:id, :type, :name, :url)');
+        $query = $this->db->prepare('INSERT INTO medias VALUES(:id, :type, :filename, :url)');
         
         $parameters = [
         'id' => null,
         'type' => $media->getType(),
-        'name' => $media->getName(),
+        'filename' => $media->getName(),
         'url' => $media->getUrl()
         ];
         
@@ -64,9 +64,31 @@ class MediaManager extends AbstractManager{
         
         $query->execute($parameters);
 
-        $newMedia = $query->fetch(PDO::FETCH_ASSOC);
-        return $newMedia;
+        return $media;
         
+    }
+
+    public function findMediasByCatId(int $id) : array
+    {
+        $query = $this->db->prepare('SELECT medias.* FROM medias JOIN cats_medias ON medias.id = cats_medias.medias_id JOIN cats ON cats.id = cats_medias.cats_id WHERE cats.id = :id');
+
+        $parameters = [
+
+            'id' => $id
+        ];
+
+        $query->execute($parameters);
+
+        $medias = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($medias as $media){
+
+            $newMedia = new Media($media['type'], $media['filename'], $media['url']);
+            $newMedia->setId($media['id']);
+            $mediasArray[] = $newMedia;
+        }
+
+        return $mediasArray;
     }
 
     public function deleteMedia(Media $media) : void

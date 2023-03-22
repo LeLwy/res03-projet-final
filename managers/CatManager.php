@@ -32,7 +32,7 @@ class CatManager extends AbstractManager{
 
     public function getCatById(int $id) : Cat
     {
-        $query = $this->db->prepare('SELECT * FROM cats WHERE id = :id');
+        $query = $this->db->prepare('SELECT * FROM cats WHERE cats.id = :id');
         
         $parameters = [
         'id' => $id
@@ -41,13 +41,17 @@ class CatManager extends AbstractManager{
         $query->execute($parameters);
         
         $cat = $query->fetch(PDO::FETCH_ASSOC);
+        var_dump($cat);
         
         $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
+
+        var_dump($newCat);
         
         $newCat->setId($cat['id']);
         $newCat->setFamily($this->getFamilyById($cat['families_id']));
         
         return $newCat;
+        
     }
     
     public function insertCat(Cat $cat) : Cat
