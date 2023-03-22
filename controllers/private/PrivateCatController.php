@@ -28,7 +28,11 @@ class PrivateCatController extends PrivateAbstractController
     {
         $cat = $this->catManager->getCatById($id);
         $medias = $this->mediaManager->findMediasByCatId($id);
-        // $this->render('cat', 'single', ['cat' =>$cat]);
+        foreach($medias as $media){
+
+            $cat->addMedias($media);
+        }
+        $this->render('cat', 'single', ['cat' => $cat]);
         
     }
 
@@ -114,7 +118,7 @@ class PrivateCatController extends PrivateAbstractController
 
                 $sterilizedStatus = "";
 
-                if($post['cat-is-sterilized'] === "on"){
+                if(isset($post['cat-is-sterilized'])){
 
                     $sterilizedStatus = "oui";
                 }else{

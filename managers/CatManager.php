@@ -41,12 +41,9 @@ class CatManager extends AbstractManager{
         $query->execute($parameters);
         
         $cat = $query->fetch(PDO::FETCH_ASSOC);
-        var_dump($cat);
         
         $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
 
-        var_dump($newCat);
-        
         $newCat->setId($cat['id']);
         $newCat->setFamily($this->getFamilyById($cat['families_id']));
         
@@ -57,11 +54,6 @@ class CatManager extends AbstractManager{
     public function insertCat(Cat $cat) : Cat
     {
         $query = $this->db->prepare('INSERT INTO cats VALUES(:id, :name, :age, :sex, :color, :description, :isSterilized, :family)');
-        // insérer un chat
-        // récupérer son id
-        // insérer un media
-        // récupérer son id
-        // insérer un cats_medias avec les deux id précédents
 
         $parameters = [
         'id' => null,
@@ -139,4 +131,20 @@ class CatManager extends AbstractManager{
 
         $query->execute($parameters);
     }
+
+    // public function getCatWithMediasById(int $id) : array
+    // {
+    //     $query = $this->db->prepare('SELECT * FROM cats JOIN cats_medias ON cats_medias.cats_id = cats.id JOIN medias ON cats_medias.medias_id = medias.id WHERE cats.id = :id');
+
+    //     $parameters = [
+
+    //         'id' => $id
+    //     ];
+
+    //     $query->execute($parameters);
+
+    //     $catWithMedias = $query->fetchAll(PDO::FETCH_ASSOC);
+
+    //     return $catWithMedias;
+    // }
 }
