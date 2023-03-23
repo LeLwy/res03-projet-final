@@ -81,6 +81,8 @@ class MediaManager extends AbstractManager{
 
         $medias = $query->fetchAll(PDO::FETCH_ASSOC);
 
+        $mediasArray = [];
+
         foreach($medias as $media){
 
             $newMedia = new Media($media['type'], $media['filename'], $media['url']);

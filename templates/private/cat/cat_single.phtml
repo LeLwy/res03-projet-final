@@ -3,8 +3,13 @@
     <section class="col">
         <h2 class="d-none">Photo principale de <?= $data['cat']->getName() ?></h2>
         <figure>
-            <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/<?= $data['cat']->getMedias()[0]->getUrl(); ?>" alt="">
-            <figcaption class="d-none">Une photo de <?= $data['cat']->getName() ?></figcaption>
+            <?php if(count($data['cat']->getMedias()) === 0){ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/assets/medias/images/cat-yawning.jpg" alt="">
+                    <figcaption class="d-none">Une photo de chat dans la rue</figcaption>
+                <?php }else{ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/<?= $data['cat']->getMedias()[0]->getUrl(); ?>" alt="">
+                    <figcaption class="d-none">Une photo de <?= $data['cat']->getName() ?></figcaption>
+                <?php } ?>
         </figure>
     </section>
     <section class="col">
@@ -35,6 +40,7 @@
         <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
     </section>
     <section class="row">
+    <?php var_dump($data['cat']->getMedias()); ?>
         <?php foreach($data['cat']->getMedias() as $media){ ?>
             <figure class="card-img-top card col-3" style="max-width: fit-content;">
                 <img style="max-height: 25vh; aspect-ratio: keep-aspect-ratio;" class="img-thumbnail img-fluid card-img-top" src="/res03-projet-final/<?= $media->getUrl() ?>" alt="">
