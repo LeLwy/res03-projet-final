@@ -21,7 +21,7 @@ class PrivateCatController extends PrivateAbstractController
     public function index()
     {
         $cats = $this->catManager->findAll();
-        $this->render('cat', 'index', [$cats]);
+        $this->render('cat', 'index', $cats);
     }
 
     public function show(int $id)
@@ -162,5 +162,10 @@ class PrivateCatController extends PrivateAbstractController
         }
 
         header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
+    }
+
+    public function addMediaInCatMedias(Cat $cat)
+    {
+        $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'cat-medias'));
     }
 }

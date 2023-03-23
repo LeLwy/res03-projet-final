@@ -1,17 +1,8 @@
 <?php
 
 class CatManager extends AbstractManager{
-    
-    public function findAll() : array
-    {
-        $query = $this->db->prepare('SELECT * FROM cats');
-        $query->execute();
-        $cats = $query->fetchAll(PDO::FETCH_ASSOC);
-        
-        return $cats;
-    }
 
-    private function getFamilyById(int $id){
+    private function getCatFamilyById(int $id){
 
         $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
 
@@ -29,6 +20,25 @@ class CatManager extends AbstractManager{
 
         return $newFamily;
     }
+    
+    public function findAll() : array
+    {
+        $query = $this->db->prepare('SELECT c_info.* FROM cats AS c_info JOIN families AS f_info ON c_info.families_id = f_info.id');
+        $query->execute();
+        $cats = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $catsArray = [];
+        
+        foreach($cats as $cat){
+
+            $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
+            $newCat->setId($cat['id']);
+            $newCat->setFamily($this->getCatFamilyById($cat['families_id']));
+            $catsArray[] = $newCat;
+        }
+
+        return $catsArray;
+    }
 
     public function getCatById(int $id) : Cat
     {
@@ -45,7 +55,7 @@ class CatManager extends AbstractManager{
         $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
 
         $newCat->setId($cat['id']);
-        $newCat->setFamily($this->getFamilyById($cat['families_id']));
+        $newCat->setFamily($this->getCatFamilyById($cat['families_id']));
         
         return $newCat;
         
@@ -131,20 +141,4 @@ class CatManager extends AbstractManager{
 
         $query->execute($parameters);
     }
-
-    // public function getCatWithMediasById(int $id) : array
-    // {
-    //     $query = $this->db->prepare('SELECT * FROM cats JOIN cats_medias ON cats_medias.cats_id = cats.id JOIN medias ON cats_medias.medias_id = medias.id WHERE cats.id = :id');
-
-    //     $parameters = [
-
-    //         'id' => $id
-    //     ];
-
-    //     $query->execute($parameters);
-
-    //     $catWithMedias = $query->fetchAll(PDO::FETCH_ASSOC);
-
-    //     return $catWithMedias;
-    // }
 }

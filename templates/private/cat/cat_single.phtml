@@ -27,10 +27,12 @@
         <h3 class="mb-3">Ajouter une photo</h3>
         <form method="post">
             <div class="mb-3">
-            <label for="cat-medias" class="form-label">Sélectionnez une ou plusieurs photos</label>
+            <label for="cat-medias" class="form-label">Sélectionnez une photo</label>
             <input class="form-control" type="file" id="cat-medias" name="cat-medias">
             </div>
+            <button type="submit" class="btn btn-success">Enregistrer</button>
         </form>
+        <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
     </section>
     <section class="col">
         <?php foreach($data['cat']->getMedias() as $media){ ?>
