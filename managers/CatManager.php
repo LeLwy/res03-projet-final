@@ -141,4 +141,17 @@ class CatManager extends AbstractManager{
 
         $query->execute($parameters);
     }
+
+    public function deleteMediaOnCatsMedias(Cat $cat, Media $media)
+    {
+        $query = $this->db->prepare('DELETE FROM cats_medias WHERE cats_id = :cats_id AND medias_id = :medias_id');
+
+        $parameters = [
+
+            'cats_id' => $cat->getId(),
+            'medias_id' => $media->getId()
+        ];
+
+        $query->execute($parameters);
+    }
 }

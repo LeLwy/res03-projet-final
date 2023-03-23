@@ -66,6 +66,7 @@ class Router{
         $routeAndParams["famille-id"] = null;  
         $routeAndParams["evenement-id"] = null;  
         $routeAndParams["disease-id"] = null;  
+        $routeAndParams["media-id"] = null;  
         $routeAndParams["sub-route"] = null;  
         $routeAndParams["methode"] = null;    
     
@@ -187,7 +188,6 @@ class Router{
             }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un chat pour l'administrateur
             {    
-                var_dump($tab);
                 $routeAndParams["route"] = "admin";
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["chat-id"] = $tab[2];
@@ -207,6 +207,21 @@ class Router{
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["chat-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
+            }   
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "ajouter-media" && !isset($tab[4])) // route vers la page de suppression d'un chat pour l'administrateur
+            { 
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["chat-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }   
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "supprimer-media" && $tab[4] !== null && !isset($tab[5])) // route vers la page de suppression d'un chat pour l'administrateur
+            { 
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["chat-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+                $routeAndParams["media-id"] = $tab[4];
             }  
             else if($tab[0] === 'admin' && $tab[1] === "index-des-articles" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'un article pour l'administrateur
             {    
@@ -288,145 +303,145 @@ class Router{
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
             $this->homeController->index();
-            // appel de la méthode du controlleur pour afficher la page d'accueil  
+            // appel de la méthode du controller pour afficher la page d'accueil  
         }  
         else if($routeTab["route"] === "a-propos") // condition(s) pour envoyer vers la page à propos 
         {  
             $this->aboutController->index();
-            // appel de la méthode du controlleur pour afficher la page à propos  
+            // appel de la méthode du controller pour afficher la page à propos  
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] === null) // condition(s) pour envoyer vers la liste des chats à l'adoption  
         {  
             $this->adoptionController->index();
-            // appel de la méthode du controlleur pour afficher la page à l'adoption (index des chats)
+            // appel de la méthode du controller pour afficher la page à l'adoption (index des chats)
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] !== null) // condition(s) pour envoyer vers le profil d'un chat à l'adoption  
         {  
             $this->adoptionController->show(intval($routeTab["chat-id"]));
-            // appel de la méthode du controlleur pour afficher le profil d'un chat  
+            // appel de la méthode du controller pour afficher le profil d'un chat  
         }  
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] === null) // condition(s) pour envoyer vers la liste des articles du blog  
         {  
             $this->blogController->index();
-            // appel de la méthode du controlleur pour afficher le blog (index des articles)
+            // appel de la méthode du controller pour afficher le blog (index des articles)
         }    
         else if($routeTab["route"] === "blog" && $routeTab["article-id"] !== null) // condition(s) pour envoyer vers le détail d'un article du blog  
         {  
             $this->blogController->show(intval($routeTab["article-id"]));
-            // appel de la méthode du controlleur pour afficher le détail d'un article  
+            // appel de la méthode du controller pour afficher le détail d'un article  
         }  
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] === null) // condition(s) pour envoyer vers la liste des famille 
         {  
             $this->familyController->index();
-            // appel de la méthode du controlleur pour afficher la page familles (index des familles) 
+            // appel de la méthode du controller pour afficher la page familles (index des familles) 
         }    
         else if($routeTab["route"] === "familles" && $routeTab["famille-id"] !== null) // condition(s) pour envoyer vers le profil d'une famille  
         {  
             $this->familyController->show(intval($routeTab["famille-id"]));
-            // appel de la méthode du controlleur pour afficher le profil d'un famille  
+            // appel de la méthode du controller pour afficher le profil d'un famille  
         }    
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
         {  
-            // appel de la méthode du controlleur pour afficher le profil d'un utilisateur  
+            // appel de la méthode du controller pour afficher le profil d'un utilisateur  
         }
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab["methode"] === 'creer') // condition(s) pour envoyer vers le formulaire de création d'un article pour l'utilisateur  
         {  
-            // appel de la méthode du controlleur pour afficher le formulaire de création d'un article 
+            // appel de la méthode du controller pour afficher le formulaire de création d'un article 
         }
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab['article-id'] !== null && $routeTab["methode"] === "editer") // condition(s) pour envoyer vers le formulaire d'édition d'un article pour l'utilisateur  
         {  
-            // appel de la méthode du controlleur pour afficher le formulaire d'édition d'un article   
+            // appel de la méthode du controller pour afficher le formulaire d'édition d'un article   
         }  
         else if($routeTab["route"] === "admin" && $routeTab["sub-route"] === null) // condition(s) pour envoyer vers la page d'accueil de l'admin 
         {  
             $this->privateAdminController->index();
-            // appel de la méthode du controlleur pour afficher la page d'accueil de l'admin 
+            // appel de la méthode du controller pour afficher la page d'accueil de l'admin 
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === null) // condition(s) pour envoyer vers l'index de l'un des modèles 
         {  
             if($routeTab['sub-route'] === "les-utilisateurs"){
 
                 $this->privateUserController->index();
-                // appel de la méthode du controlleur pour afficher les utilisateurs  
+                // appel de la méthode du controller pour afficher les utilisateurs  
             }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
 
                 $this->privateCatController->index();
-                // appel de la méthode du controlleur pour afficher les chats  
+                // appel de la méthode du controller pour afficher les chats  
             }else if($routeTab['sub-route'] === "index-des-utilisateurs"){
 
                 $this->privateUserController->index();
-                // appel de la méthode du controlleur pour afficher les chats  
+                // appel de la méthode du controller pour afficher les chats  
             }else if($routeTab['sub-route'] === "index-des-articles"){
 
                 $this->privatePostController->index();
-                // appel de la méthode du controlleur pour afficher les articles  
+                // appel de la méthode du controller pour afficher les articles  
             }else if($routeTab['sub-route'] === "index-des-familles"){
 
                 $this->privateFamilyController->index();
-                // appel de la méthode du controlleur pour afficher les familles  
+                // appel de la méthode du controller pour afficher les familles  
             }else if($routeTab['sub-route'] === "index-des-evenements"){
 
                 $this->privateEventController->index();
-                // appel de la méthode du controlleur pour afficher les evenements  
+                // appel de la méthode du controller pour afficher les evenements  
             }else if($routeTab['sub-route'] === "index-des-maladies"){
 
                 $this->privateDiseaseController->index();
-                // appel de la méthode du controlleur pour afficher les maladies  
+                // appel de la méthode du controller pour afficher les maladies  
             }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour afficher le profil d'un utilisateur
+            // appel de la méthode du controller pour afficher le profil d'un utilisateur
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             $this->privateCatController->show(intval($routeTab['chat-id']));
-            // appel de la méthode du controlleur pour afficher le profil d'un chat
+            // appel de la méthode du controller pour afficher le profil d'un chat
+
+            $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
+            // appel de ka méthode du controller pour ajouter un media au chat
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour afficher le détail d'un aticle
+            // appel de la méthode du controller pour afficher le détail d'un aticle
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour afficher le profil d'une famille
+            // appel de la méthode du controller pour afficher le profil d'une famille
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour afficher le détail d'un evenement
+            // appel de la méthode du controller pour afficher le détail d'un evenement
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour afficher le détail d'un evenement
+            // appel de la méthode du controller pour afficher le détail d'un evenement
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === "creer") // condition(s) pour envoyer vers la page de création d'un modèle 
         {  
-            if($routeTab['sub-route'] === "utilisateurs"){
-
-                // 'appel de la méthode du controlleur pour creer un utilisateur';  
-            }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
-                
-                // 'appel de la méthode du controlleur pour creer un chat' 
-                $this->privateCatController->create($post);
-            }else if($routeTab['sub-route'] === "index-des-utilisateurs"){
+            if($routeTab['sub-route'] === "index-des-utilisateurs"){
 
                 $this->privateUserController->create($post);
-                // appel de la méthode du controlleur pour afficher les chats  
+                // 'appel de la méthode du controller pour creer un utilisateur';  
+            }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
+                
+                // 'appel de la méthode du controller pour creer un chat' 
+                $this->privateCatController->create($post);
             }else if($routeTab['sub-route'] === "index-des-articles"){
 
-                // appel de la méthode du controlleur pour creer un article  
+                // appel de la méthode du controller pour creer un article  
                 $this->privatePostController->create($post);  
             }else if($routeTab['sub-route'] === "index-des-familles"){
 
-                // appel de la méthode du controlleur pour creer un famille  
+                // appel de la méthode du controller pour creer un famille  
                 $this->privateFamilyController->create($post);    
             }else if($routeTab['sub-route'] === "index-des-evenements"){
 
-                // appel de la méthode du controlleur pour creer un evenement  
+                // appel de la méthode du controller pour creer un evenement  
                 $this->privateEventController->create($post);  
             }else if($routeTab['sub-route'] === "index-des-maladies"){
 
-                // appel de la méthode du controlleur pour creer une maladie  
+                // appel de la méthode du controller pour creer une maladie  
                 $this->privateDiseaseController->create($post);  
             }
         }  
@@ -434,54 +449,64 @@ class Router{
         {  
             if($routeTab['sub-route'] === "utilisateurs"){
 
-                // appel de la méthode du controlleur pour editer un utilisateur 
+                // appel de la méthode du controller pour editer un utilisateur 
                 $this->privateUserController->update($post); 
             }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
 
-                // appel de la méthode du controlleur pour editer un chat 
+                // appel de la méthode du controller pour editer un chat 
                 $this->privateCatController->update($post, intval($routeTab['chat-id']));  
             }else if($routeTab['sub-route'] === "articles"){
 
-                // appel de la méthode du controlleur pour editer un article 
+                // appel de la méthode du controller pour editer un article 
                 $this->privatePostController->update($post);  
             }else if($routeTab['sub-route'] === "familles"){
 
-                // appel de la méthode du controlleur pour editer un famille 
+                // appel de la méthode du controller pour editer un famille 
                 $this->privateFamilyController->update($post);  
             }else if($routeTab['sub-route'] === "evenements"){
 
-                // appel de la méthode du controlleur pour editer un evenement 
+                // appel de la méthode du controller pour editer un evenement 
                 $this->privateEventController->update($post);  
             }else if($routeTab['sub-route'] === "maladies"){
 
-                // appel de la méthode du controlleur pour editer une maladie
+                // appel de la méthode du controller pour editer une maladie
                 $this->privateDiseaseController->update($post);  
             }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour supprimer un utilisateur
+            // appel de la méthode du controller pour supprimer un utilisateur
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
             $this->privateCatController->delete(intval($routeTab['chat-id']));
-            // appel de la méthode du controlleur pour supprimer un chat
+            // appel de la méthode du controller pour supprimer un chat
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour supprimer un article
+            // appel de la méthode du controller pour supprimer un article
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour supprimer une famille
+            // appel de la méthode du controller pour supprimer une famille
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour supprimer un evenement
+            // appel de la méthode du controller pour supprimer un evenement
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de création d'un utilisateur 
         {  
-            // appel de la méthode du controlleur pour supprimer une maladie
+            // appel de la méthode du controller pour supprimer une maladie
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "ajouter-media") // condition(s) pour ajouter un media au chat 
+        {  
+            $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
+            // appel de la méthode du controller pour ajouter un media au chat
+        }  
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "supprimer-media" && $routeTab['media-id'] !== null) // condition(s) pour supprimer un media du chat 
+        {  
+            $this->privateCatController->deleteMediaInCatMedias(intval($routeTab['chat-id']), intval($routeTab['media-id']));
+            // appel de la méthode du controller pour supprimer un media du chat
         }
     }
 }

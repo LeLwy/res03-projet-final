@@ -25,7 +25,7 @@
         <h3 class="d-none">Description</h3>
         <p class="m-3"><?= $data['cat']->getDescription() ?></p>
         <h3 class="mb-3">Ajouter une photo</h3>
-        <form method="post">
+        <form method="post" enctype="multipart/form-data" action="/res03-projet-final/admin/index-des-chats-a-l-adoption/<?= $data['cat']->getId() ?>/ajouter-media">
             <div class="mb-3">
             <label for="cat-medias" class="form-label">Sélectionnez une photo</label>
             <input class="form-control" type="file" id="cat-medias" name="cat-medias">
@@ -34,13 +34,13 @@
         </form>
         <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
     </section>
-    <section class="col">
+    <section class="row">
         <?php foreach($data['cat']->getMedias() as $media){ ?>
-            <figure class="card-img-top card col-1" style="max-width: 33%;">
+            <figure class="card-img-top card col-3" style="max-width: fit-content;">
                 <img style="max-height: 25vh; aspect-ratio: keep-aspect-ratio;" class="img-thumbnail img-fluid card-img-top" src="/res03-projet-final/<?= $media->getUrl() ?>" alt="">
                 <figcaption class="d-none">Une photo de <?= $data['cat']->getName() ?></figcaption>
                 <div class="card-body">
-                    <a href="" class="btn btn-danger">Supprimer</a>
+                    <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption/<?= $data['cat']->getId() ?>/supprimer-media/<?= $media->getId() ?>" class="btn btn-danger">Supprimer</a>
                 </div>
             </figure>
         <?php } ?>
