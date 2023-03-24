@@ -6,9 +6,18 @@ class FamilyManager extends AbstractManager{
     {
         $query = $this->db->prepare('SELECT * FROM families');
         $query->execute();
-        $family = $query->fetchAll(PDO::FETCH_ASSOC);
+        $families = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $familiesArray = [];
+
+        foreach($families as $family){
+
+            $newFamily = new Family($family['name'], $family['description']);
+            $newFamily->setId($family['id']);
+            $familiesArray[] = $newFamily;
+        }
         
-        return $family;
+        return $familiesArray;
     }
 
     public function getFamilyById(int $id) : Family
@@ -63,8 +72,40 @@ class FamilyManager extends AbstractManager{
         $query->execute($parameters);
 
         $newFamily = $query->fetch(PDO::FETCH_ASSOC);
-        return $newFamily;
+
+        $updatedFamily = new Family($newFamily['name'], $newFamily['description']);
+        $updatedFamily->setId($newFamily['id']);
+
+        return $updatedFamily;
         
+    }
+
+    public function findFamilyCats(Family $family) : array
+    {
+        $query = $this->db->prepare('SELECT * FROM cats WHERE cats.families_id = :family_id');
+
+        $parameters = [
+            'family_id' => $family->getId()
+        ];
+
+        $query->execute($parameters);
+
+        $familyCats = $query->fetchAll(PDO::FETCH_ASSOC);
+        return $familyCats;
+    }
+
+    public function deleteFamily(Family $family) : array
+    {
+        $query = $this->db->prepare('DELETE FROM families WHERE id = :id');
+
+        $parameters = [
+
+            'id' => $family->getId()
+        ];
+
+        $query->execute($parameters);
+
+        return $this->findAll();
     }
 
     public function addMediaOnFamily(int $familyId, int $mediaId) : void

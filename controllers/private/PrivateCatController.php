@@ -93,9 +93,9 @@ class PrivateCatController extends PrivateAbstractController
         }
     }
 
-    public function update($post, $catId)
+    public function update(array $post, int $catId) : void
     {
-        $families = $this->familyController->toObjectArray($this->familyManager->findAll());
+        $families = $this->familyManager->findAll();
         $catToUpdate = $this->catManager->getCatById($catId);
 
         $error = "";

@@ -469,22 +469,22 @@ class Router{
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un article 
         {  
-            // appel de la méthode du controller pour editer un chat 
+            // appel de la méthode du controller pour editer un article 
             $this->privatePostController->update($post, intval($routeTab['article-id'])); 
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'une famille 
         {  
-            // appel de la méthode du controller pour editer un chat 
+            // appel de la méthode du controller pour editer une famille 
             $this->privateFamilyController->update($post, intval($routeTab['famille-id'])); 
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un evenement 
         {  
-            // appel de la méthode du controller pour editer un chat 
+            // appel de la méthode du controller pour editer un evenement 
             $this->privateEventController->update($post, intval($routeTab['evenement-id'])); 
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'une maladie 
         {  
-            // appel de la méthode du controller pour editer un chat 
+            // appel de la méthode du controller pour editer une maladie
             $this->privatePostController->update($post, intval($routeTab['maladie-id'])); 
         }
         
@@ -502,19 +502,22 @@ class Router{
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un article 
         {  
+            $this->privatePostController->delete(intval($routeTab['article-id']));
             // appel de la méthode du controller pour supprimer un article
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'une famille 
         {  
-            //$this->privateFamilyController->delete(intval($routeTab['famille-id']));
+            $this->privateFamilyController->delete(intval($routeTab['famille-id']));
             // appel de la méthode du controller pour supprimer une famille
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un evenement 
         {  
+            $this->privateEventController->delete(intval($routeTab['evenement-id']));
             // appel de la méthode du controller pour supprimer un evenement
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'une maladie 
         {  
+            $this->privateDiseaseController->delete(intval($routeTab['maladie-id']));
             // appel de la méthode du controller pour supprimer une maladie
         } 
         

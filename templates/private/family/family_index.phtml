@@ -1,3 +1,4 @@
+<?php var_dump($data); ?>
 <section>
   <h1>Index des familles</h1>
   <a href="/res03-projet-final/admin/index-des-familles/creer" type="button" class="btn btn-success">Ajouter une famille à l'index</a>
@@ -10,11 +11,11 @@
       </tr>
     </thead>
     <tbody>
-    <?php if(!empty($data)){ foreach($data[0] as $family){ ?>
+    <?php if(!empty($data)){ foreach($data as $family){ ?>
       <tr>
-        <th scope="row"><?= strval($family['id']); ?></th>
-        <td><?= $family['name']; ?></td>
-        <td><?= $family['description']; ?></td>
+        <th scope="row"><?= strval($family->getId()); ?></th>
+        <td><?= $family->getName(); ?></td>
+        <td><?= $family->getDescription(); ?></td>
         <td>
           <a class="btn btn-info" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/voir" role="button">Détails</a>
           <a class="btn btn-primary" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/editer" role="button">Éditer</a>
