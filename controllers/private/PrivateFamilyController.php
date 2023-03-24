@@ -3,10 +3,14 @@
 class PrivateFamilyController extends PrivateAbstractController
 {
     private FamilyManager $familyManager;
+    private MediaManager $mediaManager;
+    private Uploader $uploader;
 
     public function __construct(){
 
         $this->familyManager = new FamilyManager();
+        $this->mediaManager = new MediaManager();
+        $this->uploader = new Uploader();
     }
     
     public function index(){
@@ -23,7 +27,37 @@ class PrivateFamilyController extends PrivateAbstractController
 
     public function create()
     {
-        $this->render('family', 'create', []);
+
+        $error = "";
+
+        if(isset($post) && !empty($post)){
+
+            foreach($post as $field){
+
+                if(empty($field)){
+    
+                    $error = "Tous les champs ne sont pas remplis";
+                }
+            }
+            if($error !== ""){
+                
+                echo $error;
+
+            }else{
+
+                $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'family-medias'));
+
+                $family = new Family($post['name'], $post['description']);
+                $newFamily = $this->familyManager->insertFamily($family);
+                $newFamilyMedia = $this->familyManager->addMediaOnFamily($family->getId(), $media->getId());
+
+                header('Location: /res03-projet-final/admin/index-des-familles');
+            }
+            
+        }else{
+
+            $this->render('family', 'create', []);
+        }
     }
 
     public function update($family)

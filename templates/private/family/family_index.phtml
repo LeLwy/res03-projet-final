@@ -15,6 +15,11 @@
         <th scope="row"><?= strval($family['id']); ?></th>
         <td><?= $family['name']; ?></td>
         <td><?= $family['description']; ?></td>
+        <td>
+          <a class="btn btn-info" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/supprimer" role="button">Supprimer</a>
+        </td>
       </tr>
       <?php }} ?>
     </tbody>

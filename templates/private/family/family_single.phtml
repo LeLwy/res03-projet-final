@@ -1,1 +1,50 @@
-<h1>This is the families single page</h1>
+<section class="row container-fluid">
+    <h1 class="mb-5">La fiche détaillée de la famille <?= $data['family']->getName() ?></h1>
+    <section class="col">
+        <h2 class="d-none">Photo principale de la famille <?= $data['family']->getName() ?></h2>
+        <figure>
+            <?php if(count($data['family']->getMedias()) === 0){ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/assets/medias/images/cat-yawning.jpg" alt="">
+                    <figcaption class="d-none">Une photo de chat qui miaule</figcaption>
+                <?php }else{ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/<?= $data['family']->getMedias()[0]->getUrl(); ?>" alt="">
+                    <figcaption class="d-none">Une photo de <?= $data['family']->getName() ?></figcaption>
+                <?php } ?>
+        </figure>
+    </section>
+    <section class="col">
+        <h2>Identité</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><p><strong>Nom: </strong><?= $data['family']->getName() ?></p></li>
+            <li class="list-group-item"><p><strong>Âge: </strong><?= $data['family']->getDescription() ?></p></li>
+        </ul>
+    </section>
+</section>
+<a href="/res03-projet-final/admin/index-des-familles" type="submit" class="btn btn-primary m-3" style="width: fit-content;">retour</a>
+<section class="row">
+    <h2>Description et photos</h2>
+    <section class="col">
+        <h3 class="d-none">Description</h3>
+        <p class="m-3"><?= $data['family']->getDescription() ?></p>
+        <h3 class="mb-3">Ajouter une photo</h3>
+        <form method="post" enctype="multipart/form-data" action="/res03-projet-final/admin/index-des-familles/<?= $data['family']->getId() ?>/ajouter-media">
+            <div class="mb-3">
+            <label for="family-medias" class="form-label">Sélectionnez une photo</label>
+            <input class="form-control" type="file" id="family-medias" name="family-medias">
+            </div>
+            <button type="submit" class="btn btn-success mb-3">Enregistrer</button>
+        </form>
+    </section>
+    <section class="row">
+        <?php foreach($data['family']->getMedias() as $media){ ?>
+            <figure class="card-img-top card col-3" style="max-width: fit-content;">
+                <img style="max-height: 25vh; aspect-ratio: keep-aspect-ratio;" class="img-thumbnail img-fluid card-img-top" src="/res03-projet-final/<?= $media->getUrl() ?>" alt="">
+                <figcaption class="d-none">Une photo de <?= $data['family']->getName() ?></figcaption>
+                <div class="card-body">
+                    <a href="/res03-projet-final/admin/index-des-familles/<?= $data['family']->getId() ?>/supprimer-media/<?= $media->getId() ?>" class="btn btn-danger">Supprimer</a>
+                </div>
+            </figure>
+        <?php } ?>
+    </section>
+</section>
+

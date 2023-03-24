@@ -30,7 +30,7 @@ class FamilyManager extends AbstractManager{
         return $newFamily;
     }
     
-    public function insertPost(Family $family) : Family
+    public function insertFamily(Family $family) : Family
     {
         $query = $this->db->prepare('INSERT INTO families VALUES(:id, :name, :description)');
         
@@ -65,5 +65,42 @@ class FamilyManager extends AbstractManager{
         $newFamily = $query->fetch(PDO::FETCH_ASSOC);
         return $newFamily;
         
+    }
+
+    public function addMediaOnFamily(int $familyId, int $mediaId) : void
+    {
+        $query = $this->db->prepare('INSERT INTO families_medias VALUES(:families_id, :medias_id)');
+
+        $parameters = [
+            'families_id' => $familyId,
+            'medias_id' => $mediaId
+        ];
+
+        $query->execute($parameters);
+    }
+
+    public function deleteMediasOnFamily(Family $family) : void
+    {
+        $query = $this->db->prepare('DELETE FROM families_medias WHERE families_id = :families_id');
+
+        $parameters = [
+
+            'families_id' => $family->getId()
+        ];
+
+        $query->execute($parameters);
+    }
+
+    public function deleteMediaOnFamiliesMedias(Family $family, Media $media)
+    {
+        $query = $this->db->prepare('DELETE FROM families_medias WHERE families_id = :families_id AND medias_id = :medias_id');
+
+        $parameters = [
+
+            'families_id' => $family->getId(),
+            'medias_id' => $media->getId()
+        ];
+
+        $query->execute($parameters);
     }
 }

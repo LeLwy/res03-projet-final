@@ -24,6 +24,7 @@
         </ul>
     </section>
 </section>
+<a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary m-3" style="width: fit-content;">retour</a>
 <section class="row">
     <h2>Description et photos</h2>
     <section class="col">
@@ -35,12 +36,10 @@
             <label for="cat-medias" class="form-label">Sélectionnez une photo</label>
             <input class="form-control" type="file" id="cat-medias" name="cat-medias">
             </div>
-            <button type="submit" class="btn btn-success">Enregistrer</button>
+            <button type="submit" class="btn btn-success mb-3">Enregistrer</button>
         </form>
-        <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
     </section>
     <section class="row">
-    <?php var_dump($data['cat']->getMedias()); ?>
         <?php foreach($data['cat']->getMedias() as $media){ ?>
             <figure class="card-img-top card col-3" style="max-width: fit-content;">
                 <img style="max-height: 25vh; aspect-ratio: keep-aspect-ratio;" class="img-thumbnail img-fluid card-img-top" src="/res03-projet-final/<?= $media->getUrl() ?>" alt="">
