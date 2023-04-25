@@ -38,6 +38,36 @@ class FamilyManager extends AbstractManager{
         
         return $newFamily;
     }
+
+    public function getFamilyIdByName(string $name) : int
+    {
+        $query = $this->db->prepare('SELECT * FROM families WHERE name = :name');
+
+        $parameters = [
+            'name' => $name
+        ];
+
+        $query->execute($parameters);
+
+        $family = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $family['id'];
+    }
+
+    public function getFamilyNameById(int $familyId) : string
+    {
+        $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
+
+        $parameters = [
+            'id' => $familyId
+        ];
+            
+        $query->execute($parameters);
+        
+        $family = $query->fetch(PDO::FETCH_ASSOC);
+
+        return $family['name'];
+    }
     
     public function insertFamily(Family $family) : Family
     {
@@ -59,7 +89,7 @@ class FamilyManager extends AbstractManager{
         
     }
     
-    public function updateFamily(Family $family) : Family
+    public function updateFamily(Family $family) : void
     {
         $query = $this->db->prepare('UPDATE families SET name = :newName, description = :newDescription WHERE id = :id');
         
@@ -70,13 +100,6 @@ class FamilyManager extends AbstractManager{
         ];
         
         $query->execute($parameters);
-
-        $newFamily = $query->fetch(PDO::FETCH_ASSOC);
-
-        $updatedFamily = new Family($newFamily['name'], $newFamily['description']);
-        $updatedFamily->setId($newFamily['id']);
-
-        return $updatedFamily;
         
     }
 
@@ -90,7 +113,15 @@ class FamilyManager extends AbstractManager{
 
         $query->execute($parameters);
 
-        $familyCats = $query->fetchAll(PDO::FETCH_ASSOC);
+        $familyCats = [];
+        $cats = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        foreach($cats as $cat){
+
+            $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
+            $familyCats[] = $newCat;
+        }
+        
         return $familyCats;
     }
 
@@ -110,7 +141,7 @@ class FamilyManager extends AbstractManager{
 
     public function addMediaOnFamily(int $familyId, int $mediaId) : void
     {
-        $query = $this->db->prepare('INSERT INTO families_medias VALUES(:families_id, :medias_id)');
+        $query = $this->db->prepare('INSERT INTO families_medias VALUES(:medias_id, :families_id)');
 
         $parameters = [
             'families_id' => $familyId,

@@ -4,15 +4,19 @@ class Event{
 
     private ?int $id;
     private string $name;
-    private  string $description;
-    private  string $location;
+    private string $description;
+    private string $location;
+    private string $date;
+    private int $mediaId;
 
-    public function __construct(string $name, string $description, string $location){
+    public function __construct(string $name, string $description, string $location, string $date, int $mediaId){
 
         $this->id = null;
         $this->name = $name;
         $this->description = $description;
         $this->location = $location;
+        $this->date = $date;
+        $this->mediaId = $mediaId;
     }
 
     public function getId() : int
@@ -53,5 +57,25 @@ class Event{
     public function setLocation(string $location) : void
     {
         $this->location = $location;
+    }
+
+    public function getDate() : string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date) : void
+    {
+        $this->date = $date;
+    }
+
+    public function getMediaId() : int
+    {
+        return $this->mediaId;
+    }
+
+    public function setMediaId(int $mediaId) : void
+    {
+        $this->mediaId = $mediaId;
     }
 }

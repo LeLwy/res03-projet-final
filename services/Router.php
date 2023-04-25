@@ -6,6 +6,7 @@ class Router{
     
     private AboutController $aboutController;
     private AdoptionController $adoptionController;
+    private AuthController $authController;
     private BlogController $blogController;
     private CatController $catController;
     private DiseaseController $diseaseController;
@@ -20,6 +21,7 @@ class Router{
     // private controllers
 
     private PrivateAdminController $privateAdminController;
+    private PrivateAuthController $privateAuthController;
     private PrivateCatController $privateCatController;
     private PrivateDiseaseController $privateDiseaseController;
     private PrivateEventController $privateEventController;
@@ -33,6 +35,7 @@ class Router{
 
         $this->aboutController = new AboutController();
         $this->adoptionController = new AdoptionController();
+        $this->authController = new AuthController();
         $this->blogController = new BlogController();
         $this->catController = new CatController();
         $this->diseaseController = new DiseaseController();
@@ -47,6 +50,7 @@ class Router{
         //private
 
         $this->privateAdminController = new PrivateAdminController();
+        $this->privateAuthController = new PrivateAuthController();
         $this->privateCatController = new PrivateCatController();
         $this->privateDiseaseController = new PrivateDiseaseController();
         $this->privateEventController = new PrivateEventController();
@@ -81,6 +85,18 @@ class Router{
             else if($tab[0] === 'a-l-adoption' && !isset($tab[1])) // route vers la page a-l-adoption  
             {    
                 $routeAndParams["route"] = "a-l-adoption";  
+            }  
+            else if($tab[0] === 'connexion' && !isset($tab[1])) // route vers la page de connexion  
+            {    
+                $routeAndParams["route"] = "connexion";  
+            }  
+            else if($tab[0] === 'check-connexion' && !isset($tab[1])) // route vers la page d'accueil si confirmation de connexion  
+            {    
+                $routeAndParams["route"] = "check-connexion";  
+            }  
+            else if($tab[0] === 'deconnexion' && !isset($tab[1])) // route vers la page d'accueil après déconnexion  
+            {    
+                $routeAndParams["route"] = "deconnexion";  
             }  
             else if($tab[0] === 'a-l-adoption' && $tab[1] !== null && !isset($tab[2])) // "route vers le profil d'un chat 
             {    
@@ -208,14 +224,14 @@ class Router{
                 $routeAndParams["chat-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }   
-            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "ajouter-media" && !isset($tab[4])) // route vers la page de suppression d'un chat pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "ajouter-media" && !isset($tab[4])) // route vers la page d'ajout d'un media sur un chat pour l'administrateur
             { 
                 $routeAndParams["route"] = "admin";
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["chat-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }   
-            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "supprimer-media" && $tab[4] !== null && !isset($tab[5])) // route vers la page de suppression d'un chat pour l'administrateur
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-chats-a-l-adoption" && $tab[2] !== null && $tab[3] === "supprimer-media" && $tab[4] !== null && !isset($tab[5])) // route vers la page de suppression d'un media sur un chat pour l'administrateur
             { 
                 $routeAndParams["route"] = "admin";
                 $routeAndParams["sub-route"] = $tab[1];
@@ -285,6 +301,42 @@ class Router{
                 $routeAndParams["sub-route"] = $tab[1];
                 $routeAndParams["famille-id"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
+            }   
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-familles" && $tab[2] !== null && $tab[3] === "ajouter-media" && !isset($tab[4])) // route vers la page d'ajout d'un media sur une famille pour l'administrateur
+            { 
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["famille-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }   
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-familles" && $tab[2] !== null && $tab[3] === "supprimer-media" && $tab[4] !== null && !isset($tab[5])) // route vers la page de suppression d'un media sur une famille pour l'administrateur
+            { 
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["famille-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+                $routeAndParams["media-id"] = $tab[4];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-maladies" && $tab[2] !== null && $tab[3] === "voir" && !isset($tab[4])) // route vers la page de détails d'une maladie pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["maladie-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-maladies" && $tab[2] !== null && $tab[3] === "editer" && !isset($tab[4])) // route vers la page d'édition d'une maladie pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["maladie-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
+            }  
+            else if($tab[0] === 'admin' && $tab[1] === "index-des-maladies" && $tab[2] !== null && $tab[3] === "supprimer" && !isset($tab[4])) // route vers la page de suppression d'une maladie pour l'administrateur
+            {    
+                $routeAndParams["route"] = "admin";
+                $routeAndParams["sub-route"] = $tab[1];
+                $routeAndParams["maladie-id"] = $tab[2];
+                $routeAndParams["methode"] = $tab[3];
             } 
         }  
         else  
@@ -298,7 +350,8 @@ class Router{
     public function checkRoute(string $route) : void  
     {  
         $routeTab = $this->splitRouteAndParameters($route);
-        $post = $_POST; 
+        $post = $_POST;
+        var_dump($_SESSION);
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  
@@ -309,6 +362,21 @@ class Router{
         {  
             $this->aboutController->index();
             // appel de la méthode du controller pour afficher la page à propos  
+        }  
+        else if($routeTab["route"] === "connexion") // condition(s) pour envoyer vers le formulaire de connexion 
+        {  
+            $this->authController->login();
+            // appel de la méthode du controller pour afficher le formulaire de connexion  
+        }  
+        else if($routeTab["route"] === "check-connexion") // condition(s) pour envoyer vers la page d'accueil si connexion 
+        {  
+            $this->authController->checkLogin($post);
+            // appel de la méthode du controller pour afficher la page d'accueil si connexion 
+        }   
+        else if($routeTab["route"] === "deconnexion") // condition(s) pour envoyer vers la page d'accueil apres deconnexion 
+        {  
+            $this->authController->logout();
+            // appel de la méthode du controller pour afficher la page d'accueil si connexion 
         }  
         else if($routeTab["route"] === "a-l-adoption" && $routeTab["chat-id"] === null) // condition(s) pour envoyer vers la liste des chats à l'adoption  
         {  
@@ -342,7 +410,8 @@ class Router{
         }    
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
         {  
-            // appel de la méthode du controller pour afficher le profil d'un utilisateur  
+            // appel de la méthode du controller pour afficher le profil d'un utilisateur
+            $this->privateUserController->profil($routeTab["utilisateur-id"]); 
         }
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab["methode"] === 'creer') // condition(s) pour envoyer vers le formulaire de création d'un article pour l'utilisateur  
         {  
@@ -354,7 +423,13 @@ class Router{
         }  
         else if($routeTab["route"] === "admin" && $routeTab["sub-route"] === null) // condition(s) pour envoyer vers la page d'accueil de l'admin 
         {  
-            $this->privateAdminController->index();
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateAdminController->index();
+            }else{
+
+                $this->authController->login();
+            }
             // appel de la méthode du controller pour afficher la page d'accueil de l'admin 
         }
         
@@ -403,9 +478,6 @@ class Router{
         {  
             $this->privateCatController->show(intval($routeTab['chat-id']));
             // appel de la méthode du controller pour afficher le profil d'un chat
-
-            // $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
-            // appel de la méthode du controller pour ajouter un media au chat
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
@@ -413,14 +485,17 @@ class Router{
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
+            $this->privateFamilyController->show(intval($routeTab['famille-id']));
             // appel de la méthode du controller pour afficher le profil d'une famille
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
+            $this->privateEventController->show(intval($routeTab['evenement-id']));
             // appel de la méthode du controller pour afficher le détail d'un evenement
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
+            $this->privateDiseaseController->show(intval($routeTab['maladie-id']));
             // appel de la méthode du controller pour afficher le détail d'un evenement
         }  
 
@@ -442,7 +517,7 @@ class Router{
                 $this->privatePostController->create($post);  
             }else if($routeTab['sub-route'] === "index-des-familles"){
 
-                // appel de la méthode du controller pour creer un famille  
+                // appel de la méthode du controller pour creer une famille  
                 $this->privateFamilyController->create($post);    
             }else if($routeTab['sub-route'] === "index-des-evenements"){
 
@@ -485,7 +560,7 @@ class Router{
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'une maladie 
         {  
             // appel de la méthode du controller pour editer une maladie
-            $this->privatePostController->update($post, intval($routeTab['maladie-id'])); 
+            $this->privateDiseaseController->update($post, intval($routeTab['maladie-id'])); 
         }
         
         /************************************************************** SUPPRESSION DES MODELES COTE ADMIN *******************************************************************************/
@@ -530,6 +605,15 @@ class Router{
                 $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
             // appel de la méthode du controller pour ajouter un media au chat
             }
+        }
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "ajouter-media") // condition(s) pour ajouter un media à la famille 
+        {  
+            if(isset($_FILES) && !empty($_FILES)){
+
+            
+                $this->privateFamilyController->addMediaInFamilyMedias($post, intval($routeTab['famille-id']));
+            // appel de la méthode du controller pour ajouter un media à la famille
+            }
         }  
 
         /************************************************************** SUPPRESSION D'UN MEDIA SUR UN MODELE COTE ADMIN *******************************************************************************/
@@ -537,6 +621,11 @@ class Router{
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "supprimer-media" && $routeTab['media-id'] !== null) // condition(s) pour supprimer un media du chat 
         {  
             $this->privateCatController->deleteMediaInCatMedias(intval($routeTab['chat-id']), intval($routeTab['media-id']));
+            // appel de la méthode du controller pour supprimer un media du chat
+        }
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "supprimer-media" && $routeTab['media-id'] !== null) // condition(s) pour supprimer un media du chat 
+        {  
+            $this->privateFamilyController->deleteMediaInFamilyMedias(intval($routeTab['famille-id']), intval($routeTab['media-id']));
             // appel de la méthode du controller pour supprimer un media du chat
         }
     }

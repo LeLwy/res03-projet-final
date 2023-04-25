@@ -1,3 +1,4 @@
+<?php var_dump($data['family']->getMedias()) ?>
 <section class="row container-fluid">
     <h1 class="mb-5">La fiche détaillée de la famille <?= $data['family']->getName() ?></h1>
     <section class="col">
@@ -16,7 +17,7 @@
         <h2>Identité</h2>
         <ul class="list-group">
             <li class="list-group-item"><p><strong>Nom: </strong><?= $data['family']->getName() ?></p></li>
-            <li class="list-group-item"><p><strong>Âge: </strong><?= $data['family']->getDescription() ?></p></li>
+            <li class="list-group-item"><p><strong>Description: </strong><?= $data['family']->getDescription() ?></p></li>
         </ul>
     </section>
 </section>
@@ -45,6 +46,33 @@
                 </div>
             </figure>
         <?php } ?>
+    </section>
+</section>
+<section class="row">
+    <section>
+    <h2>Les chats de la famille <?= $data['family']->getName() ?></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Nom</th>
+            <th scope="col">Âge</th>
+            <th scope="col">Sexe</th>
+            <th scope="col">Couleur</th>
+            <th scope="col">Sterilisé</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if(!empty($data['family']->getCats())){ foreach($data['family']->getCats() as $cat){ ?>
+        <tr>
+            <th scope="row"><?= $cat->getName(); ?></th>
+            <td><?= $cat->getAge(); ?></td>
+            <td><?= $cat->getSex(); ?></td>
+            <td><?= $cat->getColor(); ?></td>
+            <td><?= $cat->getIsSterilized(); ?></td>
+        </tr>
+        <?php }} ?>
+        </tbody>
+    </table>
     </section>
 </section>
 

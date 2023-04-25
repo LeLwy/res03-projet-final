@@ -1,1 +1,10 @@
-<h1>This is the disease single page</h1>
+<section class="row container-fluid">
+    <h1 class="mb-5">La fiche détaillée de la maladie: <?= $data['disease']->getName() ?></h1>
+        <ul class="list-group">
+            <li class="list-group-item"><p><strong>Nom: </strong><?= $data['disease']->getName() ?></p></li>
+            <li class="list-group-item"><p><strong>Description: </strong><?= $data['disease']->getDescription() ?></p></li>
+            <li class="list-group-item"><p><strong>Traitement: </strong><?= $data['disease']->getTreatment() ?></p></li>
+        </ul>
+            <a href="/res03-projet-final/admin/index-des-maladies/<?= $data['disease']->getId() ?>/editer" class="btn btn-primary m-3" style="width: fit-content;">Éditer</a>
+            <a href="/res03-projet-final/admin/index-des-maladies" class="btn btn-primary m-3" style="width: fit-content;">Retour</a>
+</section>

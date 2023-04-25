@@ -7,8 +7,18 @@ class DiseaseManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM diseases');
         $query->execute();
         $diseases = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $diseasesArray = [];
+
+        foreach($diseases as $disease){
+
+            $newDisease = new Disease($disease['name'], $disease['description'], $disease['treatment']);
+            $newDisease->setId($disease['id']);
+
+            $diseasesArray[] = $newDisease;
+        }
         
-        return $diseases;
+        return $diseasesArray;
     }
 
     public function getDiseaseById(int $id) : Disease
@@ -51,7 +61,7 @@ class DiseaseManager extends AbstractManager{
         
     }
     
-    public function updateDisease(Disease $disease) : Disease
+    public function updateDisease(Disease $disease) : void
     {
         $query = $this->db->prepare('UPDATE diseases SET name = :newName, description = :newDescription, treatment = :newTreatment WHERE id = :id');
         
@@ -63,9 +73,18 @@ class DiseaseManager extends AbstractManager{
         ];
         
         $query->execute($parameters);
-
-        $newDisease = $query->fetch(PDO::FETCH_ASSOC);
-        return $newDisease;
         
+    }
+
+    public function deleteDisease(Disease $disease) : void
+    {
+        $query = $this->db->prepare('DELETE FROM diseases WHERE id = :disease_id');
+
+        $parameters = [
+
+            'disease_id' => $disease->getId()
+        ];
+
+        $query->execute($parameters);
     }
 }

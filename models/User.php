@@ -7,22 +7,24 @@ class User{
     private string $lastName;
     private string $email;
     private string $address;
-    private string $role;
-    private string $status;
+    private ?string $role;
+    private ?string $status;
     private string $password;
-    private Family $family;
+    private int $mediaId;
+    private int $familyId;
 
-    public function __construc(string $firstName, string $lastName, string $email, string $address, string $role, string $status, string $password){
+    public function __construct(string $firstName, string $lastName, string $email, string $address, string $password, int $mediaId, int $familyId){
 
         $this->id = null;
         $this->firstName = $firstName;
         $this->lastName = $lastName;
         $this->email = $email;
         $this->address = $address;
-        $this->role = $role;
-        $this->status = $status;
+        $this->role = null;
+        $this->status = null;
         $this->password = $password;
-        $this->family = null;
+        $this->mediaId = $mediaId;
+        $this->familyId = $familyId;
     }
     
     public function getId() : int
@@ -105,14 +107,24 @@ class User{
         $this->password = $password;
     }
 
-    public function getFamily() : Family
+    public function getMediaId() : int
     {
-        return $this->family;
+        return $this->mediaId;
     }
 
-    public function setFamily(Family $family) : void
+    public function setMediaId(int $mediaId) : void
     {
-        $this->family = $family;
+        $this->mediaId = $mediaId;
+    }
+
+    public function getFamilyId() : int
+    {
+        return $this->familyId;
+    }
+
+    public function setFamilyId(int $familyId) : void
+    {
+        $this->familyId = $familyId;
     }
 
 }

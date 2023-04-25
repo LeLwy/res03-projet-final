@@ -1,1 +1,12 @@
 <h1>This is the homepage</h1>
+<section>
+    <?php if(isset($_SESSION['isConnected']) && $_SESSION['isConnected']){ ?>
+    
+        <a href="/res03-projet-final/deconnexion">Déconnexion</a>
+        
+    <?php }else{ ?>
+
+        <a href="/res03-projet-final/connexion">Connexion</a>
+
+    <?php } ?>
+</section>

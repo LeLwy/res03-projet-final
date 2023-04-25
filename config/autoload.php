@@ -23,6 +23,7 @@
     require "controllers/public/PublicAbstractController.php";
     require "controllers/public/AboutController.php";
     require "controllers/public/AdoptionController.php";
+    require "controllers/public/AuthController.php";
     require "controllers/public/BlogController.php";
     require "controllers/public/CatController.php";
     require "controllers/public/ContactController.php";
@@ -40,6 +41,7 @@
 
     require "controllers/private/PrivateAbstractController.php";
     require "controllers/private/PrivateAdminController.php";
+    require "controllers/private/PrivateAuthController.php";
     require "controllers/private/PrivateCatController.php";
     require "controllers/private/PrivateDiseaseController.php";
     require "controllers/private/PrivateEventController.php";

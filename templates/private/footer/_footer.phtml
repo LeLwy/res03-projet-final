@@ -6,32 +6,34 @@
             <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin">Accueil</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/index-des-chats-a-l-adoption">Les chats</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/les-utilisateurs">Les utilisateurs</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/les-familles">Les familles</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/les-evenements">Les évènements</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/les-articles">Les articles</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/res03-projet-final/admin/les-maladies">Les maladies</a>
-                </li>
-            </ul>
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final">Home</a>
+                    </li>
+                    <?php if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){ ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin/index-des-chats-a-l-adoption">Les chats</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin/index-des-utilisateurs">Les utilisateurs</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin/index-des-familles">Les familles</a>
+                    </li>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin/index-des-evenements">Les évènements</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/res03-projet-final/admin/index-des-maladies">Les maladies</a>
+                    </li>
+                    <?php } ?>
+                    <li class="nav-item">
+                    <a class="nav-link" href="/res03-projet-final/admin/index-des-articles">Les articles</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

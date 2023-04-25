@@ -93,13 +93,13 @@ class MediaManager extends AbstractManager{
         return $mediasArray;
     }
 
-    public function findMediasByFamilyId(int $id) : array
+    public function findMediasByFamilyId(Family $family) : array
     {
         $query = $this->db->prepare('SELECT medias.* FROM medias JOIN families_medias ON medias.id = families_medias.medias_id JOIN families ON families.id = families_medias.families_id WHERE families.id = :id');
 
         $parameters = [
 
-            'id' => $id
+            'id' => $family->getId()
         ];
 
         $query->execute($parameters);

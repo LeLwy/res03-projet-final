@@ -24,10 +24,14 @@ class PrivateFamilyController extends PrivateAbstractController
     public function show(int $id)
     {
         $family = $this->familyManager->getfamilyById($id);
+        $cats = $this->familyManager->findFamilyCats($family);
+        $medias = $this->mediaManager->findMediasByFamilyId($family);
+        $family->setCats($cats);
+        $family->setMedias($medias);
         $this->render('family', 'single', ['family' =>$family]);
     }
 
-    public function create()
+    public function create($post)
     {
 
         $error = "";
@@ -41,17 +45,20 @@ class PrivateFamilyController extends PrivateAbstractController
                     $error = "Tous les champs ne sont pas remplis";
                 }
             }
+
             if($error !== ""){
                 
                 echo $error;
 
             }else{
 
+                echo "coucou";
+
                 $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'family-medias'));
 
-                $family = new Family($post['name'], $post['description']);
+                $family = new Family($post['family-name'], $post['family-description']);
                 $newFamily = $this->familyManager->insertFamily($family);
-                $newFamilyMedia = $this->familyManager->addMediaOnFamily($family->getId(), $media->getId());
+                $newFamilyMedia = $this->familyManager->addMediaOnFamily($newFamily->getId(), $media->getId());
 
                 header('Location: /res03-projet-final/admin/index-des-familles');
             }
@@ -64,7 +71,9 @@ class PrivateFamilyController extends PrivateAbstractController
 
     public function update(array $post, int $id)
     {
-        $family = $this->familyManager->getFamilyById($id);$error = "";
+        $family = $this->familyManager->getFamilyById($id);
+        
+        $error = "";
 
         if(isset($post) && !empty($post)){
 
@@ -84,9 +93,9 @@ class PrivateFamilyController extends PrivateAbstractController
 
                 $familyToUpdate = new Family($post['family-name'], $post['family-description']);
                 $familyToUpdate->setId($id);
-                $familyToUpdate = $this->familyManager->updatefamily($family);
+                $familyToUpdate = $this->familyManager->updatefamily($familyToUpdate);
                 
-                header('Location: /res03-projet-final/admin/index-des-chats-a-l-adoption');
+                header('Location: /res03-projet-final/admin/index-des-familles');
             }
         }else{
             
@@ -94,25 +103,10 @@ class PrivateFamilyController extends PrivateAbstractController
         }
     }
 
-    public function toObjectArray($families) : array
-    {
-        $objectArray = [];
-
-        foreach($families as $family){
-
-            $objectFamily = new Family($family['name'], $family['description']);
-            $objectFamily->setId($family['id']);
-
-            $objectArray[] = $objectFamily;
-        }
-
-        return $objectArray;
-    }
-
     public function delete($id)
     {
         $family = $this->familyManager->getFamilyById($id);
-        $medias = $this->mediaManager->findMediasByFamilyId($id);
+        $medias = $this->mediaManager->findMediasByFamilyId($family);
         $cats = $this->familyManager->findFamilyCats($family);
         if(count($cats) === 0){
 
@@ -128,5 +122,29 @@ class PrivateFamilyController extends PrivateAbstractController
 
             echo "Des chats sont encore attribués à cette famille";
         }
+    }
+
+    public function addMediaInFamilyMedias(array $post, int $id)
+    {
+        var_dump($_FILES);
+
+        if(isset($_FILES) && !empty($_FILES)){
+            $family = $this->familyManager->getFamilyById($id);
+            
+            $media = $this->mediaManager->insertMedia($this->uploader->upload($_FILES, 'family-medias'));
+            $newFamilyMedia = $this->familyManager->addMediaOnFamily($family->getId(), $media->getId());
+
+            header('Location: /res03-projet-final/admin/index-des-familles/'.$id.'/voir');
+        }
+    }
+
+    public function deleteMediaInFamilyMedias(int $familyId, int $mediaId)
+    {
+        $family = $this->familyManager->getFamilyById($familyId);
+        $media = $this->mediaManager->getMediaById($mediaId);
+        $this->familyManager->deleteMediaOnFamiliesMedias($family, $media);
+        $this->mediaManager->deleteMedia($media);
+
+        header('Location: /res03-projet-final/admin/index-des-familles/'.$family->getId().'/voir');
     }
 }

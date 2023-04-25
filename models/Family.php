@@ -7,6 +7,7 @@ class Family{
     private string $description;
     private array $members;
     private array $cats;
+    private array $medias;
 
     public function __construct(string $name, string $description){
 
@@ -15,6 +16,7 @@ class Family{
         $this->description = $description;
         $this->members = [];
         $this->cats = [];
+        $this->medias = [];
     }
 
     public function getId() : int
@@ -62,9 +64,19 @@ class Family{
         return $this->cats;
     }
 
-    public function setCats(string $cats) : void
+    public function setCats(array $cats) : void
     {
         $this->cats = $cats;
+    }
+
+    public function getMedias() : array
+    {
+        return $this->medias;
+    }
+
+    public function setMedias(array $medias) : void
+    {
+        $this->medias = $medias;
     }
 
     public function addMember(User $user) : void

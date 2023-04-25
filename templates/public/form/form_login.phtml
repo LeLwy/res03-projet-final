@@ -1,1 +1,18 @@
-<h1>This is the login page</h1>
+<?php var_dump($data) ?>
+<h1>Connexion</h1>  
+<form method="post" action="/res03-projet-final/check-connexion">  
+    <input type="hidden" name="loginFormName" id="loginFormName" value="loginForm" />  
+    <fieldset>  
+        <label for="email" class="form-label">  
+            Email  
+        </label>  
+        <input type="email" name="email" id="email" class="form-control" required />  
+    </fieldset>  
+    <fieldset class="mb-5">  
+        <label for="password" class="form-label">  
+            Mot de passe  
+        </label>  
+        <input type="password" name="password" id="password" class="form-control" required />  
+    </fieldset>  
+    <button type="submit">Se Connecter</button>  
+</form>  

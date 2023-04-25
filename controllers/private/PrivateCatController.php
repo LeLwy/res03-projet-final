@@ -36,9 +36,9 @@ class PrivateCatController extends PrivateAbstractController
         
     }
 
-    public function create($post)
+    public function create(array $post)
     {
-        $families = $this->familyController->toObjectArray($this->familyManager->findAll());
+        $families = $this->familyManager->findAll();
 
         $error = "";
 

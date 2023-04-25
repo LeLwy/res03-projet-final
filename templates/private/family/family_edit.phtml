@@ -1,14 +1,13 @@
-<?php var_dump($data); ?>
 <section class="row">
   <h1>Éditer la famille <?= $data['family']->getName(); ?></h1>
   <form method="post" class="col">
     <div class="mb-3">
       <label for="family-name" class="form-label">Nom:</label>
-      <input type="text" class="form-control" id="family-name" name="family-name">
+      <input type="text" class="form-control" id="family-name" name="family-name" value="<?= $data['family']->getName(); ?>">
     </div>
     <div class="mb-3">
       <label for="family-description" class="form-label">Description:</label>
-      <textarea type="text" class="form-control" id="family-description" name="family-description"></textarea>
+      <textarea type="text" class="form-control" id="family-description" name="family-description"><?= $data['family']->getDescription(); ?></textarea>
     </div>
     <div class="mb-3">
       <label for="family-medias" class="form-label">Sélectionnez une photo</label>

@@ -1,6 +1,6 @@
 <section class="row">
   <h1>Ajouter un nouvel utilisateur à l'index</h1>
-  <form method="post" class="col">
+  <form method="post" class="col" enctype="multipart/form-data">
     <div class="mb-3">
       <label for="user-firstname" class="form-label">Prénom:</label>
       <input type="text" class="form-control" id="user-firstname" name="user-firstname">
@@ -19,7 +19,7 @@
     </div>
     <div class="mb-3">
       <label for="user-role" class="form-label">Role:</label>
-      <input type="text" class="form-control" id="user-role" name="user-role">
+      <input type="text" class="form-control" id="user-role" name="user-role" value="contributeur">
     </div>
     <div class="mb-3">
       <label for="user-password" class="form-label">Mot de passe:</label>
@@ -32,9 +32,21 @@
     <div class="mb-3">
       <select class="form-select" aria-label="Default select example" id="user-status" name="user-status">
           <option selected>Statut de l'utilisateur</option>
-          <option value="1">Actif</option>
-          <option value="2">Inactif</option>
+          <option value="actif">Actif</option>
+          <option value="inactif">Inactif</option>
       </select>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="user-family" name="user-family">
+          <option selected>Famille d'accueil</option>
+          <?php foreach($data as $family){ ?>
+            <option value="<?= $family->getName() ?>"><?= $family->getName() ?></option>
+          <?php } ?>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="user-medias" class="form-label">Sélectionnez une photo</label>
+      <input class="form-control" type="file" id="user-medias" name="user-medias">
     </div>
     <button type="submit" class="btn btn-primary">Enregistrer</button>
     <a href="/res03-projet-final/admin/index-des-utilisateurs" type="submit" class="btn btn-primary">Retour</a>
