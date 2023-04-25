@@ -26,7 +26,7 @@ class PrivateEventController extends PrivateAbstractController
         $this->render('event', 'single', [['event' =>$event], $media]);
     }
 
-    public function create($post)
+    public function create(array $post)
     {
         $error = "";
 
@@ -105,7 +105,7 @@ class PrivateEventController extends PrivateAbstractController
         }
     }
 
-    public function delete($id)
+    public function delete($id) : void
     {
         $event = $this->eventManager->getEventById($id);
         $media = $this->mediaManager->getMediaById($event->getMediaId());

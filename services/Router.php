@@ -435,7 +435,7 @@ class Router{
         
         /***************************************************************** INDEX D'UN MODELE COTE ADMIN *******************************************************************************/
 
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === null) // condition(s) pour envoyer vers l'index de l'un des modèles 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] !== null && $routeTab['methode'] === null && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers l'index de l'un des modèles 
         {  
             if($routeTab['sub-route'] === "les-utilisateurs"){
 
@@ -470,30 +470,30 @@ class Router{
 
         /***************************************************************** DETAILS D'UN MODELE COTE ADMIN *******************************************************************************/
 
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controller pour afficher le profil d'un utilisateur
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             $this->privateCatController->show(intval($routeTab['chat-id']));
             // appel de la méthode du controller pour afficher le profil d'un chat
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             // appel de la méthode du controller pour afficher le détail d'un aticle
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             $this->privateFamilyController->show(intval($routeTab['famille-id']));
             // appel de la méthode du controller pour afficher le profil d'une famille
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             $this->privateEventController->show(intval($routeTab['evenement-id']));
             // appel de la méthode du controller pour afficher le détail d'un evenement
         }  
-        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "voir") // condition(s) pour envoyer vers le profil d'un utilisateur 
+        else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
             $this->privateDiseaseController->show(intval($routeTab['maladie-id']));
             // appel de la méthode du controller pour afficher le détail d'un evenement
@@ -505,28 +505,58 @@ class Router{
         {  
             if($routeTab['sub-route'] === "index-des-utilisateurs"){
 
-                $this->privateUserController->create($post);
-                // 'appel de la méthode du controller pour creer un utilisateur';  
+                if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                    // 'appel de la méthode du controller pour creer un utilisateur';  
+                    $this->privateUserController->create($post);
+                }else{
+
+                    $this->privateUserController->index();
+                }
             }else if($routeTab['sub-route'] === "index-des-chats-a-l-adoption"){
                 
-                // 'appel de la méthode du controller pour creer un chat' 
-                $this->privateCatController->create($post);
+                if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
+
+                    // 'appel de la méthode du controller pour creer un chat' 
+                    $this->privateCatController->create($post);
+                }
             }else if($routeTab['sub-route'] === "index-des-articles"){
+                
+                if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
 
-                // appel de la méthode du controller pour creer un article  
-                $this->privatePostController->create($post);  
+                    // appel de la méthode du controller pour creer un article  
+                    $this->privatePostController->create($post);  
+                }
             }else if($routeTab['sub-route'] === "index-des-familles"){
+                
+                if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
 
-                // appel de la méthode du controller pour creer une famille  
-                $this->privateFamilyController->create($post);    
+                    // appel de la méthode du controller pour creer une famille  
+                    $this->privateFamilyController->create($post);    
+                }else{
+                    
+                    $this->privateFamilyController->index();
+                }
             }else if($routeTab['sub-route'] === "index-des-evenements"){
-
-                // appel de la méthode du controller pour creer un evenement  
-                $this->privateEventController->create($post);  
+                
+                if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+                    
+                    // appel de la méthode du controller pour creer un evenement  
+                    $this->privateEventController->create($post);  
+                }else{
+                    
+                    $this->privateEventController->index();
+                }
             }else if($routeTab['sub-route'] === "index-des-maladies"){
+                
+                if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
 
-                // appel de la méthode du controller pour creer une maladie  
-                $this->privateDiseaseController->create($post);  
+                    // appel de la méthode du controller pour creer une maladie  
+                    $this->privateDiseaseController->create($post);  
+                }else{
+                    
+                    $this->privateDiseaseController->index();
+                }
             }
         }
         
@@ -534,85 +564,156 @@ class Router{
 
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un utilisateur 
         {  
-            // appel de la méthode du controller pour editer un utilisateur 
-            $this->privateUserController->update($post, intval($routeTab['utilisateur-id'])); 
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                // appel de la méthode du controller pour editer un utilisateur 
+                $this->privateUserController->update($post, intval($routeTab['utilisateur-id'])); 
+            }else{
+                
+                $this->privateUserController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un chat 
         {  
-            // appel de la méthode du controller pour editer un chat 
-            $this->privateCatController->update($post, intval($routeTab['chat-id'])); 
+            if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
+
+                // appel de la méthode du controller pour editer un chat 
+                $this->privateCatController->update($post, intval($routeTab['chat-id'])); 
+            }             
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un article 
         {  
-            // appel de la méthode du controller pour editer un article 
-            $this->privatePostController->update($post, intval($routeTab['article-id'])); 
+            if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
+
+                // appel de la méthode du controller pour editer un article 
+                $this->privatePostController->update($post, intval($routeTab['article-id'])); 
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'une famille 
         {  
-            // appel de la méthode du controller pour editer une famille 
-            $this->privateFamilyController->update($post, intval($routeTab['famille-id'])); 
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                // appel de la méthode du controller pour editer une famille 
+                $this->privateFamilyController->update($post, intval($routeTab['famille-id'])); 
+            }else{
+                
+                $this->privateFamilyController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'un evenement 
         {  
-            // appel de la méthode du controller pour editer un evenement 
-            $this->privateEventController->update($post, intval($routeTab['evenement-id'])); 
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                // appel de la méthode du controller pour editer un evenement 
+                $this->privateEventController->update($post, intval($routeTab['evenement-id'])); 
+            }else{
+                
+                $this->privateEventController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "editer") // condition(s) pour envoyer vers la page d'édition d'une maladie 
         {  
-            // appel de la méthode du controller pour editer une maladie
-            $this->privateDiseaseController->update($post, intval($routeTab['maladie-id'])); 
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                // appel de la méthode du controller pour editer une maladie
+                $this->privateDiseaseController->update($post, intval($routeTab['maladie-id'])); 
+            }else{
+                
+                $this->privateDiseaseController->index();
+            }
         }
         
         /************************************************************** SUPPRESSION DES MODELES COTE ADMIN *******************************************************************************/
 
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un utilisateur 
         {  
-            $this->privateUserController->delete(intval($routeTab['utilisateur-id']));
-            // appel de la méthode du controller pour supprimer un utilisateur
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                // appel de la méthode du controller pour supprimer un utilisateur
+                $this->privateUserController->delete(intval($routeTab['utilisateur-id']));
+            }else{
+                
+                $this->privateUserController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un chat 
         {  
-            $this->privateCatController->delete(intval($routeTab['chat-id']));
-            // appel de la méthode du controller pour supprimer un chat
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateCatController->delete(intval($routeTab['chat-id']));
+                // appel de la méthode du controller pour supprimer un chat
+            }else{
+                
+                $this->privateCatController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-articles" && $routeTab['article-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un article 
         {  
-            $this->privatePostController->delete(intval($routeTab['article-id']));
-            // appel de la méthode du controller pour supprimer un article
+            if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
+
+                $this->privatePostController->delete(intval($routeTab['article-id']));
+                // appel de la méthode du controller pour supprimer un article
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'une famille 
         {  
-            $this->privateFamilyController->delete(intval($routeTab['famille-id']));
-            // appel de la méthode du controller pour supprimer une famille
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateFamilyController->delete(intval($routeTab['famille-id']));
+                // appel de la méthode du controller pour supprimer une famille
+            }else{
+                
+                $this->privateFamilyController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-evenements" && $routeTab['evenement-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'un evenement 
         {  
-            $this->privateEventController->delete(intval($routeTab['evenement-id']));
-            // appel de la méthode du controller pour supprimer un evenement
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateEventController->delete(intval($routeTab['evenement-id']));
+                // appel de la méthode du controller pour supprimer un evenement
+            }else{
+                
+                $this->privateEventController->index();
+            }
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-maladies" && $routeTab['maladie-id'] !== null && $routeTab['methode'] === "supprimer") // condition(s) pour envoyer vers la page de suppression d'une maladie 
         {  
-            $this->privateDiseaseController->delete(intval($routeTab['maladie-id']));
-            // appel de la méthode du controller pour supprimer une maladie
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateDiseaseController->delete(intval($routeTab['maladie-id']));
+                // appel de la méthode du controller pour supprimer une maladie
+            }else{
+                
+                $this->privateDiseaseController->index();
+            }
         } 
         
         /************************************************************** AJOUT D'UN MEDIA SUR UN MODELE COTE ADMIN *******************************************************************************/
 
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "ajouter-media") // condition(s) pour ajouter un media au chat 
         {  
-            if(isset($_FILES) && !empty($_FILES)){
+            if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
             
-                $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
-            // appel de la méthode du controller pour ajouter un media au chat
+                if(isset($_FILES) && !empty($_FILES)){
+
+                    $this->privateCatController->addMediaInCatMedias($post, intval($routeTab['chat-id']));
+                // appel de la méthode du controller pour ajouter un media au chat
+                }
             }
         }
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "ajouter-media") // condition(s) pour ajouter un media à la famille 
         {  
-            if(isset($_FILES) && !empty($_FILES)){
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
 
-            
-                $this->privateFamilyController->addMediaInFamilyMedias($post, intval($routeTab['famille-id']));
-            // appel de la méthode du controller pour ajouter un media à la famille
+                if(isset($_FILES) && !empty($_FILES)){
+    
+                    $this->privateFamilyController->addMediaInFamilyMedias($post, intval($routeTab['famille-id']));
+                // appel de la méthode du controller pour ajouter un media à la famille
+                }
+            }else{
+                
+                $this->privateFamilyController->show($routeTab['famille-id']);
             }
         }  
 
@@ -620,13 +721,22 @@ class Router{
 
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "supprimer-media" && $routeTab['media-id'] !== null) // condition(s) pour supprimer un media du chat 
         {  
-            $this->privateCatController->deleteMediaInCatMedias(intval($routeTab['chat-id']), intval($routeTab['media-id']));
-            // appel de la méthode du controller pour supprimer un media du chat
+            if(isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur")){
+                
+                $this->privateCatController->deleteMediaInCatMedias(intval($routeTab['chat-id']), intval($routeTab['media-id']));
+                // appel de la méthode du controller pour supprimer un media du chat
+            }
         }
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-familles" && $routeTab['famille-id'] !== null && $routeTab['methode'] === "supprimer-media" && $routeTab['media-id'] !== null) // condition(s) pour supprimer un media du chat 
         {  
-            $this->privateFamilyController->deleteMediaInFamilyMedias(intval($routeTab['famille-id']), intval($routeTab['media-id']));
-            // appel de la méthode du controller pour supprimer un media du chat
+            if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
+
+                $this->privateFamilyController->deleteMediaInFamilyMedias(intval($routeTab['famille-id']), intval($routeTab['media-id']));
+                // appel de la méthode du controller pour supprimer un media du chat
+            }else{
+                
+                $this->privateFamilyController->show($routeTab['fmaille-id']);
+            }
         }
     }
 }

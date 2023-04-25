@@ -5,13 +5,15 @@ class Post{
     private ?int $id;
     private string $title;
     private string $content;
+    private string $date;
     private ?User $author;
 
-    public function __construct(string $title, string $content){
+    public function __construct(string $title, string $content, string $date){
 
         $this->id = null;
         $this->title = $title;
         $this->content = $content;
+        $this->date = $date;
         $this->author = null;
     }
 
@@ -45,6 +47,16 @@ class Post{
         $this->content = $content;
     }
 
+    public function getDate() : string
+    {
+        return $this->date;
+    }
+
+    public function setDate(string $date) : void
+    {
+        $this->date = $date;
+    }
+
     public function getAuthor() : User
     {
         return $this->author;
@@ -53,5 +65,15 @@ class Post{
     public function setAuthor(User $author) : void
     {
         $this->author = $author;
+    }
+
+    public function getAuthorName() : string
+    {
+        return $this->author->getFirstName()." ".$this->author->getLastName();
+    }
+
+    public function getAuthorId() : int
+    {
+        return $this->author->getId();
     }
 }

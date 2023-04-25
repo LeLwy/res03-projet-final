@@ -5,6 +5,11 @@ class HomeController extends PublicAbstractController
 
     public function index()
     {
-        $this->render('home', "index", []);
+        $pageInfos = [
+
+            'title' => 'Accueil',
+        ];
+
+        $this->render('home', "index", $pageInfos);
     }
 }

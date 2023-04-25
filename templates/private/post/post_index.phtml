@@ -1,3 +1,4 @@
+<?php var_dump($data) ?>
 <section>
   <h1>Index des articles du blog</h1>
   <a href="/res03-projet-final/admin/index-des-articles/creer" type="button" class="btn btn-success">Ajouter un article au blog</a>
@@ -12,13 +13,19 @@
       </tr>
     </thead>
     <tbody>
-      <?php if(!empty($data)){ foreach($data[0] as $post){ ?>
+      <?php if(!empty($data)){ foreach($data as $post){ ?>
       <tr>
-        <th scope="row"><?= strval($post['id']); ?></th>
-        <td><?= $post['title']; ?></td>
-        <td><?= $post['content']; ?></td>
-        <td><?= $post['author']; ?></td>
-        <td><?= $post['date']; ?></td>
+        <th scope="row"><?= strval($post->getId()); ?></th>
+        <td><?= $post->getTitle(); ?></td>
+        <td><?= $post->getContent(); ?></td>
+        <td><?= $post->getAuthorName(); ?></td>
+        <td><?= $post->getDate(); ?></td>
+        <td>
+          <a class="btn btn-info" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary <?= $logInfos['displayLinkForAdminOnly'] ?>" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger <?= $logInfos['displayLinkForAdminOnly'] ?>" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/supprimer" role="button">Supprimer</a>
+          
+        </td>
       </tr>
       <?php }} ?>
     </tbody>

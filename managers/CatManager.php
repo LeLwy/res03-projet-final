@@ -2,7 +2,8 @@
 
 class CatManager extends AbstractManager{
 
-    private function getCatFamilyById(int $id){
+    private function getCatFamilyById(int $id) : Family
+    {
 
         $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
 
