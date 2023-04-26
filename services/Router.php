@@ -351,7 +351,6 @@ class Router{
     {  
         $routeTab = $this->splitRouteAndParameters($route);
         $post = $_POST;
-        var_dump($_SESSION);
     
         if($routeTab["route"] === "") // condition(s) pour envoyer vers la page d'accueil  
         {  

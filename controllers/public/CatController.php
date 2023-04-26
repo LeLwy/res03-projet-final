@@ -13,7 +13,7 @@ class CatController extends PublicAbstractController
     public function index()
     {
         $cats = $this->catManager->findAll();
-        $this->render('cat', 'index', [$cats]);
+        $this->render('cat', 'index', $cats);
     }
 
     public function show(int $id)

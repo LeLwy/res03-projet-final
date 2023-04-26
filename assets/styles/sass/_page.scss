@@ -1,0 +1,10 @@
+body{
+
+    background-color: var(--dark-cyan);
+
+    @media (prefers-color-scheme: dark){
+
+        background-color: var(--rich-black);
+        color: var(--white);
+    }
+}

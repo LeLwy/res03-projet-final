@@ -1,0 +1,314 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed,
+figure, figcaption, footer, header, hgroup,
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
+  display: block;
+}
+
+body {
+  line-height: 1;
+}
+
+ol, ul {
+  list-style: none;
+}
+
+blockquote, q {
+  quotes: none;
+}
+
+blockquote:before, blockquote:after,
+q:before, q:after {
+  content: "";
+  content: none;
+}
+
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+/***** POLICES AND COLORS *****/
+/***** Import polices *****/
+/* font-family: 'Roboto', sans-serif; */
+:root {
+  /* polices */
+  --main: "Roboto", sans-serif;
+  /* colors */
+  --black: #000000;
+  --white: #ffffff;
+  /* made with https://coolors.co/ */
+  --sandy-brown: #fcaa67;
+  --redwood: #b0413e;
+  --cream: #ffffc7;
+  --dark-cyan: #548687;
+  --van-dyke: #473335;
+  --rich-black: #04151f;
+}
+
+/***** GLOBAL HTML *****/
+html {
+  font-family: var(--main);
+}
+html .sr-only {
+  display: none;
+}
+html .inactive {
+  display: none;
+}
+html .active {
+  display: block;
+}
+
+/***** BREAKPOINTS *****/
+body {
+  background-color: var(--dark-cyan);
+}
+@media (prefers-color-scheme: dark) {
+  body {
+    background-color: var(--rich-black);
+    color: var(--white);
+  }
+}
+
+body > header {
+  display: grid;
+  background-color: var(--redwood);
+  color: var(--cream);
+}
+body > header a {
+  color: var(--cream);
+  text-decoration: none;
+}
+body > header > .burgerMenuElt:hover {
+  cursor: pointer;
+}
+body > header > nav > ul > li > a > span {
+  border: solid 4px var(--van-dyke);
+  background-color: var(--cream);
+  color: var(--sandy-brown);
+  box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+}
+body > header > nav > ul > li > a > span.menuLogoSpan {
+  padding: 10px;
+  border-radius: 50px;
+}
+body > header > nav > ul > li > a > span.menuEltSpan {
+  padding: 2px;
+  border-radius: 25px;
+  margin-right: 0.5vw;
+  font-size: 1rem;
+  padding: auto;
+}
+@media screen and (max-width: 767px) {
+  body > header {
+    grid-template-columns: 0.1fr 0.6fr 0.2fr 0.1fr;
+    padding: 3vh 0;
+  }
+  body > header > .burgerMenuElt {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-self: center;
+    margin: auto;
+    font-size: 4rem;
+  }
+  body > header > #logoMenu {
+    grid-column: 2/3;
+    align-self: center;
+    margin: 1vh auto;
+    font-size: 5rem;
+    border: solid 4px var(--van-dyke);
+    background-color: var(--cream);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 10px;
+    border-radius: 50px;
+  }
+  body > header > #logoMenu > a {
+    color: var(--sandy-brown);
+  }
+  body > header > nav {
+    display: none;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    margin: auto;
+  }
+  body > header > nav > ul > li {
+    margin: 0.5vh;
+  }
+  body > header > nav > ul > li > a {
+    font-size: 2rem;
+  }
+  body > header > a {
+    grid-column: 3/4;
+    align-self: center;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  body > header {
+    grid-template-columns: 0.1fr 0.6fr 0.2fr 0.1fr;
+    padding: 3vh 0;
+  }
+  body > header > .burgerMenuElt {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    align-self: center;
+    margin: auto;
+    font-size: 4rem;
+  }
+  body > header > #logoMenu {
+    grid-column: 2/3;
+    align-self: center;
+    margin: 1vh auto;
+    font-size: 5rem;
+    border: solid 4px var(--van-dyke);
+    background-color: var(--cream);
+    box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+    padding: 10px;
+    border-radius: 50px;
+  }
+  body > header > #logoMenu > a {
+    color: var(--sandy-brown);
+  }
+  body > header > nav {
+    display: none;
+    grid-column: 2/3;
+    grid-row: 3/4;
+    margin: auto;
+  }
+  body > header > nav > ul > li {
+    margin: 0.5vh;
+  }
+  body > header > nav > ul > li > a {
+    font-size: 2rem;
+  }
+  body > header > a {
+    grid-column: 3/4;
+    align-self: center;
+    margin: auto;
+  }
+}
+@media screen and (min-width: 1023px) and (max-width: 1299px) {
+  body > header {
+    grid-template-columns: 0.1fr 0.7fr 0.1fr 0.1fr;
+    grid-template-rows: 0.2fr 0.8fr 0.3fr;
+  }
+  body > header > div {
+    display: none;
+  }
+  body > header > nav {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 100%;
+    align-self: center;
+    margin: auto;
+  }
+  body > header > nav > ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    font-size: 1.7rem;
+  }
+  body > header > nav > ul > li {
+    margin: 1vh auto;
+    align-self: center;
+  }
+  body > header > nav > ul > li.headerLeftEltLi {
+    grid-column: 1/2;
+  }
+  body > header > nav > ul > li.headerLeftEltLi:nth-of-type(1) {
+    grid-row: 1/2;
+  }
+  body > header > nav > ul > li.headerLeftEltLi:nth-of-type(2) {
+    grid-row: 2/3;
+  }
+  body > header > nav > ul > li.headerLeftEltLi:nth-of-type(3) {
+    grid-row: 3/4;
+  }
+  body > header > nav > ul > li.headerRightEltLi {
+    grid-column: 3/4;
+  }
+  body > header > nav > ul > li.headerRightEltLi:nth-of-type(1) {
+    grid-row: 1/2;
+  }
+  body > header > nav > ul > li.headerRightEltLi:nth-of-type(2) {
+    grid-row: 2/3;
+  }
+  body > header > nav > ul > li.headerRightEltLi:nth-of-type(3) {
+    grid-row: 3/4;
+  }
+  body > header > nav > ul > li.headerLogoEltLi {
+    grid-column: 2/3;
+    grid-row: 1/4;
+  }
+  body > header > nav > ul > li > a > span.menuLogoSpan {
+    font-size: 5rem;
+  }
+  body > header > a {
+    grid-column: 3/4;
+    margin: 1vh auto;
+  }
+}
+@media screen and (min-width: 1300px) {
+  body > header {
+    grid-template-columns: 0.1fr 1fr 0.1fr 0.1fr;
+    grid-template-rows: 0.2fr 0.8fr 0.3fr;
+  }
+  body > header > div {
+    display: none;
+  }
+  body > header > nav {
+    grid-column: 2/3;
+    grid-row: 2/3;
+    width: 100%;
+    align-self: center;
+    margin: auto;
+  }
+  body > header > nav > ul {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    font-size: 1.5rem;
+  }
+  body > header > nav > ul > li > a > span.menuLogoSpan {
+    font-size: 5rem;
+  }
+  body > header > a {
+    grid-column: 3/4;
+    margin: 1vh auto;
+  }
+}
+
+body > footer {
+  background-color: var(--redwood);
+}
+@media (prefers-color-scheme: dark) {
+  body > footer {
+    color: var(--white);
+  }
+}/*# sourceMappingURL=style.css.map */

@@ -5,6 +5,11 @@ class DonationController extends PublicAbstractController
     
     public function index()
     {
-        $this->render('donation', "", []);
+        $pageInfos = [
+
+            'title' => 'Dons pour l\'association',
+        ];
+
+        $this->render('donation', 'index', [$pageInfos]);
     }
 }

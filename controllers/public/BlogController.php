@@ -11,11 +11,25 @@ class BlogController extends PublicAbstractController
 
     public function index()
     {
-        $this->render('post', 'index', []);
+        $pageInfos = [
+
+            'title' => 'Blog',
+        ];
+
+        $posts = $this->postManager->findAll();
+        $this->render('post', 'index', [$pageInfos, $posts]);
     }
 
-    public function show()
+    public function show(int $id)
     {
-        $this->render('post', 'single', []);
+        $post = $this->postManager->getPostById($id);
+        $postTitle = $post->getTitle();
+
+        $pageInfos = [
+
+            'title' => 'Billet de blog: '.$postTitle,
+        ];
+
+        $this->render('post', 'single', [$pageInfos, ['post' => $post]]);
     }
 }

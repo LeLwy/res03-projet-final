@@ -11,13 +11,25 @@ class AdoptionController extends PublicAbstractController
 
     public function index()
     {
+        $pageInfos = [
+
+            'title' => 'Chats à l\'adoption',
+        ];
+
         $cats = $this->catManager->findAll();
-        $this->render('adoption', 'index', [$cats]);
+        $this->render('adoption', 'index', [$pageInfos, $cats]);
     }
 
     public function show(int $id)
     {
         $cat = $this->catManager->getCatById($id);
-        $this->render('adoption', 'single', ['cat' =>$cat]);
+        $catName = $cat->getName();
+
+        $pageInfos = [
+
+            'title' => 'Chats à l\'adoption: '.$catName,
+        ];
+        
+        $this->render('adoption', 'single', [$pageInfos,['cat' =>$cat]]);
     }
 }

@@ -1,0 +1,329 @@
+body{
+
+    &>header{
+
+        display: grid;
+        background-color: var(--redwood);
+        color: var(--cream);
+    
+        @media (prefers-color-scheme: dark){
+    
+        }
+
+        a{
+
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        &>.burgerMenuElt{
+
+            &:hover{
+
+                cursor: pointer;
+            }
+        }
+        
+        &>nav{
+
+            &>ul{
+
+                &>li{
+
+                    &>a{
+
+                        &>span{
+
+                            border: solid 4px var(--van-dyke);
+                            background-color: var(--cream);
+                            color: var(--sandy-brown);
+                            box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+
+                            &.menuLogoSpan{
+                                
+                                padding: 10px;
+                                border-radius: 50px;
+                            }
+
+                            &.menuEltSpan{
+
+                                padding: 2px;
+                                border-radius: 25px;
+                                margin-right: .5vw;
+                                font-size: 1rem;
+                                padding: auto;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        
+        @media screen and (max-width: 767px){
+
+            grid-template-columns: .1fr .6fr .2fr .1fr;
+            padding: 3vh 0;
+        
+            &>.burgerMenuElt{
+
+                grid-column: 2/3;
+                grid-row: 2/3;
+                align-self: center;
+                margin: auto;
+                font-size: 4rem;
+            }
+
+            &>#logoMenu{
+
+                grid-column: 2/3;
+                align-self: center;
+                margin: 1vh auto;
+                font-size: 5rem;
+                border: solid 4px var(--van-dyke);
+                background-color: var(--cream);
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+                padding: 10px;
+                border-radius: 50px;
+                
+                &>a{
+                    
+                    color: var(--sandy-brown);
+                }
+            }
+        
+            &>nav{
+
+                display: none;
+                grid-column: 2/3;
+                grid-row: 3/4;
+                margin: auto;
+    
+                &>ul{
+    
+                    &>li{
+                        
+                        margin: .5vh;
+    
+                        &>a{
+    
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+
+            &>a{
+
+                grid-column: 3/4;
+                align-self: center;
+                margin: auto;
+            }
+        }
+
+        @media screen and (min-width: 768px) and (max-width: 1023px){
+
+            grid-template-columns: .1fr .6fr .2fr .1fr;
+            padding: 3vh 0;
+        
+            &>.burgerMenuElt{
+
+                grid-column: 2/3;
+                grid-row: 2/3;
+                align-self: center;
+                margin: auto;
+                font-size: 4rem;
+            }
+
+            &>#logoMenu{
+
+                grid-column: 2/3;
+                align-self: center;
+                margin: 1vh auto;
+                font-size: 5rem;
+                border: solid 4px var(--van-dyke);
+                background-color: var(--cream);
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset;
+                padding: 10px;
+                border-radius: 50px;
+                
+                &>a{
+                    
+                    color: var(--sandy-brown);
+                }
+            }
+        
+            &>nav{
+
+                display: none;
+                grid-column: 2/3;
+                grid-row: 3/4;
+                margin: auto;
+    
+                &>ul{
+    
+                    &>li{
+
+                        margin: .5vh;
+    
+                        &>a{
+    
+                            font-size: 2rem;
+                        }
+                    }
+                }
+            }
+
+            &>a{
+
+                grid-column: 3/4;
+                align-self: center;
+                margin: auto;
+            }
+        }
+
+        @media screen and (min-width: 1023px) and (max-width: 1299px){
+
+            grid-template-columns: .1fr .7fr .1fr .1fr;
+            grid-template-rows: .2fr .8fr .3fr;
+
+            &>div{
+
+                display: none;
+            }
+        
+            &>nav{
+
+                grid-column: 2/3;
+                grid-row: 2/3;
+                width: 100%;
+                align-self: center;
+                margin: auto;
+    
+                &>ul{
+
+                    display: grid;
+                    grid-template-columns: 1fr 1fr 1fr;
+                    font-size: 1.7rem;
+    
+                    &>li{
+
+                        margin: 1vh auto;
+                        align-self: center;
+
+                        &.headerLeftEltLi{
+                            
+                            grid-column: 1/2;
+                            
+                            &:nth-of-type(1){
+
+                                grid-row: 1/2;
+                            }
+                            
+                            &:nth-of-type(2){
+
+                                grid-row: 2/3;
+                            }
+                            
+                            &:nth-of-type(3){
+
+                                grid-row: 3/4;
+                            }
+                        }
+
+                        &.headerRightEltLi{
+                            
+                            grid-column: 3/4;
+                            
+                            &:nth-of-type(1){
+
+                                grid-row: 1/2;
+                            }
+                            
+                            &:nth-of-type(2){
+
+                                grid-row: 2/3;
+                            }
+                            
+                            &:nth-of-type(3){
+
+                                grid-row: 3/4;
+                            }
+                        }
+
+                        &.headerLogoEltLi{
+                            
+                            grid-column: 2/3;
+                            grid-row: 1/4;
+                        }
+    
+                        &>a{
+    
+                            &>span{
+
+                                &.menuLogoSpan{
+                                
+                                    font-size: 5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &>a{
+
+                grid-column: 3/4;
+                margin: 1vh auto;
+            }
+        }
+
+        @media screen and (min-width: 1300px){
+
+            grid-template-columns: .1fr 1fr .1fr .1fr;
+            grid-template-rows: .2fr .8fr .3fr;
+
+            &>div{
+
+                display: none;
+            }
+        
+            &>nav{
+
+                grid-column: 2/3;
+                grid-row: 2/3;
+                width: 100%;
+                align-self: center;
+                margin: auto;
+    
+                &>ul{
+
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    justify-content: space-around;
+                    font-size: 1.5rem;
+    
+                    &>li{
+    
+                        &>a{
+    
+                            &>span{
+
+                                &.menuLogoSpan{
+
+                                    font-size: 5rem;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+
+            &>a{
+
+                grid-column: 3/4;
+                margin: 1vh auto;
+            }
+        }
+    }
+}

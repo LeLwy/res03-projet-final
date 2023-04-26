@@ -5,6 +5,6 @@ class ContactController extends PublicAbstractController
 
     public function index()
     {
-        $this->render("form", "contact", []);
+        $this->render('form', 'contact', []);
     }
 }

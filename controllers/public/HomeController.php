@@ -10,6 +10,6 @@ class HomeController extends PublicAbstractController
             'title' => 'Accueil',
         ];
 
-        $this->render('home', "index", $pageInfos);
+        $this->render('home', "index", [$pageInfos]);
     }
 }

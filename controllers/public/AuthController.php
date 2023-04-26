@@ -10,22 +10,22 @@ class AuthController extends PublicAbstractController {
     }  
     
     /* Pour la page d'inscription */  
-    public function register() : void  
-    {  
+    //public function register() : void  
+    //{  
         // render la page avec le formulaire d'inscription  
-    }  
+    //}  
     
     /* Pour vÃ©rifier l'inscription */  
-    public function checkRegister($post) : void  
-    {  
+    //public function checkRegister($post) : void  
+    //{  
         // vÃ©rifier que le formulaire a Ã©tÃ© soumis  
-        if(isset($post['RegisterFormName']));
+    //    if(isset($post['RegisterFormName']));
         // rÃ©cupÃ©rer les champs du formulaire    
         // chiffrer le mot de passe    
         // appeler le manager pour crÃ©er l'utilisateur en base de donnÃ©es   
         // connecter l utilisateur    
         // le renvoyer vers l'accueil
-    }  
+    //}  
     
     /* Pour la page de connexion */  
     public function login() : void  
