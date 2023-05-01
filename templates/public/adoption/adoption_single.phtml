@@ -1,1 +1,39 @@
-<h1>This is the single cat page</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">La page d'adoption de <?= $data[1]['cat']->getName() ?></h2>
+<section class="hka-adoption-content-section">
+    <h2>Je m'appelle <?= $data[1]['cat']->getName() ?></h2>
+    <div class="outterBorderDecoration">
+        <div class="innerBorderDecoration">
+            <section id="hka-single-cat-content-section">
+                <header>
+                    <div class="outterBorderDecoration">
+                        <div class="innerBorderDecoration">
+                            <h3 class="sr-only">Je m'appelle <?= $data[1]['cat']->getName() ?></h3> 
+                            <figure>
+                                <img src="/res03-projet-final/<?= $data[1]['cat']->getMainMediaUrl() ?>" alt="">
+                                <figcaption class="sr-only">Photo principale de <?= $data[1]['cat']->getName() ?></figcaption>
+                            </figure>
+                        </div>
+                    </div>
+                </header>
+                <section>
+                    <ul>
+                        <li>Âge: <p><?= $data[1]['cat']->getAge() ?></p></li>
+                        <li>Sexe: <p><?= $data[1]['cat']->getSex() ?></p></li>
+                        <li>Couleur: <p><?= $data[1]['cat']->getColor() ?></p></li>
+                        <li>Stérilisé: <p><?= $data[1]['cat']->getIsSterilized() ?></p></li>
+                        <li>Famille: <a href="/res03-projet-final/familles/<?= $data[1]['cat']->getFamilyId() ?>"><?= $data[1]['cat']->getFamilyName() ?></a></li>
+                    </ul>
+                    <p><?= $data[1]['cat']->getDescription() ?></p>
+                </section>
+                <footer>
+                    <p>Vous souhaitez adopter <?= $data[1]['cat']->getName() ?> ?</p>
+                    <a href="/res03-projet-final/contact">Contacter</a>
+                    <a href="/res03-projet-final/a-l-adoption">Retour</a>
+                </footer>
+            </section>
+        </div>
+    </div>
+</section>

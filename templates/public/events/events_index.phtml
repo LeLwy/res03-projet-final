@@ -1,1 +1,29 @@
-<h1>This is the events page</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">Les évènements</h2>
+<section class="hka-events-content-section" id="hka-all-events-section">
+    <h3>Les évènements</h3>
+    <?php foreach($data[1] as $event){ ?>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-event-card">
+                    <header>
+                        <h4><?= $event->getName() ?></h4>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de <?= $event->getName() ?></h5>
+                        <p><?= $event->getDescription() ?></p>
+                    </section>
+                    <footer>
+                        <ul>
+                            <li><p>Lieu de l'évènement: </p><?= $event->getLocation() ?></li>
+                            <li><p>Date: </p><?= $event->getDate() ?></li>
+                        </ul>
+                        <a href="/res03-projet-final/evenements/<?= $event->getId() ?>">Voir</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    <?php } ?>
+</section>

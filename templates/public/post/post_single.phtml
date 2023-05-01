@@ -1,1 +1,27 @@
-<h1>This is the blog single page</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only"><?= $data[1]['post']->getTitle() ?></h2>
+<section class="hka-blog-content-section" id="hka-single-articles-section">
+    <h3 class="sr-only"><?= $data[1]['post']->getTitle() ?></h3>
+    <div class="outterBorderDecoration">
+        <div class="innerBorderDecoration">
+            <article class="hka-single-article-card">
+                <header>
+                    <h4><?= $data[1]['post']->getTitle() ?></h4>
+                </header>
+                <section>
+                    <h5 class="sr-only">Contenu de l'article</h5>
+                    <p><?= $data[1]['post']->getContent() ?></p>
+                </section>
+                <footer>
+                    <ul>
+                        <li>Rédigé par: <?= $data[1]['post']->getAuthor()->getFirstName()." ".$data[1]['post']->getAuthor()->getLastName() ?></li>
+                        <li>Le: <?= $data[1]['post']->getDate() ?></li>
+                    </ul>
+                    <a href="/res03-projet-final/blog">Retour</a>
+                </footer>
+            </article>
+        </div>
+    </div>
+</section>

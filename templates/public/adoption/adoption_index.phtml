@@ -1,1 +1,30 @@
-<h1>This is the cats index</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">Les chats à l'adoption</h2>
+<section class="hka-adoption-content-section" id="hka-all-cats-section">
+    <h3>Les chats à l'adoption</h3>
+    <?php foreach($data[1] as $cat){ ?>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-cat-card">
+                    <header>
+                        <h4><?= $cat->getName() ?></h4>
+                            <figure>
+                                <img src="/res03-projet-final/<?= $cat->getMainMediaUrl() ?>" alt="">
+                                <figcaption class="sr-only">Photo principale de <?= $cat->getName() ?></figcaption>
+                            </figure>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de <?= $cat->getName() ?></h5>
+                        <p><?= $cat->getDescription() ?></p>
+                        <p>Stérilisé(e): <?= $cat->getIsSterilized() ?></p>
+                    </section>
+                    <footer>
+                        <a href="/res03-projet-final/a-l-adoption/<?= $cat->getId() ?>">Voir le profil</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    <?php } ?>
+</section>

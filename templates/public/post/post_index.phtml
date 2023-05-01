@@ -1,1 +1,29 @@
-<h1>This is the blog index</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">Blog de l'association</h2>
+<section class="hka-blog-content-section" id="hka-all-articles-section">
+    <h3>Les articles du blog</h3>
+    <?php foreach($data[1] as $article){ ?>
+    <div class="outterBorderDecoration">
+        <div class="innerBorderDecoration">
+            <article class="hka-single-article-card">
+                <header>
+                    <h4><?= $article->getTitle() ?></h4>
+                    <a href="/res03-projet-final/blog/<?= $article->getId() ?>">Lire l'article</a>
+                </header>
+                <section>
+                    <h5 class="sr-only">Contenu de l'article</h5>
+                    <p><?= $article->getContent() ?></p>
+                </section>
+                <footer>
+                    <ul>
+                        <li>Rédigé par: <?= $article->getAuthor()->getFirstName()." ".$article->getAuthor()->getLastName() ?></li>
+                        <li>Le: <?= $article->getDate() ?></li>
+                    </ul>
+                </footer>
+            </article>
+        </div>
+    </div>
+    <?php } ?>
+</section>

@@ -1,1 +1,37 @@
-<h1>This is the families single page</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only"><?= $data[1]['family']->getName() ?></h2>
+<section class="hka-families-content-section" id="hka-single-families-section">
+    <h3 class="sr-only"><?= $data[1]['family']->getName() ?></h3>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-family-card">
+                    <header>
+                        <h4><?= $data[1]['family']->getName() ?></h4>
+                        <div class="outterBorderDecoration">
+                            <div class="innerBorderDecoration">
+                                <figure>
+                                    <img src="/res03-projet-final/<?= $data[1]['family']->getMainMediaUrl() ?>" alt="">
+                                    <figcaption class="sr-only">Photo de la famille <?= $data[1]['family']->getName() ?></figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de la famille <?= $data[1]['family']->getName() ?></h5>
+                        <p><?= $data[1]['family']->getDescription() ?></p>
+                    </section>
+                    <footer>
+                        <p>Nous accueillons:</p>
+                        <ul>
+                            <?php foreach($data[3] as $cat){ ?>
+                                <li><a href="/res03-projet-final/a-l-adoption/<?= $cat->getId() ?>"><?= $cat->getName() ?></a></li>
+                            <?php } ?>
+                        </ul>
+                        <a href="/res03-projet-final/familles">Retour</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+</section>
