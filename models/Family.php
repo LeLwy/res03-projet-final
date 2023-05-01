@@ -5,9 +5,10 @@ class Family{
     private ?int $id;
     private string $name;
     private string $description;
-    private array $members;
+    private ?array $members;
     private array $cats;
     private array $medias;
+    private string $mainMediaUrl;
 
     public function __construct(string $name, string $description){
 
@@ -17,6 +18,7 @@ class Family{
         $this->members = [];
         $this->cats = [];
         $this->medias = [];
+        $this->mainMediaUrl = 'assets/medias/images/cat-statue.jpg';
     }
 
     public function getId() : int
@@ -54,7 +56,7 @@ class Family{
         return $this->members;
     }
 
-    public function setMembers(string $members) : void
+    public function setMembers(array $members) : void
     {
         $this->members = $members;
     }
@@ -87,5 +89,15 @@ class Family{
     public function addCat(Cat $cat) : void
     {
         $this->cats[] = $cat;
+    }
+
+    public function getMainMediaUrl() : string
+    {
+        return $this->mainMediaUrl;
+    }
+
+    public function setMainMediaUrl(string $url) : void
+    {
+        $this->mainMediaUrl = $url;
     }
 }

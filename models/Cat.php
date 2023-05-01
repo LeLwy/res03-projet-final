@@ -11,6 +11,7 @@ class Cat{
     private string $isSterilized;
     private ?Family $family;
     private array $medias;
+    private ?string $mainMediaUrl;
     
     public function __construct(string $name, string $age, string $sex, string $color, string $description, string $isSterilized){
         
@@ -23,6 +24,7 @@ class Cat{
         $this->isSterilized = $isSterilized;
         $this->family = null;
         $this->medias = [];
+        $this->mainMediaUrl = 'assets/medias/images/cat-statue.jpg';
     }
     
     public function getId() : int
@@ -120,8 +122,23 @@ class Cat{
         return $this->medias;
     }
 
+    public function setMedias(array $medias) : void
+    {
+        $this->medias = $medias;
+    }
+
     public function addMedias(Media $media) : void
     {
         $this->medias[] = $media;
+    }
+
+    public function getMainMediaUrl() : string
+    {
+        return $this->mainMediaUrl;
+    }
+
+    public function setMainMediaUrl(string $url) : void
+    {
+        $this->mainMediaUrl = $url;
     }
 }

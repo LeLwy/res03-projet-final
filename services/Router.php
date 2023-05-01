@@ -9,6 +9,7 @@ class Router{
     private AuthController $authController;
     private BlogController $blogController;
     private CatController $catController;
+    private ContactController $contactController;
     private DiseaseController $diseaseController;
     private DonationController $donationController;
     private EventController $eventController;
@@ -38,6 +39,7 @@ class Router{
         $this->authController = new AuthController();
         $this->blogController = new BlogController();
         $this->catController = new CatController();
+        $this->contactController = new ContactController();
         $this->diseaseController = new DiseaseController();
         $this->donationController = new DonationController();
         $this->eventController = new EventController();
@@ -80,7 +82,7 @@ class Router{
     
             if($tab[0] === 'a-propos' && !isset($tab[1])) // route vers la page a-propos  
             {    
-                $routeAndParams["route"] = "about";   
+                $routeAndParams["route"] = "a-propos";   
             }  
             else if($tab[0] === 'a-l-adoption' && !isset($tab[1])) // route vers la page a-l-adoption  
             {    
@@ -100,16 +102,16 @@ class Router{
             }  
             else if($tab[0] === 'a-l-adoption' && $tab[1] !== null && !isset($tab[2])) // "route vers le profil d'un chat 
             {    
-                $routeAndParams["route"] = "";  
+                $routeAndParams["route"] = "a-l-adoption";  
                 $routeAndParams["chat-id"] = $tab[1];  
             }  
             else if($tab[0] === 'donation' && !isset($tab[1])) // route vers la page donation
             {    
                 $routeAndParams["route"] = "donation";  
             }  
-            else if($tab[0] === 'nous-rejoindre' && !isset($tab[1])) // route vers la page nous-rejoindre  
+            else if($tab[0] === 'contact' && !isset($tab[1])) // route vers la page de contact  
             {    
-                $routeAndParams["route"] = "nous-rejoindre";  
+                $routeAndParams["route"] = "contact";  
             }  
             else if($tab[0] === 'evenements' && !isset($tab[1])) // route vers la page évènements  
             {    
@@ -362,6 +364,16 @@ class Router{
             $this->aboutController->index();
             // appel de la méthode du controller pour afficher la page à propos  
         }  
+        else if($routeTab["route"] === "contact") // condition(s) pour envoyer vers la page contact 
+        {  
+            $this->contactController->index();
+            // appel de la méthode du controller pour afficher la page à propos  
+        }  
+        else if($routeTab["route"] === "donation") // condition(s) pour envoyer vers la page des dons 
+        {  
+            $this->donationController->index();
+            // appel de la méthode du controller pour afficher la page à propos  
+        } 
         else if($routeTab["route"] === "connexion") // condition(s) pour envoyer vers le formulaire de connexion 
         {  
             $this->authController->login();
@@ -406,7 +418,19 @@ class Router{
         {  
             $this->familyController->show(intval($routeTab["famille-id"]));
             // appel de la méthode du controller pour afficher le profil d'un famille  
+        }  
+        else if($routeTab["route"] === "evenements" && $routeTab["evenement-id"] === null) // condition(s) pour envoyer vers la liste des evenements 
+        {  
+            $this->eventController->index();
+            // appel de la méthode du controller pour afficher la page familles (index des familles) 
         }    
+        else if($routeTab["route"] === "evenements" && $routeTab["evenement-id"] !== null) // condition(s) pour envoyer vers le detail d'un evenement  
+        {  
+            $this->eventController->show(intval($routeTab["evenement-id"]));
+            // appel de la méthode du controller pour afficher le detail d'un evenement  
+        }    
+        /***************************************************************** ACCES  D'UN BENEVOLE A SON PROFIL *******************************************************************************/
+        
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
         {  
             // appel de la méthode du controller pour afficher le profil d'un utilisateur
@@ -420,6 +444,9 @@ class Router{
         {  
             // appel de la méthode du controller pour afficher le formulaire d'édition d'un article   
         }  
+
+        /***************************************************************** ACCES  A L'INTERFACE D'ADMINISTRATION *******************************************************************************/
+
         else if($routeTab["route"] === "admin" && $routeTab["sub-route"] === null) // condition(s) pour envoyer vers la page d'accueil de l'admin 
         {  
             if(isset($_SESSION['role']) && $_SESSION['role'] === "admin"){
@@ -471,6 +498,7 @@ class Router{
 
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-utilisateurs" && $routeTab['utilisateur-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
         {  
+            $this->privateUserController->show(intval($routeTab['utilisateur-id']));
             // appel de la méthode du controller pour afficher le profil d'un utilisateur
         }  
         else if($routeTab["route"] === "admin" && $routeTab['sub-route'] === "index-des-chats-a-l-adoption" && $routeTab['chat-id'] !== null && $routeTab['methode'] === "voir" && (isset($_SESSION['role']) && ($_SESSION['role'] === "admin" || $_SESSION['role'] === "contributeur"))) // condition(s) pour envoyer vers le profil d'un utilisateur 
@@ -734,7 +762,7 @@ class Router{
                 // appel de la méthode du controller pour supprimer un media du chat
             }else{
                 
-                $this->privateFamilyController->show($routeTab['fmaille-id']);
+                $this->privateFamilyController->show($routeTab['famille-id']);
             }
         }
     }

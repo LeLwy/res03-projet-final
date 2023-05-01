@@ -75,4 +75,35 @@
     </table>
     </section>
 </section>
+<section class="row">
+    <section>
+    <h2>Les membres de la famille <?= $data['family']->getName() ?></h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th scope="col">Id</th>
+            <th scope="col">Nom</th>
+            <th scope="col">Prénom</th>
+            <th scope="col">Email</th>
+            <th scope="col">Adresse</th>
+            <th scope="col">Rôle</th>
+            <th scope="col">Voir</th>
+        </tr>
+        </thead>
+        <tbody>
+        <?php if(!empty($data['family']->getMembers())){ foreach($data['family']->getMembers() as $member){ ?>
+        <tr>
+            <th scope="row"><?= $member->getId(); ?></th>
+            <td><?= $member->getFirstName(); ?></td>
+            <td><?= $member->getLastName(); ?></td>
+            <td><?= $member->getEmail(); ?></td>
+            <td><?= $member->getAddress(); ?></td>
+            <td><?= $member->getRole(); ?></td>
+            <td><a class="btn btn-info" href="/res03-projet-final/admin/index-des-utilisateurs/<?= $member->getId(); ?>/voir" role="button">Voir</a></td>
+        </tr>
+        <?php }} ?>
+        </tbody>
+    </table>
+    </section>
+</section>
 
