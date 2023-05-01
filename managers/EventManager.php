@@ -39,6 +39,25 @@ class EventManager extends AbstractManager{
         
         return $newEvent;
     }
+
+    public function findLastEvent() : array
+    {
+        $query = $this->db->prepare('SELECT * FROM events ORDER BY id DESC LIMIT 3');
+        $query->execute();
+        $events = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $eventsArray = [];
+        
+        foreach($events as $event){
+
+            $newEvent = new Event($event['name'], $event['description'], $event['location'], $event['date'], $event['media_id']);
+            $newEvent->setId($event['id']);
+            $eventsArray[] = $newEvent;
+
+        }
+
+        return $eventsArray;
+    }
     
     public function insertEvent(Event $event) : Event
     {

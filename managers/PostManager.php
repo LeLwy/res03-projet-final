@@ -24,7 +24,27 @@ class PostManager extends AbstractManager{
 
     public function findAll() : array
     {
-        $query = $this->db->prepare('SELECT * FROM posts');
+        $query = $this->db->prepare('SELECT * FROM posts ORDER BY id DESC');
+        $query->execute();
+        $posts = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $postsArray = [];
+
+        foreach($posts as $post){
+
+            $newPost = new Post($post['title'], $post['content'], $post['date'], $post['users_id']);
+            $newPost->setId($post['id']);
+            $newPost->setAuthor($this->getPostAuthorById($post['users_id']));
+
+            $postsArray[] = $newPost;
+        }
+        
+        return $postsArray;
+    }
+
+    public function findLastThreePost() : array
+    {
+        $query = $this->db->prepare('SELECT * FROM posts ORDER BY id DESC LIMIT 3');
         $query->execute();
         $posts = $query->fetchAll(PDO::FETCH_ASSOC);
 
@@ -57,6 +77,7 @@ class PostManager extends AbstractManager{
         $newPost= new Post($post['title'], $post['content'], $post['date'], $post['users_id']);
         
         $newPost->setId($post['id']);
+        $newPost->setAuthor($this->getPostAuthorById($post['users_id']));
         
         return $newPost;
     }

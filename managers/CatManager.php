@@ -41,6 +41,25 @@ class CatManager extends AbstractManager{
         return $catsArray;
     }
 
+    public function findLastThreeCats() : array
+    {
+        $query = $this->db->prepare('SELECT c_info.* FROM cats AS c_info JOIN families AS f_info ON c_info.families_id = f_info.id  ORDER BY c_info.id DESC LIMIT 3');
+        $query->execute();
+        $cats = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $catsArray = [];
+        
+        foreach($cats as $cat){
+
+            $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
+            $newCat->setId($cat['id']);
+            $newCat->setFamily($this->getCatFamilyById($cat['families_id']));
+            $catsArray[] = $newCat;
+        }
+
+        return $catsArray;
+    }
+
     public function getCatById(int $id) : Cat
     {
         $query = $this->db->prepare('SELECT * FROM cats WHERE cats.id = :id');

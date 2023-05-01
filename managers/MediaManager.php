@@ -127,6 +127,9 @@ class MediaManager extends AbstractManager{
             'media_id' => $media->getId()
         ];
 
+        $fileToDeleteUrl = $media->getUrl();
+        unlink($fileToDeleteUrl);
+
         $query->execute($parameters);
     }
 }

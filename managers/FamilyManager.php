@@ -119,13 +119,14 @@ class FamilyManager extends AbstractManager{
         foreach($cats as $cat){
 
             $newCat = new Cat($cat['name'], $cat['age'], $cat['sex'], $cat['color'], $cat['description'], $cat['is_sterilized']);
+            $newCat->setId($cat['id']);
             $familyCats[] = $newCat;
         }
         
         return $familyCats;
     }
 
-    public function deleteFamily(Family $family) : array
+    public function deleteFamily(Family $family) : void
     {
         $query = $this->db->prepare('DELETE FROM families WHERE id = :id');
 
@@ -135,8 +136,6 @@ class FamilyManager extends AbstractManager{
         ];
 
         $query->execute($parameters);
-
-        return $this->findAll();
     }
 
     public function addMediaOnFamily(int $familyId, int $mediaId) : void
@@ -163,7 +162,7 @@ class FamilyManager extends AbstractManager{
         $query->execute($parameters);
     }
 
-    public function deleteMediaOnFamiliesMedias(Family $family, Media $media)
+    public function deleteMediaOnFamiliesMedias(Family $family, Media $media) : void
     {
         $query = $this->db->prepare('DELETE FROM families_medias WHERE families_id = :families_id AND medias_id = :medias_id');
 
@@ -174,5 +173,34 @@ class FamilyManager extends AbstractManager{
         ];
 
         $query->execute($parameters);
+    }
+
+    public function findFamilyMembers(Family $family) : array
+    {
+        $query = $this->db->prepare('SELECT * FROM users WHERE users.family_id = :family_id');
+
+        $parameters = [
+
+            'family_id' => $family->getId()
+        ];
+
+        $query->execute($parameters);
+
+        $users = $query->fetchAll(PDO::FETCH_ASSOC);
+
+        $familyMembers = [];
+
+        foreach($users as $user){
+
+            $newFamilyMember = new User($user['first_name'], $user['last_name'], $user['email'], $user['address'], $user['password'], $user['media_id'], $user['family_id']);
+
+            $newFamilyMember->setId($user['id']);
+            $newFamilyMember->setStatus($user['status']);
+            $newFamilyMember->setRole($user['role']);
+
+            $familyMembers[] = $newFamilyMember;
+        }
+
+        return $familyMembers;
     }
 }
