@@ -4,14 +4,12 @@ class PrivateFamilyController extends PrivateAbstractController
 {
     private FamilyManager $familyManager;
     private MediaManager $mediaManager;
-    private CatManager $catManager;
     private Uploader $uploader;
 
     public function __construct(){
 
         $this->familyManager = new FamilyManager();
         $this->mediaManager = new MediaManager();
-        $this->catManager = new CatManager();
         $this->uploader = new Uploader();
     }
     
@@ -26,8 +24,10 @@ class PrivateFamilyController extends PrivateAbstractController
         $family = $this->familyManager->getfamilyById($id);
         $cats = $this->familyManager->findFamilyCats($family);
         $medias = $this->mediaManager->findMediasByFamilyId($family);
+        $members = $this->familyManager->findFamilyMembers($family);
         $family->setCats($cats);
         $family->setMedias($medias);
+        $family->setMembers($members);
         $this->render('family', 'single', ['family' =>$family]);
     }
 
@@ -108,7 +108,12 @@ class PrivateFamilyController extends PrivateAbstractController
         $family = $this->familyManager->getFamilyById($id);
         $medias = $this->mediaManager->findMediasByFamilyId($family);
         $cats = $this->familyManager->findFamilyCats($family);
-        if(count($cats) === 0){
+
+        if($family->getName() === "Homeless Kitten"){
+
+            echo "Vous ne pouvez pas supprimer cette famille";
+
+        }else if(count($cats) === 0){
 
             $this->familyManager->deleteMediasOnFamily($family);
             $this->familyManager->deleteFamily($family);
@@ -118,9 +123,10 @@ class PrivateFamilyController extends PrivateAbstractController
             }
 
             header('Location: /res03-projet-final/admin/index-des-familles');
+
         }else{
 
-            echo "Des chats sont encore attribués à cette famille";
+            echo "Des chats ou des utilisateurs sont encore attribués à cette famille";
         }
     }
 

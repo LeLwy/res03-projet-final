@@ -15,11 +15,12 @@ class UserController extends PublicAbstractController
 
         $pageInfos = [
 
-            'title' => 'Les bénévoles de l\'association',
+            'title' => 'Les bénévoles de l\'association - Homeless Kitten Association',
+            'main_id' => 'volunteers'
         ];
 
         $users = $this->userManager->findAll();
-        $this->render('user', 'index', [$pageInfos, $users]);
+        $this->render('volunteers', 'index', [$pageInfos, $users]);
     }
     
     public function show(int $id)
@@ -29,9 +30,10 @@ class UserController extends PublicAbstractController
 
         $pageInfos = [
 
-            'title' => 'Le profil de: '.$userName,
+            'title' => 'Le profil de: '.$userName.' - Homeless Kitten Association',
+            'main_id' => 'volunteers-single'
         ];
 
-        $this->render('user', 'single', [$pageInfos, ['user' => $user]]);
+        $this->render('volunteers', 'single', [$pageInfos, ['user' => $user]]);
     }
 }

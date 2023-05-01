@@ -14,7 +14,8 @@ class DiseaseController extends PublicAbstractController
     {
         $pageInfos = [
 
-            'title' => 'Les maladies du chat',
+            'title' => 'Les maladies du chat - Homeless Kitten Association',
+            'main_id' => 'diseases'
         ];
         
         $diseases = $this->diseaseManager->findAll();
@@ -28,6 +29,7 @@ class DiseaseController extends PublicAbstractController
         $pageInfos = [
 
             'title' => 'Les maladies du chat: '.$diseaseName,
+            'main_id' => 'diseases-single'
         ];
 
         $this->render('disease', 'single', [$pageInfos, ['disease' => $disease]]);

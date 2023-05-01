@@ -5,6 +5,12 @@ class ContactController extends PublicAbstractController
 
     public function index()
     {
-        $this->render('form', 'contact', []);
+        $pageInfos = [
+
+            'title' => 'Contacter l\'association - Homeless Kitten Association',
+            'main_id' => 'contact'
+        ];
+
+        $this->render('form', 'contact', [$pageInfos]);
     }
 }

@@ -166,8 +166,6 @@ class PrivateCatController extends PrivateAbstractController
 
     public function addMediaInCatMedias(array $post, int $id)
     {
-        var_dump($_FILES);
-
         if(isset($_FILES) && !empty($_FILES)){
             $cat = $this->catManager->getCatById($id);
             
@@ -182,6 +180,7 @@ class PrivateCatController extends PrivateAbstractController
     {
         $cat = $this->catManager->getCatById($catId);
         $media = $this->mediaManager->getMediaById($mediaId);
+            
         $this->catManager->deleteMediaOnCatsMedias($cat, $media);
         $this->mediaManager->deleteMedia($media);
 

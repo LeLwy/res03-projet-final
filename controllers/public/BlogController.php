@@ -13,7 +13,8 @@ class BlogController extends PublicAbstractController
     {
         $pageInfos = [
 
-            'title' => 'Blog',
+            'title' => 'Blog - Homeless Kitten Association',
+            'main_id' => 'blog'
         ];
 
         $posts = $this->postManager->findAll();
@@ -28,6 +29,7 @@ class BlogController extends PublicAbstractController
         $pageInfos = [
 
             'title' => 'Billet de blog: '.$postTitle,
+            'main_id' => 'blog-single'
         ];
 
         $this->render('post', 'single', [$pageInfos, ['post' => $post]]);

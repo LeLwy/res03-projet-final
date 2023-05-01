@@ -13,6 +13,7 @@ abstract class PublicAbstractController
     // {  
     //     echo json_encode($values);
     // }
+
     public function render(string $view, string $page, array $values) : void
         {
             

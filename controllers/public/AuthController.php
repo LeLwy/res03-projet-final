@@ -30,8 +30,15 @@ class AuthController extends PublicAbstractController {
     /* Pour la page de connexion */  
     public function login() : void  
     {  
+
+        $pageInfos = [
+
+            'title' => 'Homeless Kitten Association - Connexion',
+            'main_id' => 'login'
+        ];
+
         // render la page avec le formulaire de connexion  
-        $this->render("form", "login", []);  
+        $this->render("form", "login", [$pageInfos]);  
     } 
     
     /* Pour vÃ©rifier la connexion */  

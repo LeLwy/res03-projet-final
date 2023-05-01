@@ -7,7 +7,8 @@ class DonationController extends PublicAbstractController
     {
         $pageInfos = [
 
-            'title' => 'Dons pour l\'association',
+            'title' => 'Dons pour l\'association - Homeless Kitten Association',
+            'main_id' => 'donation'
         ];
 
         $this->render('donation', 'index', [$pageInfos]);

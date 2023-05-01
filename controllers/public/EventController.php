@@ -4,33 +4,38 @@ class EventController extends PublicAbstractController
 {
 
     private EventManager $eventManager;
+    private MediaManager $mediaManager;
 
     public function __construct()
     {
         $this->eventManager = new EventManager;
+        $this->mediaManager = new MediaManager;
     }
     
     public function index()
     {
         $pageInfos = [
 
-            'title' => 'Évènements associatifs',
+            'title' => 'Homeless Kitten Association - Évènements associatifs',
+            'main_id' => 'events'
         ];
 
         $events = $this->eventManager->findAll();
-        $this->render('event', 'index', [$pageInfos, $events]);
+        $this->render('events', 'index', [$pageInfos, $events]);
     }
 
     public function show(int $id)
     {
         $event = $this->eventManager->getEventById($id);
         $eventName = $event->getName();
+        $eventMedia = $this->mediaManager->getMediaById($event->getMediaId());
 
         $pageInfos = [
 
-            'title' => 'Évènements associatifs: '.$eventName,
+            'title' => 'Homeless Kitten Association - '.$eventName,
+            'main_id' => 'events-single'
         ];
 
-        $this->render('event', 'single', [$pageInfos,['event' => $event]]);
+        $this->render('events', 'single', [$pageInfos,['event' => $event], $eventMedia]);
     }
 }

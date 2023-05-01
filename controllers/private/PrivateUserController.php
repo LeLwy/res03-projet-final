@@ -192,9 +192,17 @@ class PrivateUserController extends PrivateAbstractController
         $user = $this->userManager->getUserById($id);
         $media = $this->mediaManager->getMediaById($user->getMediaId());
 
-        $this->userManager->deleteUser($user);
-        $this->mediaManager->deleteMedia($media);
+        if($user->getRole() === "admin"){
 
-        header('Location: /res03-projet-final/admin/index-des-utilisateurs');
+            $error = "Vous ne pouvez pas supprimer l'administarateur du site";
+            echo $error;
+
+        }else{
+
+            $this->userManager->deleteUser($user);
+            $this->mediaManager->deleteMedia($media);
+
+            header('Location: /res03-projet-final/admin/index-des-utilisateurs');
+        }
     }
 }
