@@ -2,6 +2,7 @@ body{
 
     &>footer{
 
+        margin-top: 5vh;
         background-color: var(--redwood);
     
         @media (prefers-color-scheme: dark){

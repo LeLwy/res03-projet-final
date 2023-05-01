@@ -1,0 +1,13 @@
+#hka-single-events-section{
+    
+    &>.outterBorderDecoration{
+        
+        grid-column: 1/4;
+        height: fit-content;
+    }
+
+    .hka-single-event-card{
+
+        height: fit-content;
+    }
+}

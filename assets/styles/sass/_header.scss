@@ -5,6 +5,7 @@ body{
         display: grid;
         background-color: var(--redwood);
         color: var(--cream);
+        padding: 5vh 0;
     
         @media (prefers-color-scheme: dark){
     
@@ -32,6 +33,8 @@ body{
 
                     &>a{
 
+                        padding: .5vh 1vw;
+
                         &>span{
 
                             border: solid 4px var(--van-dyke);
@@ -54,6 +57,60 @@ body{
                                 padding: auto;
                             }
                         }
+
+                        &:hover{
+
+                            @keyframes rotatePaw{
+                                0% {
+                                    transform: rotate(0deg);
+                                }
+
+                                75% {
+                                    transform: rotate(90deg);
+                                }
+                                100% {
+                                    transform: rotate(90deg) translateY(-12px);
+                                }
+                            }
+
+                            @keyframes shakeLogo{
+                                0% {
+                                    transform: rotate(-15deg);
+                                }
+                            
+                                25% {
+                                    transform: rotate(15deg);
+                                }
+                            
+                                50% {
+                                    transform: rotate(-15deg);
+                                }
+                            
+                                75% {
+                                    transform: rotate(15deg);
+                                }
+                            
+                                100% {
+                                    transform: rotate(0);
+                                }
+                            }
+
+                            &>span:not(.menuLogoSpan){
+
+                                animation-name: rotatePaw;
+                                animation-delay: .1s;
+                                animation-duration: 1s;
+                                animation-fill-mode: forwards;
+                            }
+
+                            &>.menuLogoSpan{
+
+                                animation-name: shakeLogo;
+                                animation-delay: .1s;
+                                animation-duration: 1.5s;
+                                animation-fill-mode: forwards;
+                            }
+                        }
                     }
                 }
             }
@@ -61,7 +118,7 @@ body{
         
         @media screen and (max-width: 767px){
 
-            grid-template-columns: .1fr .6fr .2fr .1fr;
+            grid-template-columns: .1fr .8fr .1fr;
             padding: 3vh 0;
         
             &>.burgerMenuElt{
@@ -111,18 +168,11 @@ body{
                     }
                 }
             }
-
-            &>a{
-
-                grid-column: 3/4;
-                align-self: center;
-                margin: auto;
-            }
         }
 
         @media screen and (min-width: 768px) and (max-width: 1023px){
 
-            grid-template-columns: .1fr .6fr .2fr .1fr;
+            grid-template-columns: .1fr .8fr .1fr;
             padding: 3vh 0;
         
             &>.burgerMenuElt{
@@ -172,18 +222,11 @@ body{
                     }
                 }
             }
-
-            &>a{
-
-                grid-column: 3/4;
-                align-self: center;
-                margin: auto;
-            }
         }
 
         @media screen and (min-width: 1023px) and (max-width: 1299px){
 
-            grid-template-columns: .1fr .7fr .1fr .1fr;
+            grid-template-columns: .1fr .8fr .1fr;
             grid-template-rows: .2fr .8fr .3fr;
 
             &>div{
@@ -269,17 +312,11 @@ body{
                     }
                 }
             }
-
-            &>a{
-
-                grid-column: 3/4;
-                margin: 1vh auto;
-            }
         }
 
         @media screen and (min-width: 1300px){
 
-            grid-template-columns: .1fr 1fr .1fr .1fr;
+            grid-template-columns: .1fr 1fr .1fr;
             grid-template-rows: .2fr .8fr .3fr;
 
             &>div{
@@ -317,12 +354,6 @@ body{
                         }
                     }
                 }
-            }
-
-            &>a{
-
-                grid-column: 3/4;
-                margin: 1vh auto;
             }
         }
     }

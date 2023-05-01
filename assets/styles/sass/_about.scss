@@ -1,0 +1,80 @@
+#hka-page-about{
+    
+    &>.hka-main-content-section{
+        
+        align-self: flex-start;
+        color: var(--cream);
+
+        p{
+
+            font-size: 1.5rem;
+            line-height: 2rem;
+            text-align: center;
+        }
+
+        a{
+                
+            display: block;
+            width: fit-content;
+            text-transform: uppercase;
+            font-size: 2rem;
+            padding: 1vh 1.5vw;
+            background-color: var(--redwood);
+            border-radius: 25px;
+            color: var(--cream);
+            text-decoration: none;
+            align-self: center;
+            margin: 4vh auto;
+        }
+
+        &>.outterBorderDecoration{
+
+            padding: 10vh 5vw;
+            
+            @media screen and (max-width: 767px){
+
+            }
+
+            @media screen and (min-width: 768px) and (max-width: 1023px){
+
+                grid-column: 1/3;
+            }
+
+            @media screen and (min-width: 1024px) and (max-width: 1299px){
+            
+                grid-column: 1/4;
+            }
+
+            @media screen and (min-width: 1300px){
+            
+                grid-column: 1/4;
+            }
+
+            &>.innerBorderDecoration{
+
+                &>section{
+
+                    &>header{
+
+                        &>h2{
+
+                            text-align: center;
+                            font-size: 3rem;
+                            margin-bottom: 4vh;
+                        }
+                    }
+
+                    &>section{
+                        
+                        &>h3{
+
+                            text-align: center;
+                            font-size: 2.5rem;
+                            margin-bottom: 4vh;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

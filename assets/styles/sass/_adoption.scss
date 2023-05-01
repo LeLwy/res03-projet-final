@@ -1,0 +1,196 @@
+.hka-adoption-content-section{
+
+        display: grid;
+        margin-top: 5vh;
+
+        &>h2{
+
+            font-size: 2.5rem;
+            text-align: center;
+            grid-column: 1/5;
+        }
+
+        &>h3{
+
+            margin-bottom: 3vh;
+            color: var(--cream);
+        }
+
+        @media screen and (max-width: 767px){
+
+            grid-column: 2/3;
+            grid-template-columns: 1fr;
+            grid-row-gap: 4vh;
+
+            &>h3{
+
+                grid-column: 1/2;
+            }
+        }
+        
+        @media screen and (min-width: 768px) and (max-width: 1023px){
+        
+            grid-column: 2/3;
+            grid-template-columns: 1fr 1fr;
+            grid-column-gap: 5vw;
+            grid-row-gap: 4vh;
+
+            &>h3{
+
+                grid-column: 1/3;
+            }
+        }
+        
+        @media screen and (min-width: 1024px) and (max-width: 1299px){
+         
+            grid-column: 2/4;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: 1vw;
+            grid-row-gap: 4vh;
+
+            &>h3{
+
+                grid-column: 1/4;
+            }
+        }
+        
+        @media screen and (min-width: 1300px){
+         
+            grid-column: 2/5;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-column-gap: 2vw;
+            grid-row-gap: 4vh;
+
+            &>h3{
+
+                grid-column: 1/4;
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+#hka-page-adoption-single{
+    
+    &>.hka-adoption-content-section{
+        
+        align-self: flex-start;
+        color: var(--cream);
+
+        p{
+
+            font-size: 1.5rem;
+            line-height: 2rem;
+            text-align: center;
+        }
+
+        &>.outterBorderDecoration{
+
+            padding: 10vh 5vw;
+            
+            @media screen and (max-width: 767px){
+
+            }
+
+            @media screen and (min-width: 768px) and (max-width: 1023px){
+
+                grid-column: 1/3;
+            }
+
+            @media screen and (min-width: 1024px) and (max-width: 1299px){
+            
+                grid-column: 1/4;
+            }
+
+            @media screen and (min-width: 1300px){
+            
+                grid-column: 1/4;
+            }
+
+            &>.innerBorderDecoration{
+
+                &>section{
+
+                    &>header{
+                        
+                        max-width: fit-content;
+                        margin: auto;
+
+                        &>h2{
+
+                            text-align: center;
+                            font-size: 3rem;
+                            margin-bottom: 4vh;
+                        }
+
+                        &>div{
+
+                            &>div{
+
+                                &>figure{
+                                    
+                                    &>img{
+                                        
+                                        width: 100%;
+                                        max-height: 60vh;
+                                        border-top-left-radius: 250px 100px;
+                                        border-top-right-radius: 100px 250px;
+                                        border-bottom-right-radius: 250px 100px;
+                                        border-bottom-left-radius: 100px 250px;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &>section{
+
+                        margin: 3vh auto;
+
+                        &>ul{
+
+                            &>li{
+
+                                font-size: 1.5rem;
+                                line-height: 2rem;
+                                text-align: center;
+
+                                &>a{
+
+                                    margin-left: 1vw;
+                                    font-size: 1.5rem;
+                                    text-decoration: none;
+                                    text-align: center;
+                                    color: var(--cream);
+                                }
+
+                                &>p{
+
+                                    display: inline-block;
+                                    margin-left: 1vw;
+                                }
+                            }
+                        }
+                    }
+
+                    &>footer{
+
+                        &>a{
+                
+                            display: block;
+                            width: fit-content;
+                            text-transform: uppercase;
+                            font-size: 2rem;
+                            padding: 1vh 1.5vw;
+                            background-color: var(--redwood);
+                            border-radius: 25px;
+                            color: var(--cream);
+                            text-decoration: none;
+                            align-self: center;
+                            margin: 4vh auto;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
