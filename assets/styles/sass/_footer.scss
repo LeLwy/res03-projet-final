@@ -2,12 +2,16 @@ body{
 
     &>footer{
 
-        margin-top: 5vh;
         background-color: var(--redwood);
-    
-        @media (prefers-color-scheme: dark){
-    
-            color: var(--white);
+        color: var(--cream);
+        height: 15vh;
+        text-align: center;
+        margin-top: 10vh;
+
+        &>p{
+
+            font-size: 1.5rem;
+            padding-top: 5vh;
         }
     }
 }

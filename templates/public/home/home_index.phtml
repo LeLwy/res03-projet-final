@@ -13,7 +13,7 @@
 <div class="borderUnderHeaderDecorationLine">
     <div class="underHeaderDecoration"></div>
 </div>
-<section class="hka-main-content-section" id="hka-last-three-cats-section">
+<section class="hka-main-content-section">
     <h3 class="sr-only">Les derniers chats à l'adoption</h3>
     <?php $data[1] ?>
     <?php foreach($data[1][0] as $cat){ ?>
@@ -40,7 +40,7 @@
         </div>
     <?php } ?>
 </section>
-<section class="hka-main-content-section" id="hka-last-event-section">
+<section class="hka-main-content-section hka-last-event-section">
     <h3>Dernier évènement en date</h3>
     <section>
         <h4><?= $data[2][0]->getName() ?></h4>
@@ -60,7 +60,7 @@
         <a href="/res03-projet-final/evenements">Évènements</a>
     </section>
 </section>
-<section class="hka-main-content-section" id="hka-last-three-articles-section">
+<section class="hka-main-content-section">
     <h3>Les derniers articles du Blog</h3>
     <?php foreach($data[3][0] as $article){ ?>
     <div class="outterBorderDecoration">

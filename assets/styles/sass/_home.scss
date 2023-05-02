@@ -117,7 +117,7 @@
         }
     }
 
-    &>#hka-last-event-section{
+    &>.hka-last-event-section{
 
         &>section:first-of-type{
 
@@ -125,6 +125,8 @@
             flex-direction: column;
             justify-content: space-around;
             align-items: center;
+            padding: 20vh 2vw;
+            text-align: center;
 
             &>h4{
 
