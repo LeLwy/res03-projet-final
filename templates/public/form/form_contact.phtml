@@ -1,1 +1,29 @@
-<h1>This is the contact form page</h1>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">Contacter l'association</h2>  
+<section class="hka-main-content-section">
+    <h3>Contacter l'association</h3>  
+    <form method="post" id="contact-form">  
+        <input type="hidden" name="contactFormName" id="contactFormName" value="contactForm" />  
+        <fieldset>
+            <label for="contactName">
+                Nom
+            </label>
+            <input type="text" name="contactName" id="contactName" placeholder="Entrez votre nom" required />
+        </fieldset>
+        <fieldset>  
+            <label for="contactEmail">  
+                Email  
+            </label>  
+            <input type="email" name="contactEmail" id="contactEmail" placeholder="Entrez votre adresse email" required />  
+        </fieldset> 
+        <fieldset>
+            <label for="contactMessage">
+                Message
+            </label>
+            <textarea name="contactMessage" id="contactMessage" placeholder="Entrez votre message"></textarea>
+        </fieldset> 
+        <button type="submit">Envoyer</button>
+    </form>  
+</section>
