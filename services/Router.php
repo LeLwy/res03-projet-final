@@ -366,7 +366,7 @@ class Router{
         }  
         else if($routeTab["route"] === "contact") // condition(s) pour envoyer vers la page contact 
         {  
-            $this->contactController->index();
+            $this->contactController->index($post);
             // appel de la méthode du controller pour afficher la page à propos  
         }  
         else if($routeTab["route"] === "donation") // condition(s) pour envoyer vers la page des dons 

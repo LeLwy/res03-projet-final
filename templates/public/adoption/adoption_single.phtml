@@ -12,11 +12,20 @@
                         <div class="innerBorderDecoration">
                             <h3 class="sr-only">Je m'appelle <?= $data[1]['cat']->getName() ?></h3> 
                             <figure>
-                                <img src="/res03-projet-final/<?= $data[1]['cat']->getMainMediaUrl() ?>" alt="">
-                                <figcaption class="sr-only">Photo principale de <?= $data[1]['cat']->getName() ?></figcaption>
+                                <img src="/res03-projet-final/<?= $data[1]['cat']->getMainMediaUrl() ?>" alt="" id="hka-main-single-cat-page-photo">
+                                <figcaption class="sr-only">Photo de <?= $data[1]['cat']->getName() ?></figcaption>
                             </figure>
                         </div>
                     </div>
+                    <section class="hka-cat-medias-galery">
+                        <h4 class="sr-only">Photos de <?= $data[1]['cat']->getName() ?></h4>
+                        <?php foreach($data[3] as $media){ ?> 
+                        <figure>
+                            <img src="/res03-projet-final/<?= $media->getUrl() ?>" alt="" class="hka-single-cat-page-galery-photo">
+                            <figcaption class="sr-only">Photo de <?= $data[1]['cat']->getName() ?></figcaption>
+                        </figure>
+                        <?php } ?>
+                    </section>
                 </header>
                 <section>
                     <ul>
@@ -31,7 +40,7 @@
                 <footer>
                     <p>Vous souhaitez adopter <?= $data[1]['cat']->getName() ?> ?</p>
                     <a href="/res03-projet-final/contact">Contacter</a>
-                    <a href="/res03-projet-final/a-l-adoption">Retour</a>
+                    <a href="/res03-projet-final/a-l-adoption">À l'adoption</a>
                 </footer>
             </section>
         </div>

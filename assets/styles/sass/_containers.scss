@@ -23,7 +23,7 @@
         &>h4{
 
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin: auto;
         }
 
@@ -44,6 +44,15 @@
     }
 
     &>section{
+        
+        overflow: hidden;
+        padding: 1vh 1vw;
+        
+        @media screen and (max-width: 1023px){
+        
+            padding: 1vh 5vw;
+        
+        }
 
         &>p{
 
@@ -94,11 +103,12 @@
     &>header{
         
         padding: 2vh 0;
+        min-height: 5vh;
         
         &>h4{
 
             text-align: center;
-            font-size: 1.5rem;
+            font-size: 1.8rem;
         }
 
         &>a{
@@ -126,6 +136,7 @@
 
             margin-top: 2vh;
             font-size: 1.5rem;
+            line-height: 2rem;
         }
     }
 
@@ -325,6 +336,9 @@
 
         margin-bottom: 3vh;
         color: var(--cream);
+        font-family: var(--fantasy-title);
+        text-shadow: 1px 1px 2px var(--van-dyke);
+        text-align: center;
     }
 
     @media screen and (max-width: 767px){
@@ -365,6 +379,7 @@
 
             grid-column: 1/4;
             font-size: 2.5rem;
+            text-align: center;
         }
     }
     
@@ -392,6 +407,7 @@
 
         margin-bottom: 3vh;
         color: var(--cream);
+        font-family: var(--fantasy-title);
     }
 
     @media screen and (max-width: 767px){
@@ -459,6 +475,7 @@
 
         margin-bottom: 3vh;
         color: var(--cream);
+        font-family: var(--fantasy-title);
     }
 
     @media screen and (max-width: 767px){
@@ -526,6 +543,7 @@
 
         margin-bottom: 3vh;
         color: var(--cream);
+        font-family: var(--fantasy-title);
     }
 
     @media screen and (max-width: 767px){
@@ -581,6 +599,45 @@
             grid-column: 1/4;
             font-size: 2.5rem;
         }
+    }
+}
+
+/********** FORMULAIRES **********/
+
+.hka-formulaire{
+
+    grid-column: 1/4;
+
+    &>fieldset{
+        
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1vh;
+
+        &>label{
+
+            color: var(--cream);
+            font-size: 1.5rem;
+            margin: 1vh 0;
+        }
+        
+        &>input{
+            
+            padding: 1vh 1vw;
+        }
+
+        &>textarea{
+
+            min-height: 30vh;
+            padding: 1vh 1vw;
+            font-family: var(--main);
+        }
+    }
+
+    &>button{
+
+        display: block;
+        margin: auto;
     }
 }
 

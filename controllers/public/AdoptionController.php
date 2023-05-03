@@ -51,10 +51,10 @@ class AdoptionController extends PublicAbstractController
 
         $pageInfos = [
 
-            'title' => 'Chats à l\'adoption: '.$catName,
+            'title' => 'Homeless Kitten Association - '.$catName,
             'main_id' => 'adoption-single'
         ];
         
-        $this->render('adoption', 'single', [$pageInfos,['cat' =>$cat], $familyName]);
+        $this->render('adoption', 'single', [$pageInfos,['cat' =>$cat], $familyName, $medias]);
     }
 }

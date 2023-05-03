@@ -34,9 +34,17 @@ body{
                     &>a{
 
                         padding: .5vh 1vw;
+                        white-space: nowrap;
+                        
+                        &>p{
+                            
+                            display: inline-block;
+                            text-shadow: 1px 1px 1px var(--rich-black);
+                        }
 
                         &>span{
 
+                            display: inline-block;
                             border: solid 4px var(--van-dyke);
                             background-color: var(--cream);
                             color: var(--sandy-brown);
@@ -54,7 +62,6 @@ body{
                                 border-radius: 25px;
                                 margin-right: .5vw;
                                 font-size: 1rem;
-                                padding: auto;
                             }
                         }
 
@@ -94,6 +101,8 @@ body{
                                     transform: rotate(0);
                                 }
                             }
+                            
+                            font-size: 1.6rem;
 
                             &>span:not(.menuLogoSpan){
 

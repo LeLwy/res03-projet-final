@@ -52,15 +52,19 @@
                 font-family: var(--fantasy-title);
                 margin-bottom: 2vh;
                 color: var(--sandy-brown);
+                text-shadow: 2px 2px 4px var(--redwood);
             }
 
             &>a{
 
                 padding: 1vh 1.5vw;
-                background-color: var(--redwood);
+                background-color: var(--cream);
                 border-radius: 25px;
-                color: var(--cream);
+                border: solid 2px var(--van-dyke);
+                color: var(--redwood);
                 text-decoration: none;
+                text-shadow: 1px 1px 1px var(--rich-black);
+                
             }
 
             @media screen and (max-width: 767px){
@@ -140,6 +144,7 @@
                 font-size: 2rem;
                 color: var(--cream);
                 margin: 3vh 1vw;
+                text-shadow: 1px 1px 1px var(--rich-black);
             }
 
 
