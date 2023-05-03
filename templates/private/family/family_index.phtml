@@ -1,0 +1,27 @@
+<section>
+  <h1>Index des familles</h1>
+  <a href="/res03-projet-final/admin/index-des-familles/creer" type="button" class="btn btn-success">Ajouter une famille à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+      </tr>
+    </thead>
+    <tbody>
+    <?php if(!empty($data)){ foreach($data as $family){ ?>
+      <tr>
+        <th scope="row"><?= strval($family->getId()); ?></th>
+        <td><?= $family->getName(); ?></td>
+        <td><?= $family->getDescription(); ?></td>
+        <td>
+          <a class="btn btn-info" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger" href="/res03-projet-final/admin/index-des-familles/<?= $family->getId(); ?>/supprimer" role="button">Supprimer</a>
+        </td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,73 @@
+/***** POLICES AND COLORS *****/
+
+/***** Import polices *****/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Acme&display=swap');
+
+/* font-family: 'Roboto', sans-serif; */
+/* font-family: 'Acme', sans-serif; */
+
+:root{
+
+    /* polices */
+
+    --main: 'Roboto', sans-serif; 
+    --fantasy-title: 'Acme', sans-serif;
+
+    /* colors */
+
+    --black: #000000;
+    --white: #ffffff;
+
+    /* made with https://coolors.co/ */
+
+    --sandy-brown: #fcaa67;
+    --redwood: #b0413e;
+    --cream: #ffffc7;
+    --dark-cyan: #548687;
+    --van-dyke: #473335;
+    --rich-black: #04151f;
+
+}
+
+/***** GLOBAL HTML *****/
+
+html{
+
+    overflow-x: none;
+    font-family: var(--main);
+
+    .sr-only{
+
+        display: none;
+    }
+
+    .inactive{
+
+        display: none;
+    }
+
+    .active{
+
+        display: block;
+    }
+}
+
+/***** BREAKPOINTS *****/
+
+@media screen and (max-width: 767px){
+
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px){
+
+}
+
+@media screen and (min-width: 1024px) and (max-width: 1299px){
+ 
+}
+
+@media screen and (min-width: 1300px){
+ 
+}

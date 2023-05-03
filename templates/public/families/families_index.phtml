@@ -1,0 +1,26 @@
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only">Les familles</h2>
+<section class="hka-families-content-section" id="hka-single-families-section">
+    <h3>Les familles</h3>
+    <?php foreach($data[1] as $family){ ?>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-family-card">
+                    <header>
+                        <h4><?= $family->getName() ?></h4>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de le famille<?= $family->getName() ?></h5>
+                        <p><?= $family->getDescription() ?></p>
+                    </section>
+                    <footer>
+                        <a href="/res03-projet-final/familles/<?= $family->getId() ?>">Voir</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    <?php } ?>
+</section>
+

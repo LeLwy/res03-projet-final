@@ -1,0 +1,29 @@
+<section>
+  <h1>Index des maladies</h1>
+  <a href="/res03-projet-final/admin/index-des-maladies/creer" type="button" class="btn btn-success">Ajouter une maladie à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Traitement</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if(!empty($data)){ foreach($data as $disease){ ?>
+      <tr>
+        <th scope="row"><?= strval($disease->getId()); ?></th>
+        <td><?= $disease->getName(); ?></td>
+        <td><?= $disease->getDescription(); ?></td>
+        <td><?= $disease->getTreatment(); ?></td>
+        <td>
+          <a class="btn btn-info mb-3" href="/res03-projet-final/admin/index-des-maladies/<?= $disease->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary mb-3" href="/res03-projet-final/admin/index-des-maladies/<?= $disease->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger" href="/res03-projet-final/admin/index-des-maladies/<?= $disease->getId(); ?>/supprimer" role="button">Supprimer</a>
+        </td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

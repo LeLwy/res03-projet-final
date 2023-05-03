@@ -1,0 +1,52 @@
+<section class="row">
+  <h1>Ajouter un nouveau chat à l'index</h1>
+  <form method="post" class="col" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="cat-name" class="form-label">Nom:</label>
+      <input type="text" class="form-control" id="cat-name" name="cat-name">
+    </div>
+    <div class="mb-3">
+      <label for="cat-age" class="form-label">Âge</label>
+      <input type="text" class="form-control" id="cat-age" name="cat-age">
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="cat-sex" name="cat-sex">
+          <option selected>Sexe</option>
+          <option value="mâle">Mâle</option>
+          <option value="femelle">Femelle</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="cat-color" class="form-label">Couleur:</label>
+      <input type="text" class="form-control" id="cat-color" name="cat-color">
+    </div>
+    <div class="mb-3">
+      <label for="cat-description" class="form-label">Détails:</label>
+      <textarea type="text" class="form-control" id="cat-description" name="cat-description"></textarea>
+    </div>
+    <div class="mb-3 form-check">
+      <input type="checkbox" class="form-check-input" id="cat-is-sterilized" name="cat-is-sterilized">
+      <label class="form-check-label" for="cat-is-sterilized">Stérilisé</label>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="cat-family" name="cat-family">
+          <option selected>Famille d'accueil</option>
+          <?php foreach($data as $family){ ?>
+            <option value="<?= $family->getName() ?>"><?= $family->getName() ?></option>
+          <?php } ?>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="cat-medias" class="form-label">Sélectionnez une photo</label>
+      <input class="form-control" type="file" id="cat-medias" name="cat-medias">
+    </div>
+    <button type="submit" class="btn btn-success">Enregistrer</button>
+    <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary">retour</a>
+  </form>
+  <div class="col">
+    <figure>
+      <img src="/res03-projet-final/assets/medias/images/cat-flowers.jpg" alt="Des mains tenant un chaton blanc avec un collier de fleurs" class="img-fluid">
+      <figcaption class="d-none">Photo by Peng Louis on pexels.com</figcaption>
+    </figure>
+  </div>
+</section>

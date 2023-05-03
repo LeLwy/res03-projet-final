@@ -1,0 +1,32 @@
+<section>
+  <h1>Index des évènement</h1>
+  <a href="/res03-projet-final/admin/index-des-evenements/creer" type="button" class="btn btn-success">Ajouter un évènement à l'index</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nom</th>
+        <th scope="col">Description</th>
+        <th scope="col">Localisation</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if(!empty($data)){ ?>
+        <?php foreach($data as $event){ ?>
+      <tr>
+        <th scope="row"><?= $event->getId(); ?></th>
+        <td><?= $event->getName(); ?></td>
+        <td><?= $event->getDescription(); ?></td>
+        <td><?= $event->getLocation(); ?></td>
+        <td><?= $event->getDate(); ?></td>
+        <td>
+          <a class="btn btn-info mb-3" href="/res03-projet-final/admin/index-des-evenements/<?= $event->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary mb-3" href="/res03-projet-final/admin/index-des-evenements/<?= $event->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger mb-3" href="/res03-projet-final/admin/index-des-evenements/<?= $event->getId(); ?>/supprimer" role="button">Supprimer</a>
+        </td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

@@ -1,0 +1,59 @@
+<section class="row">
+  <h1>Éditer l'utilisateur: <?= $data[0]['user']->getFirstName()." ".$data[0]['user']->getLastName(); ?></h1>
+  <form method="post" class="col" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="user-firstname" class="form-label">Prénom:</label>
+      <input type="text" class="form-control" id="user-firstname" name="user-firstname" value="<?= $data[0]['user']->getFirstName(); ?>">
+    </div>
+    <div class="mb-3">
+      <label for="user-firstname" class="form-label">Nom:</label>
+      <input type="text" class="form-control" id="user-lastname" name="user-lastname" value="<?= $data[0]['user']->getLastName(); ?>">
+    </div>
+    <div class="mb-3">
+      <label for="user-email" class="form-label">Email:</label>
+      <input type="text" class="form-control" id="user-email" name="user-email" value="<?= $data[0]['user']->getEmail(); ?>">
+    </div>
+    <div class="mb-3">
+      <label for="user-address" class="form-label">Adresse:</label>
+      <input type="text" class="form-control" id="user-address" name="user-address" value="<?= $data[0]['user']->getAddress(); ?>">
+    </div>
+    <div class="mb-3">
+      <label for="user-role" class="form-label">Role:</label>
+      <input type="text" class="form-control" id="user-role" name="user-role" value="<?= $data[0]['user']->getRole(); ?>">
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="user-status" name="user-status">
+        <?php if($data[0]['user']->getStatus() === "actif"){ ?>
+          <option value="">Statut de l'utilisateur</option>
+          <option value="actif" selected="selected">Actif</option>
+          <option value="inactif">Inactif</option>
+        <?php }else{ ?>
+          <option value="">Statut de l'utilisateur</option>
+          <option value="actif">Actif</option>
+          <option value="inactif" selected="selected">Inactif</option>
+        <?php } ?>
+      </select>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="user-family" name="user-family">
+          <option selected>Famille d'accueil</option>
+          <?php foreach($data[1] as $family){ ?>
+            <option value="<?= $family->getName() ?>" <?php if($family->getName() === $data[2]){ echo "selected"; }?>><?= $family->getName() ?></option>
+          <?php } ?>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="user-medias" class="form-label">Sélectionnez une photo</label>
+      <input class="form-control" type="file" id="user-medias" name="user-medias">
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="/res03-projet-final/admin/index-des-utilisateurs" type="submit" class="btn btn-primary">Retour</a>
+  </form>
+  <div class="col">
+    <figure>
+      <img src="/res03-projet-final/assets/medias/images/cat-at-door.jpg" alt="Un chat attend, assis devant la porte d'un salon" class="img-fluid">
+      <figcaption class="d-none">Photo by Michael Dupuis on pexels.com</figcaption>
+    </figure>
+  </div>
+</section>
+

@@ -1,0 +1,87 @@
+<section id="hka-home-banner">
+    <section id="hka-association-banner-title">
+        <h2>Homeless Kitten Association</h2>
+        <a href="/res03-projet-final/a-l-adoption">Les chats à l'adoption</a>
+    </section>
+    <figure>
+        <img src="/res03-projet-final/assets/medias/images/minou-maxi-pathos.jpg" alt="">
+        <figcaption class="sr-only">
+            Bannière du site de l'association. <a href="https://www.pexels.com/fr-fr/photo/chaton-en-fourrure-grise-127028/">Photo de Vadim B</a>  
+        </figcaption>
+    </figure>
+</section>
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<section class="hka-main-content-section">
+    <h3 class="sr-only">Les derniers chats à l'adoption</h3>
+    <?php $data[1] ?>
+    <?php foreach($data[1][0] as $cat){ ?>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-cat-card">
+                    <header>
+                        <h4><?= $cat->getName() ?></h4>
+                            <figure>
+                                <img src="/res03-projet-final/<?= $cat->getMainMediaUrl() ?>" alt="">
+                                <figcaption class="sr-only">Photo principale de <?= $cat->getName() ?></figcaption>
+                            </figure>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de <?= $cat->getName() ?></h5>
+                        <p><?= $cat->getDescription() ?></p>
+                        <p>Stérilisé(e): <?= $cat->getIsSterilized() ?></p>
+                    </section>
+                    <footer>
+                        <a href="/res03-projet-final/a-l-adoption/<?= $cat->getId() ?>">Voir le profil</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+    <?php } ?>
+</section>
+<section class="hka-main-content-section hka-last-event-section">
+    <h3>Dernier évènement en date</h3>
+    <section>
+        <h4><?= $data[2][0]->getName() ?></h4>
+        <p><?= $data[2][0]->getDate() ?></p>
+        <p><?= $data[2][0]->getLocation() ?></p>
+        <a href="/res03-projet-final/evenements/<?= $data[2][0]->getId() ?>">Détails</a>
+    </section>
+    <section>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <figure>
+                    <img src="/res03-projet-final/<?= $data[2][1]->getUrl() ?>" alt="">
+                    <figcaption class="sr-only">Photo de l'évènement: <?= $data[2][0]->getName() ?></figcaption>
+                </figure>
+            </div>
+        </div>
+        <a href="/res03-projet-final/evenements">Évènements</a>
+    </section>
+</section>
+<section class="hka-main-content-section">
+    <h3>Les derniers articles du Blog</h3>
+    <?php foreach($data[3][0] as $article){ ?>
+    <div class="outterBorderDecoration">
+        <div class="innerBorderDecoration">
+            <article class="hka-single-article-card">
+                <header>
+                    <h4><?= $article->getTitle() ?></h4>
+                    <a href="/res03-projet-final/blog/<?= $article->getId() ?>">Lire l'article</a>
+                </header>
+                <section>
+                    <h5 class="sr-only">Contenu de l'article</h5>
+                    <p><?= $article->getContent() ?></p>
+                </section>
+                <footer>
+                    <ul>
+                        <li>Rédigé par: <?= $article->getAuthor()->getFirstName()." ".$article->getAuthor()->getLastName() ?></li>
+                        <li>Le: <?= $article->getDate() ?></li>
+                    </ul>
+                </footer>
+            </article>
+        </div>
+    </div>
+    <?php } ?>
+</section>

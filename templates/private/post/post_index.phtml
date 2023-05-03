@@ -1,0 +1,32 @@
+<section>
+  <h1>Index des articles du blog</h1>
+  <a href="/res03-projet-final/admin/index-des-articles/creer" type="button" class="btn btn-success">Ajouter un article au blog</a>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Titre</th>
+        <th scope="col">Contenu</th>
+        <th scope="col">Auteur-ice</th>
+        <th scope="col">Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <?php if(!empty($data)){ foreach($data as $post){ ?>
+      <tr>
+        <th scope="row"><?= strval($post->getId()); ?></th>
+        <td><?= $post->getTitle(); ?></td>
+        <td><?= $post->getContent(); ?></td>
+        <td><?= $post->getAuthorName(); ?></td>
+        <td><?= $post->getDate(); ?></td>
+        <td>
+          <a class="btn btn-info mb-3" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/voir" role="button">Détails</a>
+          <a class="btn btn-primary mb-3 <?= $logInfos['displayLinkForAdminOnly'] ?>" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/editer" role="button">Éditer</a>
+          <a class="btn btn-danger mb-3 <?= $logInfos['displayLinkForAdminOnly'] ?>" href="/res03-projet-final/admin/index-des-articles/<?= $post->getId(); ?>/supprimer" role="button">Supprimer</a>
+          
+        </td>
+      </tr>
+      <?php }} ?>
+    </tbody>
+  </table>
+</section>

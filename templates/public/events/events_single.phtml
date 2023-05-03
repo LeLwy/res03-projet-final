@@ -1,0 +1,35 @@
+<div class="borderUnderHeaderDecorationLine">
+    <div class="underHeaderDecoration"></div>
+</div>
+<h2 class="sr-only"><?= $data[1]['event']->getName() ?></h2>
+<section class="hka-events-content-section hka-single-events-section">
+    <h3 class="sr-only"><?= $data[1]['event']->getName() ?></h3>
+        <div class="outterBorderDecoration">
+            <div class="innerBorderDecoration">
+                <article class="hka-single-event-card">
+                    <header>
+                        <h4><?= $data[1]['event']->getName() ?></h4>
+                        <div class="outterBorderDecoration">
+                            <div class="innerBorderDecoration">
+                                <figure>
+                                    <img src="/res03-projet-final/<?= $data[2]->getUrl() ?>" alt="">
+                                    <figcaption class="sr-only">Photo de l'évènement</figcaption>
+                                </figure>
+                            </div>
+                        </div>
+                    </header>
+                    <section>
+                        <h5 class="sr-only">Description de <?= $data[1]['event']->getName() ?></h5>
+                        <p><?= $data[1]['event']->getDescription() ?></p>
+                    </section>
+                    <footer>
+                        <ul>
+                            <li><p>Lieu de l'évènement: </p><?= $data[1]['event']->getLocation() ?></li>
+                            <li><p>Date: </p><?= $data[1]['event']->getDate() ?></li>
+                        </ul>
+                        <a href="/res03-projet-final/evenements">Retour</a>
+                    </footer>
+                </article>
+            </div>
+        </div>
+</section>

@@ -1,0 +1,23 @@
+<section class="row container-fluid">
+    <h1 class="mb-5">La fiche détaillée de <?= $data[0]['user']->getFirstName().' '.$data[0]['user']->getLastName() ?></h1>
+    <section class="col">
+        <h2 class="d-none">Photo de <?= $data[0]['user']->getFirstName().' '.$data[0]['user']->getLastName() ?></h2>
+        <figure>
+            <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/<?= $data[1]->getUrl(); ?>" alt="">
+            <figcaption class="d-none">Une photo de <?= $data[0]['user']->getFirstName().' '.$data[0]['user']->getLastName() ?></figcaption>
+        </figure>
+    </section>
+    <section class="col">
+        <h2>Identité</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><p><strong>Nom: </strong><?= $data[0]['user']->getLastName() ?></p></li>
+            <li class="list-group-item"><p><strong>Prénom: </strong><?= $data[0]['user']->getFirstName() ?></p></li>
+            <li class="list-group-item"><p><strong>Email: </strong><?= $data[0]['user']->getEmail() ?></p></li>
+            <li class="list-group-item"><p><strong>Adresse: </strong><?= $data[0]['user']->getAddress() ?></p></li>
+            <li class="list-group-item"><p><strong>Role: </strong><?= $data[0]['user']->getRole() ?></p></li>
+            <li class="list-group-item"><p><strong>Status: </strong><?= $data[0]['user']->getStatus() ?></p></li>
+        </ul>
+    </section>
+</section>
+<a href="/res03-projet-final/admin/index-des-utilisateurs" class="btn btn-primary m-3" style="width: fit-content;">retour</a>
+

@@ -1,0 +1,61 @@
+<section class="row">
+  <h1>Ajouter un nouvel utilisateur à l'index</h1>
+  <form method="post" class="col" enctype="multipart/form-data">
+    <div class="mb-3">
+      <label for="user-firstname" class="form-label">Prénom:</label>
+      <input type="text" class="form-control" id="user-firstname" name="user-firstname">
+    </div>
+    <div class="mb-3">
+      <label for="user-firstname" class="form-label">Nom:</label>
+      <input type="text" class="form-control" id="user-lastname" name="user-lastname">
+    </div>
+    <div class="mb-3">
+      <label for="user-email" class="form-label">Email:</label>
+      <input type="text" class="form-control" id="user-email" name="user-email">
+    </div>
+    <div class="mb-3">
+      <label for="user-address" class="form-label">Adresse:</label>
+      <input type="text" class="form-control" id="user-address" name="user-address">
+    </div>
+    <div class="mb-3">
+      <label for="user-role" class="form-label">Role:</label>
+      <input type="text" class="form-control" id="user-role" name="user-role" value="contributeur">
+    </div>
+    <div class="mb-3">
+      <label for="user-password" class="form-label">Mot de passe:</label>
+      <input type="password" class="form-control" id="user-password" name="user-password">
+    </div>
+    <div class="mb-3">
+      <label for="user-confirm-password" class="form-label">Confirmer le mot de passe:</label>
+      <input type="password" class="form-control" id="user-confirm-password" name="user-confirm-password">
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="user-status" name="user-status">
+          <option selected>Statut de l'utilisateur</option>
+          <option value="actif">Actif</option>
+          <option value="inactif">Inactif</option>
+      </select>
+    </div>
+    <div class="mb-3">
+      <select class="form-select" aria-label="Default select example" id="user-family" name="user-family">
+          <option selected>Famille d'accueil</option>
+          <?php foreach($data as $family){ ?>
+            <option value="<?= $family->getName() ?>"><?= $family->getName() ?></option>
+          <?php } ?>
+      </select>
+    </div>
+    <div class="mb-3">
+      <label for="user-medias" class="form-label">Sélectionnez une photo</label>
+      <input class="form-control" type="file" id="user-medias" name="user-medias">
+    </div>
+    <button type="submit" class="btn btn-primary">Enregistrer</button>
+    <a href="/res03-projet-final/admin/index-des-utilisateurs" type="submit" class="btn btn-primary">Retour</a>
+  </form>
+  <div class="col">
+    <figure>
+      <img src="/res03-projet-final/assets/medias/images/cat-at-door.jpg" alt="Un chat attend, assis devant la porte d'un salon" class="img-fluid">
+      <figcaption class="d-none">Photo by Michael Dupuis on pexels.com</figcaption>
+    </figure>
+  </div>
+</section>
+

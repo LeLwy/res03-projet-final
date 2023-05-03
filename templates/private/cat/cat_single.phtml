@@ -1,0 +1,54 @@
+<section class="row container-fluid">
+    <h1 class="mb-5">La fiche détaillée de <?= $data['cat']->getName() ?></h1>
+    <section class="col">
+        <h2 class="d-none">Photo principale de <?= $data['cat']->getName() ?></h2>
+        <figure>
+            <?php if(count($data['cat']->getMedias()) === 0){ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/assets/medias/images/cat-yawning.jpg" alt="">
+                    <figcaption class="d-none">Une photo de chat dans la rue</figcaption>
+                <?php }else{ ?>
+                    <img style="max-height: 30vh;" class="img-thumbnail img-fluid" src="/res03-projet-final/<?= $data['cat']->getMedias()[0]->getUrl(); ?>" alt="">
+                    <figcaption class="d-none">Une photo de <?= $data['cat']->getName() ?></figcaption>
+                <?php } ?>
+        </figure>
+    </section>
+    <section class="col">
+        <h2>Identité</h2>
+        <ul class="list-group">
+            <li class="list-group-item"><p><strong>Nom: </strong><?= $data['cat']->getName() ?></p></li>
+            <li class="list-group-item"><p><strong>Âge: </strong><?= $data['cat']->getAge() ?></p></li>
+            <li class="list-group-item"><p><strong>Sexe: </strong><?= $data['cat']->getSex() ?></p></li>
+            <li class="list-group-item"><p><strong>Couleur: </strong><?= $data['cat']->getColor() ?></p></li>
+            <li class="list-group-item"><p><strong>Stérilisé: </strong><?= $data['cat']->getIsSterilized() ?></p></li>
+            <li class="list-group-item"><p><strong>Famille d'accueil: </strong><a href="/res03-projet-final/admin/index-des-familles/<?= $data['cat']->getFamilyId() ?>/voir"><?= $data['cat']->getFamilyName() ?></a></p></li>
+        </ul>
+    </section>
+</section>
+<a href="/res03-projet-final/admin/index-des-chats-a-l-adoption" type="submit" class="btn btn-primary m-3" style="width: fit-content;">retour</a>
+<section class="row">
+    <h2>Description et photos</h2>
+    <section class="col">
+        <h3 class="d-none">Description</h3>
+        <p class="m-3"><?= $data['cat']->getDescription() ?></p>
+        <h3 class="mb-3">Ajouter une photo</h3>
+        <form method="post" enctype="multipart/form-data" action="/res03-projet-final/admin/index-des-chats-a-l-adoption/<?= $data['cat']->getId() ?>/ajouter-media">
+            <div class="mb-3">
+            <label for="cat-medias" class="form-label">Sélectionnez une photo</label>
+            <input class="form-control" type="file" id="cat-medias" name="cat-medias">
+            </div>
+            <button type="submit" class="btn btn-success mb-3">Enregistrer</button>
+        </form>
+    </section>
+    <section class="row">
+        <?php foreach($data['cat']->getMedias() as $media){ ?>
+            <figure class="card-img-top card col-3" style="max-width: fit-content;">
+                <img style="max-height: 25vh; aspect-ratio: keep-aspect-ratio;" class="img-thumbnail img-fluid card-img-top" src="/res03-projet-final/<?= $media->getUrl() ?>" alt="">
+                <figcaption class="d-none">Une photo de <?= $data['cat']->getName() ?></figcaption>
+                <div class="card-body">
+                    <a href="/res03-projet-final/admin/index-des-chats-a-l-adoption/<?= $data['cat']->getId() ?>/supprimer-media/<?= $media->getId() ?>" class="btn btn-danger">Supprimer</a>
+                </div>
+            </figure>
+        <?php } ?>
+    </section>
+</section>
+
