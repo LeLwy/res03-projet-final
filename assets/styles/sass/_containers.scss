@@ -419,6 +419,8 @@
         margin-bottom: 3vh;
         color: var(--cream);
         font-family: var(--fantasy-title);
+        text-align: center;
+        text-shadow: 1px 1px 1px var(--rich-black);
     }
 
     @media screen and (max-width: 767px){
@@ -488,6 +490,8 @@
         margin-bottom: 3vh;
         color: var(--cream);
         font-family: var(--fantasy-title);
+        text-align: center;
+        text-shadow: 1px 1px 1px var(--rich-black);
     }
 
     @media screen and (max-width: 767px){
@@ -556,6 +560,8 @@
         margin-bottom: 3vh;
         color: var(--cream);
         font-family: var(--fantasy-title);
+        text-align: center;
+        text-shadow: 1px 1px 1px var(--rich-black);
     }
 
     @media screen and (max-width: 767px){
@@ -615,6 +621,19 @@
     }
 }
 
+.hka-adoption-content-section{
+    
+    &>h3{
+
+        margin-bottom: 3vh;
+        color: var(--cream);
+        font-family: var(--fantasy-title);
+        text-align: center;
+        text-shadow: 1px 1px 1px var(--rich-black);
+        
+    }
+}
+
 /********** FORMULAIRES **********/
 
 .hka-formulaire{
@@ -650,7 +669,20 @@
     &>button{
 
         display: block;
-        margin: auto;
+        margin: 2vh auto;
+        padding: .5vh 1vw;
+        border: solid 3px var(--van-dyke);
+        border-radius: 15px;
+        font-size: 1.5rem;
+        text-decoration: none;
+        background-color: var(--cream);
+        color: var(--redwood);
+        box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+        
+        &:hover{
+            
+            cursor: pointer;
+        }
     }
 }
 

@@ -16,6 +16,7 @@ class Router{
     private FamilyController $familyController;
     private HomeController $homeController;
     private LoginController $loginController;
+    private NotFoundController $notFoundController;
     private RegisterController $registerController;
     private UserController $userController;
 
@@ -46,6 +47,7 @@ class Router{
         $this->familyController = new FamilyController();
         $this->homeController = new HomeController();
         $this->loginController = new LoginController();
+        $this->notFoundController = new NotFoundController();
         $this->registerController = new RegisterController();
         $this->userController = new UserController();
 
@@ -764,6 +766,9 @@ class Router{
                 
                 $this->privateFamilyController->show($routeTab['famille-id']);
             }
+        }else{
+            
+            $this->notFoundController->index();
         }
     }
 }

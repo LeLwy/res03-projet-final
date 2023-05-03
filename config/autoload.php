@@ -33,6 +33,7 @@
     require "controllers/public/FamilyController.php";
     require "controllers/public/HomeController.php";
     require "controllers/public/LoginController.php";
+    require "controllers/public/NotFoundController.php";
     require "controllers/public/PostController.php";
     require "controllers/public/RegisterController.php";
     require "controllers/public/UserController.php";
