@@ -96,6 +96,11 @@
     border-bottom-left-radius: 100px 250px;
     color: var(--cream);
 
+    @media screen and (max-width: 767px){
+
+        padding: 3vh 10vw;
+    }
+
     display: flex;
     flex-direction: column;
     justify-content: space-around;
@@ -104,6 +109,7 @@
         
         padding: 2vh 0;
         min-height: 5vh;
+        margin-bottom: 10vh;
         
         &>h4{
 
@@ -131,6 +137,11 @@
         
         height: 30vh;
         overflow: hidden;
+        
+        @media screen and (max-width: 767px){
+
+            display: none;
+        }
 
         &>p{
 

@@ -35,6 +35,26 @@ function checkContactForm() {
 
 }
 
+/***** LOGIN FORM VERIFICATION *****/
+
+function checkLoginForm() {
+
+    let loginForm = document.getElementById('login-form');
+
+    loginForm.addEventListener('submit', function(e) {
+
+        let email = document.getElementById('email').value.trim();
+
+        if (!email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+            alert(email + " n'est pas une adresse valide");
+            e.preventDefault();
+        }
+
+        // Si toutes les vérifications sont passées, on peut soumettre le formulaire
+        loginForm.submit();
+    });
+}
+
 window.addEventListener('DOMContentLoaded', function(){
 
     /***** MENU BURGER HEADER *****/
@@ -67,7 +87,7 @@ window.addEventListener('DOMContentLoaded', function(){
         /***** CONTACT FORM VERIFICATION *****/
         
         let contactForm = document.getElementById('contact-form');
-        contactForm.addEventListener('submit', checkContactForm);
+        contactForm.addEventListener('submit', checkContactForm());
         
     }else if(mainContainerId === 'hka-page-adoption-single'){
         
@@ -85,5 +105,11 @@ window.addEventListener('DOMContentLoaded', function(){
             
             })
         }
+    }else if(mainContainerId === 'hka-page-login'){
+        
+        /***** LOGIN FORM VERIFICATION *****/
+        
+        let loginForm = document.getElementById('login-form');
+        loginForm.addEventListener('submit', checkLoginForm());
     }
 })

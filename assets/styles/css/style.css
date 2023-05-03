@@ -168,9 +168,15 @@ html .active {
   flex-direction: column;
   justify-content: space-around;
 }
+@media screen and (max-width: 767px) {
+  .hka-single-article-card {
+    padding: 3vh 10vw;
+  }
+}
 .hka-single-article-card > header {
   padding: 2vh 0;
   min-height: 5vh;
+  margin-bottom: 10vh;
 }
 .hka-single-article-card > header > h4 {
   text-align: center;
@@ -192,6 +198,11 @@ html .active {
 .hka-single-article-card > section {
   height: 30vh;
   overflow: hidden;
+}
+@media screen and (max-width: 767px) {
+  .hka-single-article-card > section {
+    display: none;
+  }
 }
 .hka-single-article-card > section > p {
   margin-top: 2vh;
@@ -672,7 +683,7 @@ body .hka-main-container {
 }
 @media screen and (min-width: 1024px) and (max-width: 1299px) {
   body .hka-main-container {
-    grid-template-columns: 1.5fr 3.5fr 3.5fr 1.5fr;
+    grid-template-columns: 0.5fr 3.5fr 3.5fr 0.5fr;
   }
 }
 @media screen and (min-width: 1300px) {
@@ -932,6 +943,7 @@ body > footer {
 }
 body > footer > p {
   font-size: 1.5rem;
+  line-height: 2.5rem;
   padding-top: 5vh;
   text-shadow: 1px 1px 2px var(--van-dyke);
 }
@@ -1005,6 +1017,9 @@ body > footer > p > a {
   text-shadow: 1px 1px 1px var(--rich-black);
 }
 @media screen and (max-width: 767px) {
+  #hka-page-home > #hka-home-banner > #hka-association-banner-title {
+    margin-top: 5%;
+  }
   #hka-page-home > #hka-home-banner > #hka-association-banner-title > h2 {
     font-size: 2.5rem;
   }
@@ -1200,7 +1215,10 @@ body > footer > p > a {
 }
 .hka-adoption-content-section > h3 {
   margin-bottom: 3vh;
+  text-align: center;
+  font-size: 2.5rem;
   color: var(--cream);
+  font-family: var(--fantasy-title);
 }
 @media screen and (max-width: 767px) {
   .hka-adoption-content-section {
@@ -1243,8 +1261,6 @@ body > footer > p > a {
   }
   .hka-adoption-content-section > h3 {
     grid-column: 1/4;
-    font-size: 2.5rem;
-    font-family: var(--fantasy-title);
   }
 }
 
@@ -1442,7 +1458,6 @@ body > footer > p > a {
 #hka-single-families-section > .outterBorderDecoration {
   grid-column: 1/4;
   height: fit-content;
-  width: 50%;
   margin: auto;
 }
 #hka-single-families-section .hka-single-family-card {
