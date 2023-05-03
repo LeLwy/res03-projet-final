@@ -13,6 +13,20 @@ body{
             font-size: 1.5rem;
             padding-top: 5vh;
             text-shadow: 1px 1px 2px var(--van-dyke);
+        
+            &>a{
+    
+                width: fit-content;
+                margin: 0 1vw;
+                padding: .5vh 1vw;
+                border: solid 2px var(--van-dyke);
+                border-radius: 15px;
+                font-size: 1.5rem;
+                text-decoration: none;
+                background-color: var(--cream);
+                color: var(--redwood);
+                box-shadow: rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+            }
         }
     }
 }
