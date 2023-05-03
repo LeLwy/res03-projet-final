@@ -442,6 +442,7 @@ html .active {
   .hka-events-content-section > h3 {
     grid-column: 1/4;
     font-size: 2.5rem;
+    text-align: center;
   }
 }
 
@@ -556,6 +557,7 @@ html .active {
   .hka-families-content-section > h3 {
     grid-column: 1/4;
     font-size: 2.5rem;
+    text-align: center;
   }
 }
 
@@ -948,7 +950,7 @@ body > footer > p {
 @media screen and (max-width: 767px) {
   #hka-page-home > #hka-home-banner {
     grid-column: 1/4;
-    max-height: 25vh;
+    max-height: fit-content;
   }
 }
 @media screen and (min-width: 768px) and (max-width: 1023px) {
@@ -1061,6 +1063,7 @@ body > footer > p {
   padding: 2vh 3vw;
 }
 #hka-page-home > .hka-last-event-section > section:last-of-type > .outterBorderDecoration {
+  max-width: fit-content;
   border: solid 3px var(--redwood);
   border-top-left-radius: 250px 100px;
   border-top-right-radius: 100px 250px;
@@ -1125,6 +1128,7 @@ body > footer > p {
   }
   #hka-page-home > .hka-last-event-section > section:last-of-type {
     grid-column: 1/3;
+    align-items: center;
   }
   #hka-page-home > .hka-last-event-section > section:last-of-type > figure {
     margin: auto;
@@ -1380,6 +1384,7 @@ body > footer > p {
 }
 #hka-page-about > .hka-main-content-section > .outterBorderDecoration > .innerBorderDecoration > section > header > h2 {
   text-align: center;
+  font-family: var(--fantasy-title);
   font-size: 3rem;
   margin-bottom: 4vh;
 }
