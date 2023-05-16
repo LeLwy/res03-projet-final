@@ -154,7 +154,7 @@ class Router{
                 $routeAndParams["sub-route"] = $tab[2];
                 $routeAndParams["methode"] = $tab[3];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "editer" && !isset($tab[5])) // route vers la page d'édition d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateurs' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "editer" && !isset($tab[5])) // route vers la page d'édition d'un article pour l'utilisateur
             {    
                 $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
@@ -162,7 +162,7 @@ class Router{
                 $routeAndParams["article-id"] = $tab[3];
                 $routeAndParams["methode"] = $tab[4];
             }  
-            else if($tab[0] === 'utilisateur' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "supprimer" && !isset($tab[5])) // route vers la page de suppression d'un article pour l'utilisateur
+            else if($tab[0] === 'utilisateurs' && $tab[1] !== null && $tab[2] === "articles" && $tab[3] !== null && $tab[4] === "supprimer" && !isset($tab[5])) // route vers la page de suppression d'un article pour l'utilisateur
             {    
                 $routeAndParams["route"] = "utilisateurs";  
                 $routeAndParams["utilisateur-id"] = $tab[1];
@@ -436,7 +436,7 @@ class Router{
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null) // condition(s) pour envoyer vers le profil d'un utilisateur  
         {  
             // appel de la méthode du controller pour afficher le profil d'un utilisateur
-            $this->privateUserController->profil($routeTab["utilisateur-id"]); 
+            $this->privateUserController->profil(intval($routeTab["utilisateur-id"])); 
         }
         else if($routeTab["route"] === "utilisateurs" && $routeTab["utilisateur-id"] !== null && $routeTab["sub-route"] !== null && $routeTab["methode"] === 'creer') // condition(s) pour envoyer vers le formulaire de création d'un article pour l'utilisateur  
         {  

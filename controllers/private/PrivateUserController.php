@@ -30,9 +30,38 @@ class PrivateUserController extends PrivateAbstractController
 
     public function profil(int $id)
     {
-        $user = $this->userManager->getuserById($id);
-        $media = $this->mediaManager->getMediaById($user->getMediaId());
-        $this->render('user', 'profil', [['user' =>$user], $media]);
+        
+        $userExist = false;
+        
+        $users = $this->userManager->findAll();
+        
+        foreach($users as $user){
+            
+            if($user->getId() === $id){
+                
+                $userExist = true;
+                break;
+            }
+        }
+        
+        if($userExist){
+            
+            $userProfile = $this->userManager->getuserById($id);
+            $media = $this->mediaManager->getMediaById($userProfile->getMediaId());
+            
+            if($_SESSION['id'] === $userProfile->getId()){
+                
+                $this->render('user', 'profil', [['user' =>$userProfile], $media]);
+                
+            }else{
+                
+                header('Location: /res03-projet-final/connexion');
+            }
+            
+        }else{
+            
+            header('Location: /res03-projet-final/connexion');
+        }
     }
    
     public function create(array $post) : void  

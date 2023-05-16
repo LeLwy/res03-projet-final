@@ -25,10 +25,10 @@ class ContactController extends PublicAbstractController
                 /***** Thanks to Funk Forty Niner on https://stackoverflow.com/ *****/
 
                 $to = "louis.chancioux@3wa.io"; // adresse email de destination
-                $from = $post["contactEmail"]; // adresse email d'expédition
-                $name = $post["contactName"]; // nom de l'expéditeur
+                $from = htmlspecialchars($post["contactEmail"]); // adresse email d'expédition
+                $name = htmlspecialchars($post["contactName"]); // nom de l'expéditeur
                 $subject = "Message pour l'association"; // message de l'expéditeur
-                $message = $name . " a envoyé:" . "\n\n" . $post["contactMessage"]; // message pour le destinataire
+                $message = $name . " a envoyé:" . "\n\n" . htmlspecialchars($post["contactMessage"]); // message pour le destinataire
             
                 $headers = "Envoyé par:" . $from;
                 mail($to,$subject,$message,$headers); // envoi du mail au destinataire

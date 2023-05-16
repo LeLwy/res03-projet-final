@@ -44,6 +44,13 @@ class AuthController extends PublicAbstractController {
     /* Pour vÃ©rifier la connexion */  
     public function checkLogin($post) : void  
     {  
+        
+        $pageInfos = [
+
+            'title' => 'Homeless Kitten Association - Connexion',
+            'main_id' => 'login'
+        ];
+        
         // vÃ©rifier que le formulaire a Ã©tÃ© soumis  
         if(isset($post['loginFormName'])){
 
@@ -52,11 +59,10 @@ class AuthController extends PublicAbstractController {
             && isset($post["password"]) && !empty($post["password"])){  
 
                 // utiliser le manager pour vÃ©rifier si un utilisateur avec cet email existe
-                $verifiedEmail = $this->userManager->verifyExistingEmail($post['email']);
+                $verifiedEmail = $this->userManager->verifyExistingEmail(htmlspecialchars($post['email']));
                 if($verifiedEmail){
 
-                    var_dump($verifiedEmail);
-                    $userToConnect = $this->userManager->getUserByEmail($post["email"]);  
+                    $userToConnect = $this->userManager->getUserByEmail(htmlspecialchars($post["email"]));  
                     // si il existe, vÃ©rifier son mot de passe
                     if($userToConnect !== null){
     
@@ -89,24 +95,34 @@ class AuthController extends PublicAbstractController {
 
                             header('Location: /res03-projet-final/admin');
                         }
+                        
+                    }else{
     
-                    }        
+                    // si il n'existe pas renvoyer vers la page de connexion
+                    header('Location: /res03-projet-final/connexion');  
+                
+                }
+                    
                 }else{
     
-                    $errorMessage = "Les informations saisies sont incorrectes";
                     // si il n'existe pas renvoyer vers la page de connexion
-                    $this->render("form", "login", [$errorMessage]);  
+                    header('Location: /res03-projet-final/connexion');  
+                
                 }
-            // si il n'est pas bon renvoyer sur la page de connexion    
+                
             }else{
 
-                $errorMessage = "Veuillez remplir les champs du formulaire";
                 // si il n'existe pas renvoyer vers la page de connexion
-                $this->render("form", "login", [$errorMessage]);  
+                header('Location: /res03-projet-final/connexion');   
             }
-        }
+            
+        }else{
 
+            // si il n'existe pas renvoyer vers la page de connexion
+            header('Location: /res03-projet-final/connexion');   
+        }
     }
+    
     public function logout()
     {
         

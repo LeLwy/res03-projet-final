@@ -27,7 +27,7 @@ class UserManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM users WHERE id = :id');
         
         $parameters = [
-            'id' => $id
+            'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -48,7 +48,7 @@ class UserManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
 
         $parameters = [
-            'email' => $email
+            'email' => $this->cleanString($email)
         ];
         
         $query->execute($parameters);
@@ -69,7 +69,7 @@ class UserManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM users WHERE email = :email');
 
         $parameters = [
-            'email' => $email
+            'email' => $this->cleanString($email)
         ];
         
         $query->execute($parameters);
@@ -91,15 +91,15 @@ class UserManager extends AbstractManager{
         
         $parameters = [
             'id' => null,
-            'first_name' => $user->getFirstName(),
-            'last_name' => $user->getLastName(),
-            'email' => $user->getEmail(),
-            'address' => $user->getAddress(),
-            'role' => $user->getRole(),
-            'status' => $user->getStatus(),
-            'password' => $user->getPassword(),
-            'media_id' => $user->getMediaId(),
-            'family_id' => $user->getFamilyId()
+            'first_name' => $this->cleanString($user->getFirstName()),
+            'last_name' => $this->cleanString($user->getLastName()),
+            'email' => $this->cleanString($user->getEmail()),
+            'address' => $this->cleanString($user->getAddress()),
+            'role' => $this->cleanString($user->getRole()),
+            'status' => $this->cleanString($user->getStatus()),
+            'password' => $this->cleanString($user->getPassword()),
+            'media_id' => intval($user->getMediaId()),
+            'family_id' => intval($user->getFamilyId())
         ];
         
         $query->execute($parameters);
@@ -117,16 +117,16 @@ class UserManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE users SET first_name = :newFirst_name, last_name = :newLast_name, email = :newEmail, address = :newAddress, role = :newRole, status = :newStatus, password = :newPassword, media_id = :newMediaId, family_id = :newFamilyId WHERE id = :id');
         
         $parameters = [
-            'id' => $user->getId(),
-            'newFirst_name' => $user->getFirstName(),
-            'newLast_name' => $user->getLastName(),
-            'newEmail' => $user->getEmail(),
-            'newAddress' => $user->getAddress(),
-            'newRole' => $user->getRole(),
-            'newStatus' => $user->getStatus(),
-            'newPassword' => $user->getPassword(),
-            'newMediaId' => $user->getMediaId(),
-            'newFamilyId' => $user->getFamilyId()
+            'id' => intval($user->getId()),
+            'newFirst_name' => $this->cleanString($user->getFirstName()),
+            'newLast_name' => $this->cleanString($user->getLastName()),
+            'newEmail' => $this->cleanString($user->getEmail()),
+            'newAddress' => $this->cleanString($user->getAddress()),
+            'newRole' => $this->cleanString($user->getRole()),
+            'newStatus' => $this->cleanString($user->getStatus()),
+            'newPassword' => $this->cleanString($user->getPassword()),
+            'newMediaId' => intval($user->getMediaId()),
+            'newFamilyId' => intval($user->getFamilyId())
         ];
         
         $query->execute($parameters);        
@@ -137,7 +137,7 @@ class UserManager extends AbstractManager{
         $query = $this->db->prepare('DELETE FROM users WHERE id = :user_id');
 
         $parameters = [
-            'user_id' => $user->getId()
+            'user_id' => intval($user->getId())
         ];
 
         $query->execute($parameters);

@@ -8,7 +8,7 @@ class PostManager extends AbstractManager{
 
         $parameters = [
 
-            'id' => $userId
+            'id' => intval($userId)
         ];
 
         $query->execute($parameters);
@@ -67,7 +67,7 @@ class PostManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM posts WHERE id = :id');
         
         $parameters = [
-        'id' => $id
+        'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -88,10 +88,10 @@ class PostManager extends AbstractManager{
         
         $parameters = [
         'id' => null,
-        'title' => $post->getTitle(),
-        'content' => $post->getContent(),
-        'date' => $post->getDate(),
-        'author_id' =>$post->getAuthorId()
+        'title' => $this->cleanString($post->getTitle()),
+        'content' => $this->cleanString($post->getContent()),
+        'date' => $this->cleanString($post->getDate()),
+        'author_id' => intval($post->getAuthorId())
         ];
         
         $query->execute($parameters);
@@ -109,10 +109,10 @@ class PostManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE posts SET title = :newTitle, content = :newContent, date = :newDate WHERE id = :id');
         
         $parameters = [
-        'id' => $post->getId(),
-        'newTitle' => $post->getTitle(),
-        'newContent' => $post->getContent(),
-        'newDate' => $post->getDate(),
+        'id' => intval($post->getId()),
+        'newTitle' => $this->cleanString($post->getTitle()),
+        'newContent' => $this->cleanString($post->getContent()),
+        'newDate' => $this->cleanString($post->getDate()),
         ];
         
         $query->execute($parameters);
@@ -123,7 +123,7 @@ class PostManager extends AbstractManager{
         $query = $this->db->prepare('DELETE FROM posts WHERE id = :post_id');
 
         $parameters = [
-            'post_id' => $post->getId()
+            'post_id' => intval($post->getId())
         ];
 
         $query->execute($parameters);

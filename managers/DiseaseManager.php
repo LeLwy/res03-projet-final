@@ -26,7 +26,7 @@ class DiseaseManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM diseases WHERE id = :id');
         
         $parameters = [
-        'id' => $id
+        'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -46,9 +46,9 @@ class DiseaseManager extends AbstractManager{
         
         $parameters = [
         'id' => null,
-        'name' => $disease->getName(),
-        'description' => $disease->getDescription(),
-        'treatment' => $disease->getTreatment(),
+        'name' => $this->cleanString($disease->getName()),
+        'description' => $this->cleanString($disease->getDescription()),
+        'treatment' => $this->cleanString($disease->getTreatment()),
         ];
         
         $query->execute($parameters);
@@ -66,10 +66,10 @@ class DiseaseManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE diseases SET name = :newName, description = :newDescription, treatment = :newTreatment WHERE id = :id');
         
         $parameters = [
-        'id' => $disease->getId(),
-        'newName' => $disease->getName(),
-        'newDescription' => $disease->getDescription(),
-        'newTreatment' => $disease->getTreatment()
+        'id' => intval($disease->getId()),
+        'newName' => $this->cleanString($disease->getName()),
+        'newDescription' => $this->cleanString($disease->getDescription()),
+        'newTreatment' => $this->cleanString($disease->getTreatment())
         ];
         
         $query->execute($parameters);
@@ -82,7 +82,7 @@ class DiseaseManager extends AbstractManager{
 
         $parameters = [
 
-            'disease_id' => $disease->getId()
+            'disease_id' => intval($disease->getId())
         ];
 
         $query->execute($parameters);

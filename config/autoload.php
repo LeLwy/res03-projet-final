@@ -53,7 +53,6 @@
     // call to managers
 
     require "managers/AbstractManager.php";
-    require "managers/AdminManager.php";
     require "managers/CatManager.php";
     require "managers/DiseaseManager.php";
     require "managers/EventManager.php";

@@ -16,7 +16,7 @@ class MediaManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM medias WHERE id = :id');
         
         $parameters = [
-        'id' => $id
+        'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -36,9 +36,9 @@ class MediaManager extends AbstractManager{
         
         $parameters = [
         'id' => null,
-        'type' => $media->getType(),
-        'filename' => $media->getName(),
-        'url' => $media->getUrl()
+        'type' => $this->cleanString($media->getType()),
+        'filename' => $this->cleanString($media->getName()),
+        'url' => $this->cleanString($media->getUrl())
         ];
         
         $query->execute($parameters);
@@ -56,10 +56,10 @@ class MediaManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE medias SET type = :newType, name = :newName, url = :newUrl WHERE id = :id');
         
         $parameters = [
-        'id' => $media->getId(),
-        'newType' => $media->getType(),
-        'newFormat' => $media->getName(),
-        'newUrl' => $media->getUrl()
+        'id' => intval($media->getId()),
+        'newType' => $this->cleanString($media->getType()),
+        'newFormat' => $this->cleanString($media->getName()),
+        'newUrl' => $this->cleanString($media->getUrl())
         ];
         
         $query->execute($parameters);
@@ -74,7 +74,7 @@ class MediaManager extends AbstractManager{
 
         $parameters = [
 
-            'id' => $id
+            'id' => intval($id)
         ];
 
         $query->execute($parameters);
@@ -99,7 +99,7 @@ class MediaManager extends AbstractManager{
 
         $parameters = [
 
-            'id' => $family->getId()
+            'id' => intval($family->getId())
         ];
 
         $query->execute($parameters);
@@ -124,7 +124,7 @@ class MediaManager extends AbstractManager{
 
         $parameters = [
 
-            'media_id' => $media->getId()
+            'media_id' => intval($media->getId())
         ];
 
         $fileToDeleteUrl = $media->getUrl();

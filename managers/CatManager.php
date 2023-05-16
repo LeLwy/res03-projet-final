@@ -8,7 +8,7 @@ class CatManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
 
         $parameters = [
-            'id' => $id
+            'id' => intval($id)
             ];
 
         $query->execute($parameters);
@@ -65,7 +65,7 @@ class CatManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM cats WHERE cats.id = :id');
         
         $parameters = [
-        'id' => $id
+        'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -87,13 +87,13 @@ class CatManager extends AbstractManager{
 
         $parameters = [
         'id' => null,
-        'name' => $cat->getName(),
-        'age' => $cat->getAge(),
-        'sex' => $cat->getSex(),
-        'color' => $cat->getColor(),
-        'description' => $cat->getDescription(),
-        'isSterilized' => $cat->getIsSterilized(),
-        'family' => $cat->getFamilyId()
+        'name' => $this->cleanString($cat->getName()),
+        'age' => $this->cleanString($cat->getAge()),
+        'sex' => $this->cleanString($cat->getSex()),
+        'color' => $this->cleanString($cat->getColor()),
+        'description' => $this->cleanString($cat->getDescription()),
+        'isSterilized' => $this->cleanString($cat->getIsSterilized()),
+        'family' => intval($cat->getFamilyId())
         ];
         
         $query->execute($parameters);
@@ -111,8 +111,8 @@ class CatManager extends AbstractManager{
         $query = $this->db->prepare('INSERT INTO cats_medias VALUES(:cats_id, :medias_id)');
 
         $parameters = [
-            'cats_id' => $catId,
-            'medias_id' => $mediaId
+            'cats_id' => intval($catId),
+            'medias_id' => intval($mediaId)
         ];
 
         $query->execute($parameters);
@@ -123,14 +123,14 @@ class CatManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE cats SET name = :newName, age = :newAge, sex = :newSex, color = :newColor, description = :newDescription, is_sterilized = :newIsSterilized, families_id = :newFamily WHERE id = :id');
         
         $parameters = [
-        'id' => $cat->getId(),
-        'newName' => $cat->getName(),
-        'newAge' => $cat->getAge(),
-        'newSex' => $cat->getSex(),
-        'newColor' => $cat->getColor(),
-        'newDescription' => $cat->getDescription(),
-        'newIsSterilized' => $cat->getIsSterilized(),
-        'newFamily' => $cat->getFamilyId()
+        'id' => intval($cat->getId()),
+        'newName' => $this->cleanString($cat->getName()),
+        'newAge' => $this->cleanString($cat->getAge()),
+        'newSex' => $this->cleanString($cat->getSex()),
+        'newColor' => $this->cleanString($cat->getColor()),
+        'newDescription' => $this->cleanString($cat->getDescription()),
+        'newIsSterilized' => $this->cleanString($cat->getIsSterilized()),
+        'newFamily' => intval($cat->getFamilyId())
         ];
         
         $query->execute($parameters);
@@ -141,8 +141,8 @@ class CatManager extends AbstractManager{
         $query = $this->db->prepare('DELETE FROM cats WHERE id = :id AND families_id = :family_id');
         
         $parameters = [
-        'id' => $cat->getId(),
-        'family_id' => $cat->getFamilyId()
+        'id' => intval($cat->getId()),
+        'family_id' => intval($cat->getFamilyId())
         ];
         
         $query->execute($parameters);
@@ -156,7 +156,7 @@ class CatManager extends AbstractManager{
 
         $parameters = [
 
-            'cats_id' => $cat->getId()
+            'cats_id' => intval($cat->getId())
         ];
 
         $query->execute($parameters);
@@ -168,8 +168,8 @@ class CatManager extends AbstractManager{
 
         $parameters = [
 
-            'cats_id' => $cat->getId(),
-            'medias_id' => $media->getId()
+            'cats_id' => intval($cat->getId()),
+            'medias_id' => intval($media->getId())
         ];
 
         $query->execute($parameters);

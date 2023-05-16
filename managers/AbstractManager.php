@@ -56,4 +56,12 @@ abstract class AbstractManager
         
         return $info;
     }
+        
+    protected function cleanString(string $string) : string
+    {
+        
+        $cleanString = htmlspecialchars($string);
+        
+        return $cleanString;
+    }
 }

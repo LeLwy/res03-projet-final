@@ -26,7 +26,7 @@ class EventManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM events WHERE id = :id');
         
         $parameters = [
-            'id' => $id
+            'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -65,11 +65,11 @@ class EventManager extends AbstractManager{
         
         $parameters = [
             'id' => null,
-            'name' => $event->getName(),
-            'description' => $event->getDescription(),
-            'location' => $event->getLocation(),
-            'date' => $event->getDate(),
-            'media_id' => $event->getMediaId()
+            'name' => $this->cleanString($event->getName()),
+            'description' => $this->cleanString($event->getDescription()),
+            'location' => $this->cleanString($event->getLocation()),
+            'date' => $this->cleanString($event->getDate()),
+            'media_id' => intval($event->getMediaId())
         ];
         
         $query->execute($parameters);
@@ -87,12 +87,12 @@ class EventManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE events SET name = :newName, description = :newDescription, location = :newLocation, date = :newDate, media_id = :newMediaId WHERE id = :id');
         
         $parameters = [
-            'id' => $event->getId(),
-            'newName' => $event->getName(),
-            'newDescription' => $event->getDescription(),
-            'newLocation' => $event->getLocation(),
-            'newDate' => $event->getDate(),
-            'newMediaId' => $event->getMediaId()
+            'id' => intval($event->getId()),
+            'newName' => $this->cleanString($event->getName()),
+            'newDescription' => $this->cleanString($event->getDescription()),
+            'newLocation' => $this->cleanString($event->getLocation()),
+            'newDate' => $this->cleanString($event->getDate()),
+            'newMediaId' => intval($event->getMediaId())
         ];
         
         $query->execute($parameters);
@@ -103,7 +103,7 @@ class EventManager extends AbstractManager{
         $query = $this->db->prepare('DELETE FROM events WHERE id = :event_id');
 
         $parameters = [
-            'event_id' => $event->getId()
+            'event_id' => intval($event->getId())
         ];
 
         $query->execute($parameters);

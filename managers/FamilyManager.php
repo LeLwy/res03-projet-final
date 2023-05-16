@@ -25,7 +25,7 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
         
         $parameters = [
-        'id' => $id
+        'id' => intval($id)
         ];
         
         $query->execute($parameters);
@@ -44,7 +44,7 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM families WHERE name = :name');
 
         $parameters = [
-            'name' => $name
+            'name' => $this->cleanString($name)
         ];
 
         $query->execute($parameters);
@@ -59,7 +59,7 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM families WHERE id = :id');
 
         $parameters = [
-            'id' => $familyId
+            'id' => intval($familyId)
         ];
             
         $query->execute($parameters);
@@ -75,8 +75,8 @@ class FamilyManager extends AbstractManager{
         
         $parameters = [
         'id' => null,
-        'name' => $family->getName(),
-        'description' => $family->getDescription()
+        'name' => $this->cleanString($family->getName()),
+        'description' => $this->cleanString($family->getDescription())
         ];
         
         $query->execute($parameters);
@@ -94,9 +94,9 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('UPDATE families SET name = :newName, description = :newDescription WHERE id = :id');
         
         $parameters = [
-        'id' => $family->getId(),
-        'newName' => $family->getName(),
-        'newDescription' => $family->getDescription()
+        'id' => intval($family->getId()),
+        'newName' => $this->cleanString($family->getName()),
+        'newDescription' => $this->cleanString($family->getDescription())
         ];
         
         $query->execute($parameters);
@@ -108,7 +108,7 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('SELECT * FROM cats WHERE cats.families_id = :family_id');
 
         $parameters = [
-            'family_id' => $family->getId()
+            'family_id' => intval($family->getId())
         ];
 
         $query->execute($parameters);
@@ -132,7 +132,7 @@ class FamilyManager extends AbstractManager{
 
         $parameters = [
 
-            'id' => $family->getId()
+            'id' => intval($family->getId())
         ];
 
         $query->execute($parameters);
@@ -143,8 +143,8 @@ class FamilyManager extends AbstractManager{
         $query = $this->db->prepare('INSERT INTO families_medias VALUES(:medias_id, :families_id)');
 
         $parameters = [
-            'families_id' => $familyId,
-            'medias_id' => $mediaId
+            'families_id' => intval($familyId),
+            'medias_id' => intval($mediaId)
         ];
 
         $query->execute($parameters);
@@ -156,7 +156,7 @@ class FamilyManager extends AbstractManager{
 
         $parameters = [
 
-            'families_id' => $family->getId()
+            'families_id' => intval($family->getId())
         ];
 
         $query->execute($parameters);
@@ -168,8 +168,8 @@ class FamilyManager extends AbstractManager{
 
         $parameters = [
 
-            'families_id' => $family->getId(),
-            'medias_id' => $media->getId()
+            'families_id' => intval($family->getId()),
+            'medias_id' => intval($media->getId())
         ];
 
         $query->execute($parameters);
@@ -181,7 +181,7 @@ class FamilyManager extends AbstractManager{
 
         $parameters = [
 
-            'family_id' => $family->getId()
+            'family_id' => intval($family->getId())
         ];
 
         $query->execute($parameters);

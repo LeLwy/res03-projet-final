@@ -44,9 +44,15 @@ function checkLoginForm() {
     loginForm.addEventListener('submit', function(e) {
 
         let email = document.getElementById('email').value.trim();
+        let password = document.getElementById('password').value.trim();
 
-        if (!email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i)) {
+        if (!email.match(/[a-z0-9_\-\.]+@[a-z0-9_\-\.]+\.[a-z]+/i) || email === '') {
             alert(email + " n'est pas une adresse valide");
+            e.preventDefault();
+        }
+        
+        if (password === '') {
+            alert("Veuillez renseigner un mot de passe");
             e.preventDefault();
         }
 
